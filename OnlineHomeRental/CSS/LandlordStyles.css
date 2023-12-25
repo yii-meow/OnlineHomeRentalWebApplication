@@ -1,0 +1,927 @@
+﻿.dropdown {
+    display: flex;
+    justify-content: end;
+}
+
+.menu .menu-nav {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 265px;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1;
+    position: fixed;
+}
+
+.menu-nav ul {
+    padding: 0;
+    margin: 20px 0;
+    list-style-type: none;
+    padding: 15px;
+}
+
+.menu-nav li {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    text-align: left;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+    .menu-nav li span {
+        font-size: 15px;
+        margin-left: 9px;
+    }
+
+.menu-nav i {
+    font-size: 24px;
+    width: 40px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.menu-nav a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-nav li:hover {
+    background-color: #f0f0f0;
+}
+
+.user-info {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    padding: 10px;
+    width: 245px;
+    border-radius: 14px;
+    left: 10px;
+    justify-content: space-between;
+    height:70px;
+}
+
+.user-image {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-details {
+    font-size: 16px;
+    color: white;
+}
+
+.exit-icon {
+    margin-left: 10px;
+    color: red;
+    text-decoration: none;
+}
+
+.exit-icon i{
+    font-size:18px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    height: 93vh;
+}
+
+.property {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+    .property .cards {
+        display: flex;
+        gap: 8rem; /* Adjust the gap between cards */
+    }
+
+    .property .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        width: 500px; /* Adjust the width of the cards */
+        height: 550px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .property .card img {
+            width: 100%;
+            height: 300px; /* Adjust the height of the image */
+            object-fit: cover;
+            border-radius: 8px; /* Add some border-radius to the image */
+        }
+
+        .property .card h3 {
+            margin-top: 20px;
+            font-size: 1.5rem; /* Adjust the font size of the heading */
+            color: #333;
+        }
+
+        .property .card p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+    .property .options {
+        margin-top: 20px;
+    }
+
+    .property .button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .property .button:hover {
+            background-color: #297fb8; 
+        }
+
+.home {
+    margin: 0;
+    padding: 10px 30px;
+    background-color: #f4f4f4;
+    height:100%;
+}
+
+    .home h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .home h5 {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    .home .dashboard-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap:1.5rem;
+    }
+
+    .home .dashboard-card {
+        flex-basis: calc(20%);
+        margin: 10px;
+        padding: 20px 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+        width: 280px;
+        height: 120px;
+    }
+
+    .home .dashboard-card p{
+        color:black;
+        font-weight:bold;
+        margin-top:10px;
+        font-size:20px;
+    }
+
+    .home .dashboard-card i{
+        font-size:33px;
+    }
+
+    .home .card:hover {
+        transform: scale(1.05);
+    }
+
+.activity-feed{
+    margin-top:80px;
+}
+
+.activity-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap:0.7rem;
+}
+
+.activity-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width:290px;
+    height:90px;
+}
+
+.activity-icon {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+.activity-details {
+    flex-grow: 1;
+}
+
+    .activity-details p {
+        margin: 5px 0;
+        color: #555;
+    }
+
+.summary-cards {
+    margin-top:20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.summary-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 260px;
+    height: 260px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.summary-card i{
+    font-size:50px;
+}
+
+.value {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin: 10px 0;
+}
+
+.finance-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.finance-item {
+    text-align:center;
+}
+
+.summary {
+    display: grid;
+    grid-gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.viewProperty {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+    .viewProperty h5 {
+        margin: 20px 0;
+    }
+
+    .viewProperty .property-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 5rem;
+    }
+
+.list-view {
+    display: flex;
+    justify-content: end;
+    margin-right: 3%;
+}
+
+.property-card {
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 400px;
+    height: 580px;
+}
+
+    .property-card .property-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+.property-details-container{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:3rem;
+}
+
+.property-card .property-details {
+    padding: 15px;
+}
+
+    .property-card .property-id {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #e74c3c; /* Red color for a sharp and vibrant look, change as needed */
+        color: #fff;
+        padding: 8px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+
+    .property-card .property-name {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .property-card .property-type,
+    .property-card .property-address,
+    .property-card .property-description,
+    .property-card .property-ratings,
+    .property-card .property-price {
+        margin-bottom: 10px;
+    }
+
+    .property-card .property-description {
+        height: 65px;
+    }
+
+    .property-card .property-ratings {
+        color: #ffd700; /* gold color for stars */
+    }
+
+    .property-card .property-price {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #27ae60; /* green color for price */
+    }
+
+    .property-card .details-button {
+        margin-top: 0.5rem;
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+        .property-card .details-button:hover {
+            background-color: #2980b9;
+        }
+
+.addProperty {
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px
+}
+
+    .addProperty .property-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .addProperty .property-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        width: 40%;
+        height: 200px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .addProperty .property-card:hover {
+            transform: scale(1.05);
+        }
+
+    .addProperty .property-type {
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+.notification-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+    .notification-body .notification-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+.notification-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .notification-item:hover {
+        background-color: #f9f9f9;
+    }
+
+.notification-type {
+    font-size: 14px;
+    color: #3498db;
+    margin-bottom: 5px;
+}
+
+.notification-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.notification-description {
+    font-size: 14px;
+    color: #555;
+}
+
+.notification-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.addPropertyForm {
+    width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .addPropertyForm h2 {
+        color: #333;
+    }
+
+    .addPropertyForm label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .addPropertyForm input,
+    .addPropertyForm select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .addPropertyForm textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        resize: vertical; /* Allow vertical resizing of the textarea */
+    }
+
+    .addPropertyForm button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .addPropertyForm button:hover {
+            background-color: #2980b9;
+        }
+
+    .addPropertyForm #lblMessage {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+.morePropertyDetails {
+    width: 100%;
+    padding: 10px;
+}
+
+    .morePropertyDetails .container {
+        margin: 0 auto;
+    }
+
+    .morePropertyDetails .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .morePropertyDetails h1 {
+        color: #343a40; /* Dark gray text color */
+    }
+
+    .morePropertyDetails .property-images {
+        height: 50%;
+        width:100%;
+        margin-bottom: 20px;
+        text-align:center;
+    }
+
+        .morePropertyDetails .property-images img {
+            width: 80%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+    .morePropertyDetails .property-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        width:700px;
+    }
+
+    .morePropertyDetails .main-details,
+    .morePropertyDetails .property-description,
+    .morePropertyDetails .property-moreDetails {
+        background-color: #ffffff; /* White background for property details */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow for a card effect */
+    }
+
+    .morePropertyDetails .property-details p {
+        margin-bottom: 10px;
+        color: #495057; /* Dark gray text color */
+    }
+
+    .morePropertyDetails .property-details strong {
+        font-weight: bold;
+    }
+
+.bookingHistory {
+    padding: 20px;
+    display: flex;
+    gap: 6rem;
+}
+
+.receipt-container {
+    width: 800px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    .receipt-container .section-header {
+        font-size: 20px;
+        font-weight: bold;
+        display: inline;
+    }
+
+    .receipt-container .booking-id {
+        float: right;
+    }
+
+    .receipt-container .left-panel {
+        padding-left: 15px;
+    }
+
+    .receipt-container .payment-details,
+    .receipt-container .booking-details {
+        margin-bottom: 20px;
+    }
+
+    .receipt-container .property-details {
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .receipt-container .total {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+.payment-status {
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    background-color: grey;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    height: 90vh;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+}
+
+.user-list {
+    flex: 0.5;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.user {
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-bottom: 1px solid #499E8D; /* Add a white line below each user */
+}
+
+    .user:hover {
+        background-color: #34495e;
+    }
+
+.messages-container {
+    flex: 3;
+    display: flex;
+    padding: 20px;
+    overflow-y: auto;
+    flex-direction: column;
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-content {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.message {
+    max-width: 60%;
+    margin-bottom: 13px;
+    padding: 10px;
+    border-radius: 10px;
+    align-self: flex-start;
+}
+
+.sent {
+    background-color: #3498db;
+    align-self: flex-end;
+    color: #ecf0f1;
+}
+
+.received {
+    background-color: #ecf0f1;
+    color: #333;
+}
+
+.time {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.message-input {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+    .message-input input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    .message-input button {
+        width: 8%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3498db;
+        color: #ecf0f1;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+.finance header {
+    background-color: goldenrod;
+    color: white;
+    padding: 20px;
+}
+
+.finance .header-container {
+    text-align: center;
+}
+
+.finance section {
+    margin: 20px;
+}
+
+.finance .summary {
+    display: flex;
+    justify-content: space-around;
+}
+
+.finance .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    height: 250px;
+}
+
+.finance .transaction-history {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.finance table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.finance thead {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.finance th, .finance td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.finance .summary{
+    display:flex;
+    justify-content:space-between;
+}
+
+canvas {
+    width:400px;
+    height:200px;
+}
+
+.revenue-chart{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:6rem;
+}
+
+.revenue-chart span {
+    font-size: 25px;
+}
+
+.finance .reports {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width:300px;
+}
+
+.finance .report-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+}
+
+.account-setting .container {
+    padding:20px;
+    max-width: 750px;
+}
+
+.account-setting .card {
+    margin-top: 20px;
+}
+
+.account-setting .form-group {
+    margin-bottom: 20px;
+}
+
+.account-setting .btn-save {
+    background-color: #28a745;
+    color: #fff;
+}
+
+    .account-setting .btn-save:hover {
+        background-color: #218838;
+    }
+
+/* Align the headings and descriptions to the left */
+.account-setting .card-title,
+.account-setting .text-muted {
+    text-align: left;
+}
+
+/* Adjust the spacing */
+.account-setting .card-title {
+    margin-bottom: 10px;
+}
+
+.account-setting .input-group-text {
+    cursor: pointer;
+}

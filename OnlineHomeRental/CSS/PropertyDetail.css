@@ -1,0 +1,155 @@
+﻿.content-propertydetail {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-left {
+    width: 600px;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.column-right {
+    width: 600px;
+    padding: 10px;
+}
+
+#featured {
+    max-width: 500px;
+    max-height: 600px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #85CC9F;
+}
+
+.thumbnail {
+    object-fit: cover;
+    max-width: 180px;
+    max-height: 100px;
+    cursor: pointer;
+    opacity: 0.5;
+    margin: 5px;
+    border: 2px solid #85CC9F;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+}
+
+.active {
+    opacity: 1;
+}
+
+#slide-wrapper-propertydetail {
+    max-width: 500px;
+    display: flex;
+    min-height: 100px;
+    align-items: center;
+}
+
+#slider-propertydetail {
+    width: 440px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+#slider-propertydetail::-webkit-scrollbar {
+    width: 8px;
+}
+
+#slider-propertydetail::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#slider-propertydetail::-webkit-scrollbar-thumb {
+    background-color: #85CC9F;
+    outline: 1px solid slategrey;
+    border-radius: 100px;
+}
+
+#slider-propertydetail::-webkit-scrollbar-thumb:hover {
+    background-color: #A4DEAB;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.arrow:hover {
+    opacity: .5;
+    width: 35px;
+    height: 35px;
+}
+
+.h1color-paymentstatus {
+    color: #4A707A;
+}
+
+.pcolor-paymentstatus {
+    color: black;
+}
+
+.btn-propertydetail {
+    padding: 0.6rem 1.3rem;
+    background-color: #4A707A;
+    border: 2px solid #4A707A;
+    font-size: 0.95rem;
+    color: white;
+    line-height: 1;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.btn-propertydetail:hover {
+    background-color: transparent;
+    color: #4A707A;
+}
+
+.calendar-firstrow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-secondrow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.calendar-column1 {
+    width: 250px;
+}
+
+.calendar-column2 {
+    width: 250px;
+}
+
+.calendar-pd1 {
+    width: 250px;
+    height: 50px;
+}
+
+.calendar-pd2 {
+    width: 250px;
+    height: 50px;
+}

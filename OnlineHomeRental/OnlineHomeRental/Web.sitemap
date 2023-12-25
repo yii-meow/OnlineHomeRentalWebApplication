@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+	<siteMapNode url="~/Landlord/Homepage.aspx" title="Homepage"  description="Homepage">
+		<siteMapNode url="~/Landlord/Property.aspx" title="Property"  description="Property Management">
+			<siteMapNode url="~/Landlord/ViewProperty.aspx" title="View Property"  description="View Property">
+				<siteMapNode url="~/Landlord/PropertyDetails.aspx" title="PropertyDetails"  description="PropertyDetails" />
+				</siteMapNode>
+			<siteMapNode url="~/Landlord/AddProperty.aspx" title="Add Property"  description="Add Property" />
+		</siteMapNode>
+		<siteMapNode url="~/Landlord/Bookings.aspx" title="Bookings Information"  description="Booking History" />
+		<siteMapNode url="~/Landlord/Notification.aspx" title="Landlord Notification"  description="Landlord Notification" />
+		<siteMapNode url="~/Landlord/Chat.aspx" title="Chat"  description="Chat" />
+		<siteMapNode url="~/Landlord/Finance.aspx" title="Finance"  description="Finance" />
+		<siteMapNode url="~/Landlord/AccountSetting.aspx" title="Account Setting"  description="Account Setting" />
+	</siteMapNode>
+</siteMap>
+
+
+

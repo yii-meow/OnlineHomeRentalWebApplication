@@ -1,0 +1,69 @@
+﻿.bg-image-1 {
+    height: 100vh;
+    background-image: url("/img/resort1.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 680px;
+}
+
+.about-title {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 30px;
+}
+
+.about-title h1 {
+    color: #4A707A;
+}
+
+.container-aboutus {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 950px;
+}
+
+.about-text {
+    padding: 10px 0 20px;
+    text-align: center;
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+.container-2-aboutus {
+    padding-top: 50px;
+    padding-bottom: 160px;
+    background: #F2F3F4;
+}
+
+.bg-image-2 {
+    background-image: url("/img/resort2.jpg");
+    height: 400px;
+    width: 600px;
+    border-radius: 36px;
+    float: left;
+    margin-left: 50px;
+    margin-right: 20px;
+}
+
+.about-text2 h1 {
+    color: #4A707A;
+    font-style: italic;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 35px;
+}
+
+.about-text2 p {
+    color: black;
+    font-size: 23px;
+    padding-top: 60px;
+    padding-right: 60px;
+    font-style: italic;
+}
+
+.justify-text {
+    text-align: justify;
+}

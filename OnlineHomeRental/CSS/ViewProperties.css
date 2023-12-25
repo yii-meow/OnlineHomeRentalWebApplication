@@ -1,0 +1,100 @@
+﻿.container-viewproperties {
+    margin-top: 50px;
+    margin-left: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.column-left {
+    flex-basis: 70%;
+}
+
+.column-right {
+    flex-basis: 25%;
+}
+
+.column-left h1 {
+    color: #4A707A;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.property-viewproperties {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 30px 0;
+    border-top: 1px solid #C8E8C7;
+}
+
+.property-img-viewproperties {
+    flex-basis: 40%;
+}
+
+.property-detail-viewproperties {
+    flex-basis: 58%;
+    color: #555;
+}
+
+.property-img-viewproperties img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.property-detail-viewproperties h3 {
+    font-weight: 600;
+    color: #4A707A;
+    font-size: 22px;
+}
+
+.property-price-viewproperties {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.property-price-viewproperties h4 {
+    font-size: 20px;
+    color: #4A707A;
+}
+
+.property-price-viewproperties h4 span {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.checkboxlist-viewproperties {
+    border: 1px solid #85CC9F;
+    padding: 20px 30px;
+    margin-top: 30px;
+}
+
+.checkboxlist-viewproperties h2 {
+    font-weight: 500;
+    font-size: 19px;
+    color: black;
+}
+
+.checkboxlist-viewproperties h3 {
+    font-weight: 500;
+    margin: 20px 0 10px;
+    font-size: 17px;
+    color: black;
+}
+
+.filter-search-viewproperties {
+    display: flex;
+    align-items: center;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.filter-search-viewproperties input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.filter-search-viewproperties p {
+    flex: 1;
+    margin-bottom: -1px;
+}
