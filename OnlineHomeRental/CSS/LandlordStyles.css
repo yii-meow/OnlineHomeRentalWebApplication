@@ -71,7 +71,7 @@
     border-radius: 14px;
     left: 10px;
     justify-content: space-between;
-    height:70px;
+    height: 70px;
 }
 
 .user-image {
@@ -92,9 +92,9 @@
     text-decoration: none;
 }
 
-.exit-icon i{
-    font-size:18px;
-}
+    .exit-icon i {
+        font-size: 18px;
+    }
 
 .main-content {
     margin-left: 250px;
@@ -165,14 +165,14 @@
     }
 
         .property .button:hover {
-            background-color: #297fb8; 
+            background-color: #297fb8;
         }
 
 .home {
     margin: 0;
     padding: 10px 30px;
     background-color: #f4f4f4;
-    height:100%;
+    height: 100%;
 }
 
     .home h2 {
@@ -189,7 +189,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap:1.5rem;
+        gap: 1.5rem;
     }
 
     .home .dashboard-card {
@@ -204,29 +204,29 @@
         height: 120px;
     }
 
-    .home .dashboard-card p{
-        color:black;
-        font-weight:bold;
-        margin-top:10px;
-        font-size:20px;
-    }
+        .home .dashboard-card p {
+            color: black;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 20px;
+        }
 
-    .home .dashboard-card i{
-        font-size:33px;
-    }
+        .home .dashboard-card i {
+            font-size: 33px;
+        }
 
     .home .card:hover {
         transform: scale(1.05);
     }
 
-.activity-feed{
-    margin-top:80px;
+.activity-feed {
+    margin-top: 80px;
 }
 
 .activity-cards {
     display: flex;
     flex-wrap: wrap;
-    gap:0.7rem;
+    gap: 0.7rem;
 }
 
 .activity-card {
@@ -238,8 +238,8 @@
     align-items: center;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width:290px;
-    height:90px;
+    width: 290px;
+    height: 90px;
 }
 
 .activity-icon {
@@ -257,7 +257,7 @@
     }
 
 .summary-cards {
-    margin-top:20px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-around;
 }
@@ -276,9 +276,9 @@
     justify-content: center;
 }
 
-.summary-card i{
-    font-size:50px;
-}
+    .summary-card i {
+        font-size: 50px;
+    }
 
 .value {
     font-size: 24px;
@@ -298,7 +298,7 @@
 }
 
 .finance-item {
-    text-align:center;
+    text-align: center;
 }
 
 .summary {
@@ -359,72 +359,73 @@
         object-fit: cover;
     }
 
-.property-details-container{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:3rem;
+.property-details-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    gap:3rem;
 }
 
 .property-card .property-details {
     padding: 15px;
 }
 
-    .property-card .property-id {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: #e74c3c; /* Red color for a sharp and vibrant look, change as needed */
-        color: #fff;
-        padding: 8px;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 0.8em;
-    }
+.property-card .property-id {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #e74c3c; /* Red color for a sharp and vibrant look, change as needed */
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
 
-    .property-card .property-name {
-        font-size: 1.2em;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+.property-card .property-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    .property-card .property-type,
-    .property-card .property-address,
-    .property-card .property-description,
-    .property-card .property-ratings,
-    .property-card .property-price {
-        margin-bottom: 10px;
-    }
+.property-card .property-type,
+.property-card .property-address,
+.property-card .property-description,
+.property-card .property-ratings,
+.property-card .property-price {
+    margin-bottom: 10px;
+}
 
-    .property-card .property-description {
-        height: 65px;
-    }
+.property-card .property-description {
+    height: 65px;
+}
 
-    .property-card .property-ratings {
-        color: #ffd700; /* gold color for stars */
-    }
+.property-card .property-ratings {
+    color: #ffd700; /* gold color for stars */
+}
 
-    .property-card .property-price {
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #27ae60; /* green color for price */
-    }
+.property-card .property-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #27ae60; /* green color for price */
+}
 
-    .property-card .details-button {
-        margin-top: 0.5rem;
-        background-color: #3498db;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        width: 100%;
-    }
+.property-card .details-button {
+    margin-top: 0.5rem;
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
 
-        .property-card .details-button:hover {
-            background-color: #2980b9;
-        }
+    .property-card .details-button:hover {
+        background-color: #2980b9;
+    }
 
 .addProperty {
     background-color: #f4f4f4;
@@ -590,9 +591,9 @@
 
     .morePropertyDetails .property-images {
         height: 50%;
-        width:100%;
+        width: 100%;
         margin-bottom: 20px;
-        text-align:center;
+        text-align: center;
     }
 
         .morePropertyDetails .property-images img {
@@ -605,7 +606,7 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        width:700px;
+        width: 700px;
     }
 
     .morePropertyDetails .main-details,
@@ -849,35 +850,35 @@
     border-bottom: 1px solid #ddd;
 }
 
-.finance .summary{
-    display:flex;
-    justify-content:space-between;
+.finance .summary {
+    display: flex;
+    justify-content: space-between;
 }
 
 canvas {
-    width:400px;
-    height:200px;
+    width: 400px;
+    height: 200px;
 }
 
-.revenue-chart{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:6rem;
+.revenue-chart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
 }
 
-.revenue-chart span {
-    font-size: 25px;
-}
+    .revenue-chart span {
+        font-size: 25px;
+    }
 
 .finance .reports {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width:300px;
+    width: 300px;
 }
 
 .finance .report-card {
@@ -890,7 +891,7 @@ canvas {
 }
 
 .account-setting .container {
-    padding:20px;
+    padding: 20px;
     max-width: 750px;
 }
 

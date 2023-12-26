@@ -26,9 +26,7 @@ namespace OnlineHomeRental.Landlord
                     {
                         con.Open();
 
-                        string strSelect = "SELECT * FROM PropertyDetails " +
-                            "INNER JOIN PropertyListing ON PropertyDetails.PropertyId = PropertyListing.PropertyId " +
-                            "WHERE PropertyDetails.PropertyId = @PropertyId";
+                        string strSelect = "SELECT * FROM Property;";
 
                         using (SqlCommand cmdSelect = new SqlCommand(strSelect, con))
                         {
@@ -42,18 +40,20 @@ namespace OnlineHomeRental.Landlord
                                     while (reader.Read())
                                     {
                                         string propertyType = reader.GetString(reader.GetOrdinal("PropertyType"));
+                                        string propertyAddress = reader.GetString(reader.GetOrdinal("PropertyAddress"));
                                         decimal propertyPrice = reader.GetDecimal(reader.GetOrdinal("PropertyPrice"));
                                         string listingDescription = reader.GetString(reader.GetOrdinal("ListingDescription"));
                                         int numberOfBedroom = reader.GetInt32(reader.GetOrdinal("NumberOfBedroom"));
-                                        decimal area = reader.GetDecimal(reader.GetOrdinal("Area"));
+                                        decimal area = reader.GetDecimal(reader.GetOrdinal("AreaSqft"));
                                         bool airCondAvailability = reader.GetBoolean(reader.GetOrdinal("AirCondAvailability"));
                                         bool waterHeaterAvailability = reader.GetBoolean(reader.GetOrdinal("WaterHeaterAvailability"));
                                         bool wifiAvailability = reader.GetBoolean(reader.GetOrdinal("WifiAvailability"));
                                         string preferences = reader.IsDBNull(reader.GetOrdinal("Preferences")) ? string.Empty : reader.GetString(reader.GetOrdinal("Preferences"));
-                                        string propertyImages = reader.IsDBNull(reader.GetOrdinal("PropertyImages")) ? string.Empty : reader.GetString(reader.GetOrdinal("PropertyImages"));
+                                        string propertyImages = reader.IsDBNull(reader.GetOrdinal("Thumbnail")) ? string.Empty : reader.GetString(reader.GetOrdinal("Thumbnail"));
 
                                         lblPropertyId.Text = propertyId.ToString();
                                         lblPropertyType.Text = propertyType;
+                                        lblPropertyAddress.Text = propertyAddress;
                                         lblPropertyPrice.Text = propertyPrice.ToString("0.00");
                                         lblListingDescription.Text = listingDescription;
                                         lblNumberOfBedroom.Text = numberOfBedroom.ToString();

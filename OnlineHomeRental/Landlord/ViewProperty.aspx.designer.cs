@@ -33,6 +33,24 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Label lblTotalProperties;
 
         /// <summary>
+        /// propertyType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList propertyType;
+
+        /// <summary>
+        /// applyFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button applyFilter;
+
+        /// <summary>
         /// Repeater1 control.
         /// </summary>
         /// <remarks>

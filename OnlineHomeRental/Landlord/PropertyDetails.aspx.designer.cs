@@ -24,6 +24,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Label lblPropertyId;
 
         /// <summary>
+        /// lblPropertyAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPropertyAddress;
+
+        /// <summary>
         /// lblPropertyType control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblListingDescription;
+
+        /// <summary>
+        /// lblPreferences control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPreferences;
 
         /// <summary>
         /// lblNumberOfBedroom control.
@@ -94,14 +112,5 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblWifiAvailability;
-
-        /// <summary>
-        /// lblPreferences control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPreferences;
     }
 }

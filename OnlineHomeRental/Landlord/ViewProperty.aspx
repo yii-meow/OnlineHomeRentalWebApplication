@@ -19,14 +19,14 @@
 
         <div class="filter-container">
             <label for="propertyType">Filter by Property Type:</label>
-            <select id="propertyType" name="propertyType">
-                <option value="all">All</option>
-                <option value="residential">Residential</option>
-                <option value="flat">Flat</option>
-                <option value="apartment">Apartment</option>
-                <option value="condominium">Condominium</option>
-            </select>
-            <button class="bg-primary">Apply Filter</button>
+            <asp:DropDownList ID="propertyType" runat="server">
+                <asp:ListItem Value="all">All</asp:ListItem>
+                <asp:ListItem Value="residential">Residential</asp:ListItem>
+                <asp:ListItem Value="flat">Flat</asp:ListItem>
+                <asp:ListItem Value="apartment">Apartment</asp:ListItem>
+                <asp:ListItem Value="condominium">Condominium</asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="applyFilter" runat="server" class="btn bg-primary ml-3 text-white" Text="Apply Filter" OnClick="ApplyFilter_Click" />
         </div>
 
         <div class="property-cards">
@@ -44,7 +44,7 @@
                             <div class="property-ratings">
                                 ⭐⭐⭐⭐⭐
                             </div>
-                            <div class="property-price">RM <%#Eval("PropertyPrice")%></div>
+                            <div class="property-price">RM <%#Eval("PropertyPrice")%> <span class="text-dark"> / night </span> </div> 
                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/Landlord/PropertyDetails.aspx?PropertyId=" + Eval("PropertyId") %>'>
                                 <button type="button" class="details-button">Check for more details</button>
                             </asp:HyperLink>
@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [PropertyListing]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Property]"></asp:SqlDataSource>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
