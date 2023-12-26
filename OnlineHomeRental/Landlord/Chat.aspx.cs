@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +13,32 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void Session_click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string ChatSessionId = btn.CommandArgument;
+
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                con.Open();
+
+                string strSelect = "SELECT * FROM ChatMessage WHERE ChatSessionId = @ChatSessionId";
+
+                using (SqlCommand cmdSelect = new SqlCommand(strSelect, con))
+                {
+                    cmdSelect.Parameters.AddWithValue("@ChatSessionId", ChatSessionId);
+
+                    using (SqlDataReader reader = cmdSelect.ExecuteReader())
+                    {
+                        MessageRepeater.DataSource = reader;
+                        MessageRepeater.DataBind();
+                    }
+                }
+            }
         }
     }
 }

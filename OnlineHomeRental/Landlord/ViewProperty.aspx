@@ -44,7 +44,7 @@
                             <div class="property-ratings">
                                 ⭐⭐⭐⭐⭐
                             </div>
-                            <div class="property-price">RM <%#Eval("PropertyPrice")%> <span class="text-dark"> / night </span> </div> 
+                            <div class="property-price">RM <%#Eval("PropertyPrice")%> <span class="text-dark">/ night </span></div>
                             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "~/Landlord/PropertyDetails.aspx?PropertyId=" + Eval("PropertyId") %>'>
                                 <button type="button" class="details-button">Check for more details</button>
                             </asp:HyperLink>
@@ -54,8 +54,8 @@
             </asp:Repeater>
         </div>
     </div>
-
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Property]"></asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM Booking"></asp:SqlDataSource>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -9,8 +9,8 @@
                 <Columns>
                     <asp:CommandField ShowSelectButton="True" />
                     <asp:BoundField DataField="BookingId" HeaderText="Booking Id" InsertVisible="False" ReadOnly="True" SortExpression="BookingId" />
-                    <asp:BoundField DataField="StartDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Start Date" SortExpression="StartDate" />
-                    <asp:BoundField DataField="EndDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="End Date" SortExpression="EndDate" />
+                    <asp:BoundField DataField="CheckInDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check In Date" SortExpression="CheckInDate" />
+                    <asp:BoundField DataField="CheckOutDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check Out Date" SortExpression="CheckOutDate" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -91,7 +91,7 @@
                                             (<%# Eval("PropertyType") %>)
                                         </p>
                                         <p>
-                                            <%# Convert.ToDateTime(Eval("StartDate")).ToString("d/M/yyyy") %> - <%# Convert.ToDateTime(Eval("EndDate")).ToString("d/M/yyyy") %>
+                                            <%# Convert.ToDateTime(Eval("CheckInDate")).ToString("d/M/yyyy") %> - <%# Convert.ToDateTime(Eval("CheckOutDate")).ToString("d/M/yyyy") %>
                                         </p>
                                     </td>
                                     <td>5 months</td>
@@ -122,11 +122,11 @@
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM Booking"></asp:SqlDataSource>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.StartDate, Booking.EndDate, 
-                        PropertyListing.PropertyName, PropertyListing.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
+        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, 
+                        Property.PropertyName, Property.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
                         [User].Name, [User].Gender, [User].PhoneNo, [User].Email, Tenant.BillingAddress
                     FROM Booking
-                    INNER JOIN PropertyListing ON Booking.PropertyId = PropertyListing.PropertyId
+                    INNER JOIN Property ON Booking.PropertyId = Property.PropertyId
                     INNER JOIN Payment ON Booking.BookingId = Payment.BookingId
                     INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId
                     INNER JOIN [User] ON Tenant.UserId = [User].UserId
