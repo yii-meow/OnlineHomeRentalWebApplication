@@ -82,8 +82,7 @@
 
                 <!-- User Details -->
                 <div class="user-details">
-                    <span class="text-lg"><b>Jessica</b></span>
-                    <span>(jessica1111111)</span>
+                    <span class="text-lg"><b><asp:Literal runat="server" ID="LandlordUsername"/></b></span>
                 </div>
 
                 <!-- Exit Icon -->
