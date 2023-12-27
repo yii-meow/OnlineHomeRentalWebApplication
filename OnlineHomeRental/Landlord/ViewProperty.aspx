@@ -42,6 +42,7 @@
                             <div class="property-address">Address : <%#Eval("PropertyAddress")%></div>
                             <div class="property-description"><%#Eval("ListingDescription")%></div>
                             <div class="property-ratings">
+                                <!-- Calculate Ratings -->
                                 ⭐⭐⭐⭐⭐
                             </div>
                             <div class="property-price">RM <%#Eval("PropertyPrice")%> <span class="text-dark">/ night </span></div>
@@ -54,8 +55,12 @@
             </asp:Repeater>
         </div>
     </div>
-    
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT *, PropertyName FROM Booking INNER JOIN Property ON Booking.PropertyId = Property.PropertyId"></asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>">
+        <SelectParameters>
+            <asp:SessionParameter Name="UserId" SessionField="UserId" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
