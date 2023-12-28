@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="LandlordLoginPage.aspx" />
     <Content Include="TenantForgetPassword.aspx" />
     <Content Include="Tenant\AboutUs.aspx" />
@@ -2244,6 +2245,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="LandlordLoginPage.aspx.cs">
       <DependentUpon>LandlordLoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -33,6 +33,7 @@ namespace OnlineHomeRental.Landlord
             if (CheckLogin(LandlordUsername, hashedPassword))
             {
                 Session["UserId"] = LandlordUsername;
+
                 Response.Redirect("/Landlord/HomePage.aspx");
             }
             // Login failed
@@ -105,8 +106,7 @@ namespace OnlineHomeRental.Landlord
                     cmd.Parameters.AddWithValue("@PhoneNo", LandlordRegPhoneNo);
                     cmd.Parameters.AddWithValue("@Email", LandlordRegEmail);
 
-                    // Execute the query
-                    //cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
 

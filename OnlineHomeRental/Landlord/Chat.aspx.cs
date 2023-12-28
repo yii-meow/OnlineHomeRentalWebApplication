@@ -17,8 +17,8 @@ namespace OnlineHomeRental.Landlord
 
         protected void Session_click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            string ChatSessionId = btn.CommandArgument;
+            LinkButton user = (LinkButton)sender;
+            string ChatSessionId = user.CommandArgument;
 
             string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 

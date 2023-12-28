@@ -108,7 +108,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    min-height: 90vh;
     margin: 0;
     background-color: #f4f4f4;
 }
@@ -172,7 +172,7 @@
     margin: 0;
     padding: 10px 30px;
     background-color: #f4f4f4;
-    height: 100%;
+    height: fit-content;
 }
 
     .home h2 {
@@ -320,6 +320,8 @@
 }
 
 .viewProperty {
+    min-height: 90vh;
+    max-height: fit-content;
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
@@ -364,7 +366,7 @@
     display: flex;
     justify-content: center;
     margin-top: 3rem;
-    gap:3rem;
+    gap: 3rem;
 }
 
 .property-card .property-details {
@@ -466,6 +468,10 @@
         font-weight: bold;
     }
 
+.addPropertyButton {
+    border-radius: 30px;
+}
+
 .notification-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
@@ -523,10 +529,21 @@
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 90vh;
+    max-height: fit-content;
 }
 
     .addPropertyForm h2 {
         color: #333;
+    }
+
+    .addPropertyForm .amenities {
+        display: flex;
+        font-size: 14px;
+        height: 30px;
+        padding: 0 70px;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     .addPropertyForm label {
@@ -568,6 +585,16 @@
     .addPropertyForm #lblMessage {
         margin-top: 10px;
         font-weight: bold;
+    }
+
+    .addPropertyForm .image_section {
+    }
+
+    .addPropertyForm .images_upload {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
     }
 
 .morePropertyDetails {
@@ -717,6 +744,20 @@
 
     .user:hover {
         background-color: #34495e;
+    }
+
+
+    .user .userSession_button {
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        outline: inherit;
+        display: flex;
+        width: 300px;
+        text-decoration: none;
     }
 
 .messages-container {
@@ -925,14 +966,4 @@ canvas {
 
 .account-setting .input-group-text {
     cursor: pointer;
-}
-
-.userSession_button {
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-    outline: inherit;
 }

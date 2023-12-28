@@ -13,38 +13,68 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                for (int i= 1; i <= 10; i++)
+                {
+                    ddlNumberOfBedroom.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                }
+            }
         }
 
         protected void btnAddProperty_Click(object sender, EventArgs e)
         {
             // Get user input
+            int landlordId = 0;
             string propertyName = txtPropertyName.Text;
             string propertyType = ddlPropertyType.SelectedValue;
             string propertyAddress = txtPropertyAddress.Text;
             string listingDescription = txtListingDescription.Text;
-            string propertyPrice = txtPropertyPrice.Text;
+            Decimal propertyPrice = Convert.ToDecimal(txtPropertyPrice.Text);
+            int numberOfBedroom = int.Parse(ddlNumberOfBedroom.Text);
+            Decimal areaSqft = Convert.ToDecimal(txtAreaSqft.Text);
+            bool airCondAvailability = cbAirConditioning.Checked;
+            bool waterHeaterAvailability = cbWaterHeater.Checked;
+            bool wifiAvailability = cbWiFi.Checked;
+            string preferences = txtPreferences.Text;
 
             // Assuming you have a connection string in your web.config
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             // SQL query to insert a record
-            string insertQuery = "INSERT INTO [PropertyListing] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice) " +
-                                "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice)";
+            string insertQuery = "INSERT INTO [Property] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice, NumberOfBedroom, AreaSqft, AirCondAvailability, WaterHeaterAvailability, WifiAvailability, Preferences, Thumbnail, Image1) " +
+                                "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice, @NumberOfBedroom, @AreaSqft, @AirCondAvailability, @WaterHeaterAvailability, @WifiAvailability, @Preferences, @Thumbnail, @Image1)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
+
+                // retrieve LandlordId for inserting record
+
+                using (SqlCommand cmdSelect = new SqlCommand("SELECT LandlordId FROM Landlord WHERE UserId = @UserId", connection))
+                {
+                    cmdSelect.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    landlordId = (int)cmdSelect.ExecuteScalar();                    
+                } 
+
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@LandlordId", 1);
+                    command.Parameters.AddWithValue("@LandlordId", landlordId);
                     command.Parameters.AddWithValue("@PropertyName", propertyName);
                     command.Parameters.AddWithValue("@PropertyType", propertyType);
                     command.Parameters.AddWithValue("@PropertyAddress", propertyAddress);
                     command.Parameters.AddWithValue("@ListingDescription", listingDescription);
-                    command.Parameters.AddWithValue("@PropertyPrice", Convert.ToDecimal(propertyPrice));
+                    command.Parameters.AddWithValue("@PropertyPrice", propertyPrice);
+                    command.Parameters.AddWithValue("@NumberOfBedroom", numberOfBedroom);
+                    command.Parameters.AddWithValue("@AreaSqft", areaSqft);
+                    command.Parameters.AddWithValue("@AirCondAvailability", airCondAvailability);
+                    command.Parameters.AddWithValue("@WaterHeaterAvailability", waterHeaterAvailability);
+                    command.Parameters.AddWithValue("@WifiAvailability", wifiAvailability);
+                    command.Parameters.AddWithValue("@Preferences", preferences);
+                    command.Parameters.AddWithValue("@Thumbnail", "/Data/Property.jpg");
+                    command.Parameters.AddWithValue("@Image1", "/Data/Property.jpg");
 
-                    connection.Open();
-                    // command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
                     connection.Close();
                 }
@@ -53,7 +83,7 @@ namespace OnlineHomeRental.Landlord
             alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
 
             // Set the alert message
-            alertDiv.InnerText = "Success";
+            alertDiv.InnerHtml = "Successfully Added Property <b>" + propertyName + "</b> !";
 
             // Make the alert visible
             alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");

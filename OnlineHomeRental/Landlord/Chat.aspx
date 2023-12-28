@@ -8,7 +8,7 @@
                 <asp:Repeater ID="TenantRepeater" runat="server" DataSourceID="SqlDataSource1">
                     <ItemTemplate>
                         <div class="user">
-                            <asp:Button ID="btn" Text='<%# Eval("UserId") %>' runat="server" CssClass="userSession_button" OnClick="Session_click" CommandArgument='<%# Eval("ChatSessionId") %>' />
+                            <asp:LinkButton ID="btnChatUser" Text='<%# Eval("UserId")%>' runat="server" OnClick="Session_click" CommandArgument='<%# Eval("ChatSessionId") %>' CssClass="userSession_button" />
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
@@ -32,60 +32,6 @@
                     <button>Send</button>
                 </div>
             </div>
-
-            <%--<div class="chat-content">
-                <div class="messages-container">
-                    <div class="message received">
-                        <p>Hello there!</p>
-                        <span class="time">10:30 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message received">
-                        <p>Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!Hello there!</p>
-                        <span class="time">10:30 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-
-                    <div class="message sent">
-                        <p>Hi! How can I help you?</p>
-                        <span class="time">10:35 AM</span>
-                    </div>
-                </div>
-
-                <div class="message-input">
-                    <input type="text" placeholder="Type your message...">
-                    <button>Send</button>
-                </div>
-            </div>--%>
         </div>
     </div>
 

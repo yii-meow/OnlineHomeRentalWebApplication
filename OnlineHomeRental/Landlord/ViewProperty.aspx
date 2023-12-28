@@ -27,6 +27,9 @@
                 <asp:ListItem Value="condominium">Condominium</asp:ListItem>
             </asp:DropDownList>
             <asp:Button ID="applyFilter" runat="server" class="btn bg-primary ml-3 text-white" Text="Apply Filter" OnClick="ApplyFilter_Click" />
+            <div class="mt-3">
+                <asp:Label ID="lblReturnedFilterRecord" runat="server" />
+            </div>
         </div>
 
         <div class="property-cards">
@@ -35,7 +38,7 @@
                     <div class="property-card">
                         <img class="property-img" src="property.jpg" alt="Property Image">
                         <div class="property-details">
-                            <div class="property-id"># <%#Eval("PropertyId")%></div>
+                            <div class="property-id">ID: <%#Eval("PropertyId")%></div>
                             <div class="property-name"><%#Eval("PropertyName")%></div>
                             <div class="property-type">Type : <%#Eval("PropertyType")%></div>
                             <!-- Add Icon -->

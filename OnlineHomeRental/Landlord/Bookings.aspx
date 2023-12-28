@@ -120,7 +120,12 @@
         </div>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM Booking"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>">
+        <SelectParameters>
+            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="String" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
         SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, 
                         Property.PropertyName, Property.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
