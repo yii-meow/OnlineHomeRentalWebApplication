@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="OnlineHomeRental.Landlord.Homepage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="home">
@@ -8,24 +8,25 @@
                 <div class="summary-card">
                     <i class="fa-solid fa-chart-simple text-success"></i>
                     <h5>Total Revenue</h5>
-                    <p class="value">RM 60,000</p>
-                    <!-- Add additional details or icons as needed -->
+                    <p class="value">
+                        <asp:Literal runat="server" ID="lblTotalRevenue" />
+                    </p>
                 </div>
 
                 <!-- Overall Rating Card -->
                 <div class="summary-card">
                     <i class="fa-regular fa-star text-warning"></i>
                     <h5>Overall Rating</h5>
-                    <p class="value">4.5 / 5</p>
-                    <!-- Add additional details or icons as needed -->
+                    <p class="value">
+                        <asp:Literal runat="server" ID="lblRating" />4.5 / 5</p>
                 </div>
 
                 <!-- Top Booked Property Card -->
                 <div class="summary-card">
                     <i class="fa-solid fa-fire text-danger"></i>
                     <h5>Top Booked Property</h5>
-                    <p class="value">Property ABC</p>
-                    <!-- Add additional details or icons as needed -->
+                    <p class="value">
+                        <asp:Literal runat="server" ID="lblTopBookedProperty" />Property ABC</p>
                 </div>
             </div>
 
@@ -34,30 +35,34 @@
             <div class="dashboard-cards">
                 <div class="dashboard-card">
                     <span class="text-secondary">Bookings Placed This Month</span>
-                    <p>50</p>
-                    <!-- Card Content for Card 1 -->
+                    <p>
+                        <asp:Literal runat="server" ID="lblBookingThisMonth" />50</p>
                 </div>
 
                 <div class="dashboard-card">
                     <span class="text-secondary">Revenue This Month</span>
-                    <p>RM 15,000</p>
+                    <p>
+                        <asp:Literal runat="server" ID="lblRevenueThisMonth" />RM 15,000</p>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Net Profit This Month</span>
-                    <p>RM 10,000</p>
+                    <span class="text-secondary">Net Profit This Month (-6% Government Tax)</span>
+                    <p>
+                        <asp:Literal runat="server" ID="lblProfitThisMonth" />RM 10,000</p>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Average Booking Price</span>
-                    <p>RM 500</p>
+                    <span class="text-secondary">Average Booking Price Size</span>
+                    <p>
+                        <asp:Literal runat="server" ID="lblAvgBooking" />RM 500</p>
                 </div>
 
                 <div class="dashboard-card">
                     <div class="row">
                         <div class="col-md-10">
-                            <span class="text-secondary">Repeated User This Month</span>
-                            <p>5</p>
+                            <span class="text-secondary">Top Repeated Time from user</span>
+                            <p>
+                                <asp:Literal runat="server" ID="lblRepeatedUser" />5</p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -70,7 +75,8 @@
                     <div class="row">
                         <div class="col-md-10">
                             <span class="text-secondary">Completion Rate</span>
-                            <p class="text-success">99 %</p>
+                            <p class="text-success">
+                                <asp:Literal runat="server" ID="lblCompletionRate" />99 %</p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -82,8 +88,9 @@
                 <div class="dashboard-card">
                     <div class="row">
                         <div class="col-md-10">
-                            <span class="text-secondary">Cancel Rate</span>
-                            <p class="text-danger">1 %</p>
+                            <span class="text-secondary">Cancellation Rate</span>
+                            <p class="text-danger">
+                                <asp:Literal runat="server" ID="lblCancellationRate" />1 %</p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -96,7 +103,8 @@
                     <div class="row">
                         <div class="col-md-10">
                             <span class="text-secondary">Absence Rate</span>
-                            <p class="text-danger">1 %</p>
+                            <p class="text-danger">
+                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 %</p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -106,6 +114,7 @@
                 </div>
             </div>
 
+            <!-- Most Recent 5 notifications -->
             <div class="activity-feed">
                 <h5><b>Recent Activity Feed</b></h5>
                 <div class="activity-cards">

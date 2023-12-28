@@ -13,19 +13,23 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Retrieve the number of properties of the landlord
             string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(strCon);
-            con.Open();
 
-            string strSelect = "SELECT COUNT(*) FROM Property WHERE LandlordId = @LandlordId";
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                con.Open();
 
-            SqlCommand cmdSelect = new SqlCommand(strSelect, con);
-            cmdSelect.Parameters.AddWithValue("@LandlordId", Session["LandlordId"].ToString());
-            int numberOfProperties = (int)cmdSelect.ExecuteScalar();
-            con.Close();
+                string strSelect = "SELECT COUNT(*) FROM Property WHERE LandlordId = @LandlordId";
 
-            lblTotalProperties.Text = numberOfProperties.ToString();
+                using (SqlCommand cmdSelect = new SqlCommand(strSelect, con))
+                {
+                    cmdSelect.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+
+                    int numberOfProperties = (int)cmdSelect.ExecuteScalar();
+
+                    lblTotalProperties.Text = numberOfProperties.ToString();
+                } 
+            }
         }
 
         protected void ApplyFilter_Click(object sender, EventArgs e)
