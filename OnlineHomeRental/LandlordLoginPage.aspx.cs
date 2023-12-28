@@ -19,7 +19,7 @@ namespace OnlineHomeRental.Landlord
 
         }
 
-        protected void Login_click(object sender, EventArgs e)
+        protected void Login_Click(object sender, EventArgs e)
         {
             string LandlordUsername = tbLandlordUsername.Text;
             string LandlordPassword = tbLandlordPassword.Text;
@@ -42,7 +42,6 @@ namespace OnlineHomeRental.Landlord
             }
 
         }
-
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -72,6 +71,49 @@ namespace OnlineHomeRental.Landlord
                     return count > 0;
                 }
             }
+        }
+
+        protected void Register_Click(object sender, EventArgs e)
+        {
+            string LandlordRegUsername = tbRegLandlordUsername.Text;
+            string LandlordRegPassword = HashPassword(tbRegLandlordPassword.Text);
+            string LandlordRegName = tbRegLandlordName.Text;
+            string LandlordRegGender = rbRegLandlordGender.SelectedValue;
+            string LandlordRegPhoneNo = tbRegLandlordPhoneNo.Text;
+            string LandlordRegEmail = tbRegLandlordEmail.Text;
+
+            // Connection string
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                con.Open();
+
+                // Insert query with parameters
+                string insertQuery = "INSERT INTO [dbo].[User] (UserId, UserPassword, UserType, AccountCreatedDate, Name, Gender, PhoneNo, Email) " +
+                                     "VALUES (@UserId, @UserPassword, @UserType, @AccountCreatedDate, @Name, @Gender, @PhoneNo, @Email)";
+
+                using (SqlCommand cmd = new SqlCommand(insertQuery, con))
+                {
+                    // Add parameters
+                    cmd.Parameters.AddWithValue("@UserId", LandlordRegUsername);
+                    cmd.Parameters.AddWithValue("@UserPassword", LandlordRegPassword);
+                    cmd.Parameters.AddWithValue("@UserType", "landlord"); // Assuming a default user type
+                    cmd.Parameters.AddWithValue("@AccountCreatedDate", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@Name", LandlordRegName);
+                    cmd.Parameters.AddWithValue("@Gender", LandlordRegGender);
+                    cmd.Parameters.AddWithValue("@PhoneNo", LandlordRegPhoneNo);
+                    cmd.Parameters.AddWithValue("@Email", LandlordRegEmail);
+
+                    // Execute the query
+                    //cmd.ExecuteNonQuery();
+                }
+            }
+
+            // Redirect or perform any other actions after successful registration
+            string script = $"alert('Register Successfully! Please use your username and password to login.');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", script, true);
+            Response.Redirect("/LandlordLoginPage.aspx");
         }
 
     }

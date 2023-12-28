@@ -2214,7 +2214,6 @@
     <Content Include="Landlord\Chat.aspx" />
     <Content Include="Landlord\Finance.aspx" />
     <Content Include="Landlord\Homepage.aspx" />
-    <Content Include="Landlord\Login.aspx" />
     <Content Include="Landlord\Notification.aspx" />
     <Content Include="Landlord\Property.aspx" />
     <Content Include="Landlord\PropertyDetails.aspx" />

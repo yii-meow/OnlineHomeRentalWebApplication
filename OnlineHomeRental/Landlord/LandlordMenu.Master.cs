@@ -15,6 +15,15 @@ namespace OnlineHomeRental.Landlord
             {
                 LandlordUsername.Text = Session["UserId"].ToString();
             }
+            else
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
+        }
+        protected void ExitLink_Click(object sender, EventArgs e)
+        {
+            Session["UserId"] = null; // Clear the session
+            Response.Redirect("/LandlordLoginPage.aspx");
         }
     }
 }

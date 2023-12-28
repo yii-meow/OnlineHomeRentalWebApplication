@@ -100,7 +100,7 @@ h6 span {
 
 .card-3d-wrapper {
     width: 100%;
-    height: 100%;
+    height: 135%;
     position: absolute;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
@@ -168,6 +168,14 @@ h6 span {
         outline: none;
         box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);
     }
+
+.form-group .gender-radio {
+    display:flex;
+}
+
+.female {
+    margin-left: 50px;
+}
 
 .input-icon {
     position: absolute;

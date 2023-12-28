@@ -14,12 +14,11 @@
     <form id="form1" runat="server">
         <div>
             <div class="section">
-
                 <div class="container">
                     <div class="row full-height justify-content-center">
-                        <div class="col-12 text-center align-self-center py-5">
+                        <div class="col-12 text-center py-5">
                             <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                                <h3 class="mb-0 pb-2">Welcome, LandLord!</h3>
+                                <h2 class="mb-2 pb-2">Landlord Portal</h2>
                                 <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
                                 <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
                                 <label for="reg-log"></label>
@@ -42,47 +41,62 @@
                                                 <div class="section text-center">
                                                     <asp:Label ID="lblError" runat="server" />
                                                     <h4 class="mb-4 pb-3">Log In</h4>
+
                                                     <div class="form-group">
                                                         <asp:TextBox CssClass="form-style" ID="tbLandlordUsername" runat="server" placeholder="Username" />
                                                         <i class="input-icon uil uil-at"></i>
                                                     </div>
+
                                                     <div class="form-group mt-2">
-                                                        <asp:TextBox CssClass="form-style" ID="tbLandlordPassword" runat="server" placeholder="Password" />
+                                                        <asp:TextBox CssClass="form-style" ID="tbLandlordPassword" runat="server" placeholder="Password" TextMode="Password" />
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                     </div>
-                                                    <asp:LinkButton ID="btnLogin" runat="server" CssClass="btn mt-4" OnClick="Login_click" Text="Login" />
+
+                                                    <asp:LinkButton ID="btnLogin" runat="server" CssClass="btn mt-4" OnClick="Login_Click" Text="Login" />
+
                                                     <p class="mb-0 mt-4 text-center">
                                                         <asp:HyperLink ID="tenant_forgetPassword_link" runat="server" NavigateUrl="~/TenantForgetPassword.aspx" Text="Forget your password?" CssClass="link" />
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Registration Page -->
                                         <div class="card-back">
                                             <div class="center-wrap">
                                                 <div class="section text-center">
-
-                                                    <h4 class="mb-3 pb-3" style="margin-top: 50px">Sign Up</h4>
+                                                    <h4 class="mb-3 pb-3 mt-3">Sign Up</h4>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-style" placeholder="Full Name">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordUsername" runat="server" placeholder="Username" title="Username must contains 8 or more characters" />
                                                         <i class="input-icon uil uil-user"></i>
                                                     </div>
-                                                    <div class="form-group mt-2">
-                                                        <input type="text" class="form-style" placeholder="Gender">
-                                                        <i class="input-icon uil uil-mars"></i>
-                                                    </div>
-                                                    <div class="form-group mt-2">
-                                                        <input type="tel" class="form-style" placeholder="Phone Number">
-                                                        <i class="input-icon uil uil-phone"></i>
-                                                    </div>
-                                                    <div class="form-group mt-2">
-                                                        <input type="email" class="form-style" placeholder="Email">
-                                                        <i class="input-icon uil uil-at"></i>
-                                                    </div>
-                                                    <div class="form-group mt-2">
-                                                        <input type="password" class="form-style" placeholder="Password">
+                                                    <div class="form-group mt-3">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordPassword" runat="server" placeholder="Password" TextMode="Password" title="Password must contains 10 or more characters including alphanumeric characters" />
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                     </div>
-                                                    <a href="" class="btn mt-4">Register</a>
+                                                    <div class="form-group mt-3">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordConfirmedPassword" runat="server" placeholder="Confirmed Password" TextMode="Password" title="Confirmed password must matched with the password" />
+                                                        <i class="input-icon uil uil-lock-alt"></i>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordName" runat="server" placeholder="Name" />
+                                                        <i class="input-icon uil uil-chat-bubble-user"></i>
+                                                    </div>
+                                                    <div class="form-group gender-radio mt-3">
+                                                        <asp:RadioButtonList CssClass="form-style gender-radio" ID="rbRegLandlordGender" runat="server" RepeatDirection="Horizontal">
+                                                            <asp:ListItem Text="Male" Value="M" />
+                                                            <asp:ListItem Text="Female" Value="F" CssClass="female"/>
+                                                        </asp:RadioButtonList>
+                                                        <i class="input-icon uil uil-mars"></i>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordPhoneNo" runat="server" placeholder="Phone Number" />
+                                                        <i class="input-icon uil-phone"></i>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <asp:TextBox CssClass="form-style" ID="tbRegLandlordEmail" runat="server" placeholder="Email" title="Enter your email address" />
+                                                        <i class="input-icon uil uil-fast-mail"></i>
+                                                    </div>
+                                                    <asp:LinkButton runat="server" ID="RegLink" OnClick="Register_Click" class="btn mt-4" Text="Register" />
                                                 </div>
                                             </div>
                                         </div>
