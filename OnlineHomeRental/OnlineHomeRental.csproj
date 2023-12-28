@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="LandlordLoginPage.aspx" />
+    <Content Include="Landlord\Notification.aspx" />
     <Content Include="TenantForgetPassword.aspx" />
     <Content Include="Tenant\AboutUs.aspx" />
     <Content Include="App_Data\OnlineHomeRental.mdf" />
@@ -2215,7 +2216,6 @@
     <Content Include="Landlord\Chat.aspx" />
     <Content Include="Landlord\Finance.aspx" />
     <Content Include="Landlord\Homepage.aspx" />
-    <Content Include="Landlord\Notification.aspx" />
     <Content Include="Landlord\Property.aspx" />
     <Content Include="Landlord\PropertyDetails.aspx" />
     <Content Include="Landlord\ViewProperty.aspx" />
@@ -2254,6 +2254,13 @@
     </Compile>
     <Compile Include="LandlordLoginPage.aspx.designer.cs">
       <DependentUpon>LandlordLoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landlord\Notification.aspx.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landlord\Notification.aspx.designer.cs">
+      <DependentUpon>Notification.aspx</DependentUpon>
     </Compile>
     <Compile Include="TenantForgetPassword.aspx.cs">
       <DependentUpon>TenantForgetPassword.aspx</DependentUpon>

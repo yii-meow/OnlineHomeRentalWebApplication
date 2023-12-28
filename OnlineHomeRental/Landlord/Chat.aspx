@@ -38,7 +38,7 @@
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
         SelectCommand="SELECT T.UserId, C.ChatSessionId FROM ChatSession C INNER JOIN Tenant T ON C.TenantId = T.TenantId WHERE LandlordId = @LandlordId ">
         <SelectParameters>
-            <asp:Parameter Name="LandlordId" Type="Int32" DefaultValue="1" />
+            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
     <!-- Temporary value -->

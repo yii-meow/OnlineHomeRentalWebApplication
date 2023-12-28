@@ -59,9 +59,10 @@
         </div>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
+        SelectCommand="SELECT * FROM Property WHERE LandlordId = @LandlordId">
         <SelectParameters>
-            <asp:SessionParameter Name="UserId" SessionField="UserId" Type="String" />
+            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 

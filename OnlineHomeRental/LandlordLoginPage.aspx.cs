@@ -33,6 +33,7 @@ namespace OnlineHomeRental.Landlord
             if (CheckLogin(LandlordUsername, hashedPassword))
             {
                 Session["UserId"] = LandlordUsername;
+                Session["LandlordId"] = GetLandlordId(LandlordUsername);
 
                 Response.Redirect("/Landlord/HomePage.aspx");
             }
@@ -70,6 +71,29 @@ namespace OnlineHomeRental.Landlord
                     int count = (int)command.ExecuteScalar();
 
                     return count > 0;
+                }
+            }
+        }
+
+        private int GetLandlordId(string LandlordUsername)
+        {
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                connection.Open();
+
+                string query = "SELECT LandlordId from Landlord WHERE UserId = @UserId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", LandlordUsername);
+
+                    int LandlordId = (int)command.ExecuteScalar();
+
+                    connection.Close();
+
+                    return LandlordId;
                 }
             }
         }
