@@ -2209,7 +2209,6 @@
     <Content Include="js\Homepage.js" />
     <Content Include="js\Payment.js" />
     <Content Include="js\PropertyDetail.js" />
-    <Content Include="Landlord\LandLordLP.aspx" />
     <Content Include="Landlord\AccountSetting.aspx" />
     <Content Include="Landlord\AddProperty.aspx" />
     <Content Include="Landlord\Bookings.aspx" />

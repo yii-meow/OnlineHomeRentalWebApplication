@@ -477,6 +477,8 @@
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    min-height:90vh;
+    max-height:fit-content;
 }
 
     .notification-body .notification-list {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Notification.aspx.cs" Inherits="OnlineHomeRental.Landlord.Notification" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="Notification.aspx.cs" Inherits="OnlineHomeRental.Landlord.Notification" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="notification-body">
@@ -19,9 +19,9 @@
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Notification WHERE LandlordId = @LandlordId">
+        SelectCommand="SELECT * FROM Notification WHERE UserId = @UserId">
         <selectparameters>
-            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
+            <asp:SessionParameter Name="UserId" SessionField="UserId" Type="String" />
         </selectparameters>
     </asp:SqlDataSource>
 </asp:Content>
