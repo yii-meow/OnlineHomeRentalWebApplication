@@ -42,6 +42,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Literal lblTopBookedProperty;
 
         /// <summary>
+        /// lblMonth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblMonth;
+
+        /// <summary>
         /// lblBookingThisMonth control.
         /// </summary>
         /// <remarks>

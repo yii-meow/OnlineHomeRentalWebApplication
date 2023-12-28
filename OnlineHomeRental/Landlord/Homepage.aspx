@@ -18,7 +18,8 @@
                     <i class="fa-regular fa-star text-warning"></i>
                     <h5>Overall Rating</h5>
                     <p class="value">
-                        <asp:Literal runat="server" ID="lblRating" />4.5 / 5</p>
+                        <asp:Literal runat="server" ID="lblRating" />4.5 / 5
+                    </p>
                 </div>
 
                 <!-- Top Booked Property Card -->
@@ -26,35 +27,40 @@
                     <i class="fa-solid fa-fire text-danger"></i>
                     <h5>Top Booked Property</h5>
                     <p class="value">
-                        <asp:Literal runat="server" ID="lblTopBookedProperty" />Property ABC</p>
+                        <asp:Literal runat="server" ID="lblTopBookedProperty" />
+                    </p>
                 </div>
             </div>
 
-            <h5><b>Details View</b></h5>
+            <h5><b>Details View (<asp:Literal ID="lblMonth" runat="server" />)</b></h5>
 
             <div class="dashboard-cards">
                 <div class="dashboard-card">
                     <span class="text-secondary">Bookings Placed This Month</span>
                     <p>
-                        <asp:Literal runat="server" ID="lblBookingThisMonth" />50</p>
+                        <asp:Literal runat="server" ID="lblBookingThisMonth" />
+                    </p>
                 </div>
 
                 <div class="dashboard-card">
                     <span class="text-secondary">Revenue This Month</span>
                     <p>
-                        <asp:Literal runat="server" ID="lblRevenueThisMonth" />RM 15,000</p>
+                        <asp:Literal runat="server" ID="lblRevenueThisMonth" />
+                    </p>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Net Profit This Month (-6% Government Tax)</span>
+                    <span class="text-secondary">Net Profit This Month <small>(-6% Government Tax)</small></span>
                     <p>
-                        <asp:Literal runat="server" ID="lblProfitThisMonth" />RM 10,000</p>
+                        <asp:Literal runat="server" ID="lblProfitThisMonth" />
+                    </p>
                 </div>
 
                 <div class="dashboard-card">
                     <span class="text-secondary">Average Booking Price Size</span>
                     <p>
-                        <asp:Literal runat="server" ID="lblAvgBooking" />RM 500</p>
+                        <asp:Literal runat="server" ID="lblAvgBooking" />
+                    </p>
                 </div>
 
                 <div class="dashboard-card">
@@ -62,7 +68,8 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Top Repeated Time from user</span>
                             <p>
-                                <asp:Literal runat="server" ID="lblRepeatedUser" />5</p>
+                                <asp:Literal runat="server" ID="lblRepeatedUser" />5
+                            </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -76,7 +83,8 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Completion Rate</span>
                             <p class="text-success">
-                                <asp:Literal runat="server" ID="lblCompletionRate" />99 %</p>
+                                <asp:Literal runat="server" ID="lblCompletionRate" />99 %
+                            </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -90,7 +98,8 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Cancellation Rate</span>
                             <p class="text-danger">
-                                <asp:Literal runat="server" ID="lblCancellationRate" />1 %</p>
+                                <asp:Literal runat="server" ID="lblCancellationRate" />1 %
+                            </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
@@ -104,7 +113,8 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Absence Rate</span>
                             <p class="text-danger">
-                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 %</p>
+                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 %
+                            </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
