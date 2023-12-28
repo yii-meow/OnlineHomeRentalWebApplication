@@ -18,7 +18,7 @@
                 <div class="messages-container">
                     <asp:Repeater ID="MessageRepeater" runat="server" DataSourceID="">
                         <ItemTemplate>
-                            <%# Eval("Sender").ToString() == "Tenant" ? 
+                            <%# Eval("SenderType").ToString() == "Tenant" ? 
                                 "<div class='message received'>" :
                                 "<div class='message sent'>" %>
                             <p><%# Eval("Message") %></p>
@@ -28,8 +28,8 @@
                     </asp:Repeater>
                 </div>
                 <div class="message-input">
-                    <input type="text" placeholder="Type your message...">
-                    <button>Send</button>
+                    <asp:Textbox ID="lblSendMessage" runat="server" placeholder="Type your message..." />
+                    <asp:Button ID="btnSendMessage" runat="server" OnClick="Send_Message" CommandArgument='<%# Eval("ChatSessionId") %>'/>
                 </div>
             </div>
         </div>

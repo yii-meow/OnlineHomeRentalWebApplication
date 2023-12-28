@@ -33,6 +33,24 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Repeater MessageRepeater;
 
         /// <summary>
+        /// lblSendMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblSendMessage;
+
+        /// <summary>
+        /// btnSendMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSendMessage;
+
+        /// <summary>
         /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
