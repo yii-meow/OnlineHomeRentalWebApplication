@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="col-md-2 mt-5">
-                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                            <i class="bi bi-hand-thumbs-up-fill text-info"></i>
                         </div>
                     </div>
                 </div>

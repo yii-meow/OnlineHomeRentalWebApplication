@@ -22,17 +22,17 @@ namespace OnlineHomeRental.Landlord
             using (SqlConnection con = new SqlConnection(strCon))
             {
                 con.Open();
-                string queryTotalRevenue = "SELECT SUM(P.PaymentAmount) FROM Booking B " +
+                string strTotalRevenue = "SELECT SUM(P.PaymentAmount) FROM Booking B " +
                                            "INNER JOIN Payment P ON B.BookingId = P.BookingId " +
                                            "WHERE LandlordId = @LandlordId";
 
-                using (SqlCommand cmdSelectTotalRevenue = new SqlCommand(queryTotalRevenue, con))
+                using (SqlCommand cmdTotalRevenue = new SqlCommand(strTotalRevenue, con))
                 {
-                    cmdSelectTotalRevenue.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    cmdTotalRevenue.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
 
                     decimal totalRevenue = 0;
 
-                    object result = cmdSelectTotalRevenue.ExecuteScalar();
+                    object result = cmdTotalRevenue.ExecuteScalar();
 
                     if (result != DBNull.Value)
                     {
@@ -84,7 +84,7 @@ namespace OnlineHomeRental.Landlord
                     "FROM BOOKING " +
                     "INNER JOIN Payment ON Booking.BookingId = Payment.BookingId " +
                     "WHERE MONTH(BookingTime) = MONTH(GETDATE()) AND YEAR(BookingTime) = YEAR(GETDATE()) " +
-                    "AND Booking.LandlordId = @LandlordId";
+                    "AND Booking.LandlordId = @LandlordId AND Payment.PaymentStatus='Successful'";
                 using (SqlCommand cmdRevenueThisMonth = new SqlCommand(strRevenueThisMonth, con))
                 {
                     cmdRevenueThisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
@@ -105,7 +105,7 @@ namespace OnlineHomeRental.Landlord
                     "FROM Booking B " +
                     "INNER JOIN Payment P ON B.BookingId = P.BookingId " +
                     "WHERE MONTH(B.BookingTime) = MONTH(GETDATE()) AND YEAR(B.BookingTime) = YEAR(GETDATE()) " +
-                    "AND B.LandlordId = @LandlordId";
+                    "AND B.LandlordId = @LandlordId AND B.BookingStatus = 'Completed'";
                 using (SqlCommand cmdAvgBookinghisMonth = new SqlCommand(strAvgBookingThisMonth, con))
                 {
                     cmdAvgBookinghisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));

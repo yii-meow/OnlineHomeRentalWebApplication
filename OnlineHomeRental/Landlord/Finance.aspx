@@ -13,27 +13,27 @@
             <div class="finance-cards mt-3 p-3">
                 <div class="finance-item">
                     <p>Total Sales (+)</p>
-                    <p class="value text-success">RM 10,000 (+5000)</p>
+                    <p class="value"><asp:Label ID="lblTotalSales" runat="server" /> (<asp:Label ID="lblTotalSalesDif" runat="server"/>)</p>
                 </div>
                 <div class="finance-item">
                     <p>Total Booking (+)</p>
-                    <p class="value text-success">50 (+10)</p>
+                    <p class="value"><asp:Literal ID="lblTotalBooking" runat="server" /> (<asp:Literal ID="lblTotalBookingDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
                     <p>Net Profit:</p>
-                    <p class="value text-success">RM20,000 (+1500)</p>
+                    <p class="value"><asp:Literal ID="lblNetProfit" runat="server" /> (<asp:Literal ID="lblNetProfitDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
                     <p>Cancelled Booking (-)</p>
-                    <p class="value text-success">1 (-5)</p>
+                    <p class="value"><asp:Literal ID="lblCancelledBooking" runat="server" /> (<asp:Literal ID="lblCancelledBookingDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
-                    <p>Repeated Customer:</p>
-                    <p class="value text-danger">2 (-2)</p>
+                    <p>Unused Property Duration:</p>
+                    <p class="value"><asp:Literal runat="server" ID="lblUnusedDuration" /> (<asp:Literal runat="server" ID="lblUnusedDurationDif" />)</p>
                 </div>
                 <div class="finance-item">
                     <p>Average Booking Price</p>
-                    <p class="value text-warning">RM 700 (=)</p>
+                    <p class="value"><asp:Literal ID="lblAvgBooking" runat="server" /> (<asp:Literal ID="lblAvgBookingDif" runat="server" />)</p>
                 </div>
             </div>
         </section>
