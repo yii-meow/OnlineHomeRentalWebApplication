@@ -105,21 +105,21 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Literal lblCompletionRate;
 
         /// <summary>
-        /// lblAbsenceRate control.
+        /// lblUnusedDuration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblAbsenceRate;
+        protected global::System.Web.UI.WebControls.Literal lblUnusedDuration;
 
         /// <summary>
-        /// lblCancellationRate control.
+        /// lblTotalPotentialLoss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCancellationRate;
+        protected global::System.Web.UI.WebControls.Literal lblTotalPotentialLoss;
     }
 }

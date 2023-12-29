@@ -151,6 +151,61 @@ namespace OnlineHomeRental.Landlord
 
                     lblCompletionRate.Text = completeionRateThisMonth.ToString("N2");
                 }
+
+                string strUnusedPropertyDurationThisMonth = "WITH CTE AS (" +
+                    "SELECT PropertyId, " +
+                    "SUM(Duration) AS UsedDays " +
+                    "FROM dbo.Booking " +
+                    "WHERE MONTH(CheckInDate) = MONTH(GETDATE()) AND YEAR(CheckInDate) = YEAR(GETDATE()) " +
+                    "GROUP BY PropertyId " +
+                    ") " +
+                    "SELECT SUM(DAY(EOMONTH(GETDATE())) - COALESCE(CTE.UsedDays, 0)) AS TotalUnusedDays " +
+                    "FROM dbo.Property P " +
+                    "LEFT JOIN CTE ON P.PropertyId = CTE.PropertyId " +
+                    "WHERE P.LandlordId = @LandlordId";
+
+                using (SqlCommand cmdUnusedPropertyDurationThisMonth = new SqlCommand(strUnusedPropertyDurationThisMonth, con))
+                {
+                    cmdUnusedPropertyDurationThisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    int UnusedPropertyDurationThisMonth = 0;
+
+                    object result = cmdUnusedPropertyDurationThisMonth.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        UnusedPropertyDurationThisMonth = (int)result;
+                    }
+
+                    lblUnusedDuration.Text = UnusedPropertyDurationThisMonth.ToString();
+                }
+
+                string strPotentialLoss = "WITH CTE AS ( " +
+                    "SELECT PropertyId, " +
+                    "SUM(Duration) AS UsedDays " +
+                    "FROM dbo.Booking " +
+                    "WHERE MONTH(CheckInDate) = MONTH(GETDATE()) AND YEAR(CheckInDate) = YEAR(GETDATE()) " +
+                    "GROUP BY PropertyId " +
+                    ") " +
+                    "SELECT SUM(P.PropertyPrice * (DAY(EOMONTH(GETDATE())) - COALESCE(CTE.UsedDays, 0))) AS TotalPotentialLoss " +
+                    "FROM dbo.Property P " +
+                    "LEFT JOIN CTE ON P.PropertyId = CTE.PropertyId " +
+                    "WHERE P.LandlordId = @LandlordId;";
+
+                using (SqlCommand cmdPotentialLoss = new SqlCommand(strPotentialLoss, con))
+                {
+                    cmdPotentialLoss.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    double potentialLoss = 0;
+
+                    object result = cmdPotentialLoss.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        // Use Convert.ToDouble instead of double.Parse
+                        potentialLoss = Convert.ToDouble(result);
+                    }
+
+                    lblTotalPotentialLoss.Text = potentialLoss.ToString("C");
+                }
             }
         }
 

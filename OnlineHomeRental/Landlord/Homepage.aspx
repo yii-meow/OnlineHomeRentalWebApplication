@@ -36,31 +36,64 @@
 
             <div class="dashboard-cards">
                 <div class="dashboard-card">
-                    <span class="text-secondary">Bookings Placed This Month</span>
-                    <p>
-                        <asp:Literal runat="server" ID="lblBookingThisMonth" />
-                    </p>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Bookings Placed This Month</span>
+                            <p>
+                                <asp:Literal runat="server" ID="lblBookingThisMonth" />
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-person-walking"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Revenue This Month</span>
-                    <p>
-                        <asp:Literal runat="server" ID="lblRevenueThisMonth" />
-                    </p>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Revenue This Month</span>
+                            <p>
+                                <asp:Literal runat="server" ID="lblRevenueThisMonth" />
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-database-fill-up text-success"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Net Profit This Month <small>(-6% Government Tax)</small></span>
-                    <p>
-                        <asp:Literal runat="server" ID="lblProfitThisMonth" />
-                    </p>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Net Profit This Month <small>(-6% Government Tax)</small></span>
+                            <p>
+                                <asp:Literal runat="server" ID="lblProfitThisMonth" />
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-graph-up text-success"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dashboard-card">
-                    <span class="text-secondary">Average Booking Price Size</span>
-                    <p>
-                        <asp:Literal runat="server" ID="lblAvgBooking" />
-                    </p>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Average Booking Price Size</span>
+                            <p>
+                                <asp:Literal runat="server" ID="lblAvgBooking" />
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-aspect-ratio text-info"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dashboard-card">
@@ -73,7 +106,7 @@
                         </div>
 
                         <div class="col-md-2 mt-5">
-                            <i class="fa-solid fa-repeat fa-xl text-info"></i>
+                            <i class="bi bi-arrow-repeat text-info"></i>
                         </div>
                     </div>
                 </div>
@@ -83,12 +116,13 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Completion Rate</span>
                             <p class="text-success">
-                                <asp:Literal runat="server" ID="lblCompletionRate" /> %
+                                <asp:Literal runat="server" ID="lblCompletionRate" />
+                                %
                             </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
-                            <i class="fa-solid fa-check fa-xl text-success"></i>
+                            <i class="bi bi-check-all text-success"></i>
                         </div>
                     </div>
                 </div>
@@ -97,32 +131,35 @@
                     <div class="row">
                         <div class="col-md-10">
                             <span class="text-secondary">Total Unused Property Duration</span>
-                            <p class="text-danger">
-                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 day(s)
+                            <p>
+                                <asp:Literal runat="server" ID="lblUnusedDuration" />
+                                day(s)
                             </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
-                            <i class="fa-solid fa-person-circle-question fa-xl"></i>
+                            <i class="fa-solid fa-person-circle-question text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Total Potential Loss</span>
+                            <p class="text-danger">
+                                <asp:Literal runat="server" ID="lblTotalPotentialLoss" />
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-graph-down-arrow text-danger"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="dashboard-card">
-                <div class="row">
-                    <div class="col-md-10">
-                        <span class="text-secondary">Potential Loss</span>
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="lblCancellationRate" />1 %
-                        </p>
-                    </div>
 
-                    <div class="col-md-2 mt-5">
-                        <i class="fa-solid fa-x fa-xl text-danger"></i>
-                    </div>
-                </div>
-            </div>
 
             <!-- Most Recent 5 notifications -->
             <div class="activity-feed">
