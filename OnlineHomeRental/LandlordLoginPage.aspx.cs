@@ -35,6 +35,23 @@ namespace OnlineHomeRental.Landlord
                 Session["UserId"] = LandlordUsername;
                 Session["LandlordId"] = GetLandlordId(LandlordUsername);
 
+                string imagePath = GetUserProfileImagePath(LandlordUsername);
+
+                HttpCookie profileImageCookie = new HttpCookie("UserProfileImage");
+
+                // Add imagepath to the cookie
+                if (imagePath != null)
+                {
+                    profileImageCookie.Value = imagePath;
+                }
+                else
+                {
+                    profileImageCookie.Value = null;
+                }
+
+                Response.Cookies.Add(profileImageCookie);
+                profileImageCookie.Expires = DateTime.Now.AddDays(15);
+
                 Response.Redirect("/Landlord/HomePage.aspx");
             }
             // Login failed
@@ -42,7 +59,6 @@ namespace OnlineHomeRental.Landlord
             {
                 lblError.Text = "Invalid username or password.";
             }
-
         }
         private string HashPassword(string password)
         {
@@ -98,6 +114,34 @@ namespace OnlineHomeRental.Landlord
             }
         }
 
+        private string GetUserProfileImagePath(string UserId)
+        {
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                connection.Open();
+
+                string query = "SELECT ProfileImage from [User] WHERE UserId = @UserId";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    string userProfileImagePath = null;
+
+                    command.Parameters.AddWithValue("@UserId", UserId);
+
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        userProfileImagePath = (string)result;
+                    }
+                    return userProfileImagePath;
+                }
+            }
+        }
+
+        // Register Landlord
         protected void Register_Click(object sender, EventArgs e)
         {
             string LandlordRegUsername = tbRegLandlordUsername.Text;
@@ -123,7 +167,7 @@ namespace OnlineHomeRental.Landlord
                     // Add parameters
                     cmd.Parameters.AddWithValue("@UserId", LandlordRegUsername);
                     cmd.Parameters.AddWithValue("@UserPassword", LandlordRegPassword);
-                    cmd.Parameters.AddWithValue("@UserType", "landlord"); // Assuming a default user type
+                    cmd.Parameters.AddWithValue("@UserType", "landlord");
                     cmd.Parameters.AddWithValue("@AccountCreatedDate", DateTime.Now);
                     cmd.Parameters.AddWithValue("@Name", LandlordRegName);
                     cmd.Parameters.AddWithValue("@Gender", LandlordRegGender);

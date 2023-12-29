@@ -28,8 +28,8 @@
                     </asp:Repeater>
                 </div>
                 <div class="message-input">
-                    <asp:Textbox ID="lblSendMessage" runat="server" placeholder="Type your message..." />
-                    <asp:Button ID="btnSendMessage" runat="server" OnClick="Send_Message" CommandArgument='<%# Eval("ChatSessionId") %>'/>
+                    <asp:TextBox ID="lblSendMessage" CssClass="sendMessageLabel" runat="server" placeholder="Type your message..." />
+                    <asp:Button ID="btnSendMessage" CssClass="btn btn-primary" runat="server" OnClick="Send_Message" Text="Send"/>
                 </div>
             </div>
         </div>
@@ -41,9 +41,4 @@
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
-    <!-- Temporary value -->
-
-
-
-
 </asp:Content>

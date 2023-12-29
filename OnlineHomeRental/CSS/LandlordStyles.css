@@ -821,7 +821,7 @@
     z-index: 1;
 }
 
-    .message-input input {
+    .message-input .sendMessageLabel {
         flex: 1;
         padding: 10px;
         border: none;
@@ -830,8 +830,8 @@
         outline: none;
     }
 
-    .message-input button {
-        width: 8%;
+    .message-input .btnSendMessge {
+        width: 3%;
         padding: 10px;
         border: none;
         border-radius: 5px;
