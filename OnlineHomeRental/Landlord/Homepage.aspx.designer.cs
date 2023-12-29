@@ -105,15 +105,6 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Literal lblCompletionRate;
 
         /// <summary>
-        /// lblCancellationRate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCancellationRate;
-
-        /// <summary>
         /// lblAbsenceRate control.
         /// </summary>
         /// <remarks>
@@ -121,5 +112,14 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblAbsenceRate;
+
+        /// <summary>
+        /// lblCancellationRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblCancellationRate;
     }
 }

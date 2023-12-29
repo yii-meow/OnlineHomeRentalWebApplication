@@ -83,7 +83,7 @@
                         <div class="col-md-10">
                             <span class="text-secondary">Completion Rate</span>
                             <p class="text-success">
-                                <asp:Literal runat="server" ID="lblCompletionRate" />99 %
+                                <asp:Literal runat="server" ID="lblCompletionRate" /> %
                             </p>
                         </div>
 
@@ -96,30 +96,30 @@
                 <div class="dashboard-card">
                     <div class="row">
                         <div class="col-md-10">
-                            <span class="text-secondary">Cancellation Rate</span>
+                            <span class="text-secondary">Total Unused Property Duration</span>
                             <p class="text-danger">
-                                <asp:Literal runat="server" ID="lblCancellationRate" />1 %
-                            </p>
-                        </div>
-
-                        <div class="col-md-2 mt-5">
-                            <i class="fa-solid fa-x fa-xl text-danger"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-card">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <span class="text-secondary">Absence Rate</span>
-                            <p class="text-danger">
-                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 %
+                                <asp:Literal runat="server" ID="lblAbsenceRate" />1 day(s)
                             </p>
                         </div>
 
                         <div class="col-md-2 mt-5">
                             <i class="fa-solid fa-person-circle-question fa-xl"></i>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="row">
+                    <div class="col-md-10">
+                        <span class="text-secondary">Potential Loss</span>
+                        <p class="text-danger">
+                            <asp:Literal runat="server" ID="lblCancellationRate" />1 %
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 mt-5">
+                        <i class="fa-solid fa-x fa-xl text-danger"></i>
                     </div>
                 </div>
             </div>

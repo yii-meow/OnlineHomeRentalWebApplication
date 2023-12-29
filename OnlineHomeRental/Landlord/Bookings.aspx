@@ -23,6 +23,10 @@
                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+
+                <EmptyDataTemplate>
+                    <h3>No Bookings so far...</h3>
+                </EmptyDataTemplate>
             </asp:GridView>
         </div>
 

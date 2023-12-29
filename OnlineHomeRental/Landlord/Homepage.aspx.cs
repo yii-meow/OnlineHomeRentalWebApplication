@@ -14,11 +14,7 @@ namespace OnlineHomeRental.Landlord
         protected void Page_Load(object sender, EventArgs e)
         {
             DateTime currentDate = DateTime.Now;
-
-            // Format the date as "MMM yyyy" (e.g., "Dec 2023")
             string formattedDate = currentDate.ToString("MMM yyyy");
-
-            // Set the formatted date to the Literal control
             lblMonth.Text = formattedDate;
 
             string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -35,7 +31,14 @@ namespace OnlineHomeRental.Landlord
                 {
                     cmdSelectTotalRevenue.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
 
-                    decimal totalRevenue = Convert.ToDecimal(cmdSelectTotalRevenue.ExecuteScalar());
+                    decimal totalRevenue = 0;
+
+                    object result = cmdSelectTotalRevenue.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        totalRevenue = (Decimal)result;
+                    }
 
                     lblTotalRevenue.Text = totalRevenue.ToString("C");
                 }
@@ -49,7 +52,19 @@ namespace OnlineHomeRental.Landlord
                 using (SqlCommand cmdTopProperty = new SqlCommand(strTop3Properties, con))
                 {
                     cmdTopProperty.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    string topBookedProperty = cmdTopProperty.ExecuteScalar().ToString();
+                    string topBookedProperty = null;
+                    object result = cmdTopProperty.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        topBookedProperty = (string)result;
+                    }
+
+                    else
+                    {
+                        topBookedProperty = "None";
+                    }
+
                     lblTopBookedProperty.Text = topBookedProperty;
                 }
 
@@ -60,7 +75,15 @@ namespace OnlineHomeRental.Landlord
                 using (SqlCommand cmdBookingCountThisMonth = new SqlCommand(strBookingCountThisMonth, con))
                 {
                     cmdBookingCountThisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    int bookingCountThisMonth = (int)cmdBookingCountThisMonth.ExecuteScalar();
+                    int bookingCountThisMonth = 0;
+
+                    object result = cmdBookingCountThisMonth.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        bookingCountThisMonth = (int)result;
+                    }
+
                     lblBookingThisMonth.Text = bookingCountThisMonth.ToString();
                 }
 
@@ -72,7 +95,15 @@ namespace OnlineHomeRental.Landlord
                 using (SqlCommand cmdRevenueThisMonth = new SqlCommand(strRevenueThisMonth, con))
                 {
                     cmdRevenueThisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    decimal revenueThisMonth = (decimal)cmdRevenueThisMonth.ExecuteScalar();
+                    decimal revenueThisMonth = 0;
+
+                    object result = cmdRevenueThisMonth.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        revenueThisMonth = (decimal)result;
+                    }
+
                     lblRevenueThisMonth.Text = revenueThisMonth.ToString("C");
                     lblProfitThisMonth.Text = (revenueThisMonth * 0.94M).ToString("C");
                 }
@@ -81,12 +112,44 @@ namespace OnlineHomeRental.Landlord
                     "FROM Booking B " +
                     "INNER JOIN Payment P ON B.BookingId = P.BookingId " +
                     "WHERE MONTH(B.BookingTime) = MONTH(GETDATE()) AND YEAR(B.BookingTime) = YEAR(GETDATE()) " +
-                    "AND B.LandlordId = 1";
+                    "AND B.LandlordId = @LandlordId";
                 using (SqlCommand cmdAvgBookinghisMonth = new SqlCommand(strAvgBookingThisMonth, con))
                 {
                     cmdAvgBookinghisMonth.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    decimal avgBookingThisMonth = (decimal)cmdAvgBookinghisMonth.ExecuteScalar();
+                    decimal avgBookingThisMonth = 0;
+
+                    object result = cmdAvgBookinghisMonth.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        avgBookingThisMonth = (decimal)result;
+                    }
+
                     lblAvgBooking.Text = avgBookingThisMonth.ToString("C");
+                }
+
+                string strCompletionRateThisMonth = "SELECT " +
+                    "CASE " +
+                    "WHEN COUNT(*) > 0 THEN (SUM(CASE WHEN BookingStatus = 'Completed' THEN 1 ELSE 0 END) * 100.0) / COUNT(*) " +
+                    "ELSE 0.0 " +
+                    "END AS CompletionRate " +
+                    "FROM Booking " +
+                    "WHERE LandlordId = @LandlordId AND " +
+                    "MONTH(BookingTime) = MONTH(GETDATE()) AND YEAR(BookingTime) = YEAR(GETDATE())";
+
+                using (SqlCommand cmdCompletionRate = new SqlCommand(strCompletionRateThisMonth, con))
+                {
+                    cmdCompletionRate.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    decimal completeionRateThisMonth = 0;
+
+                    object result = cmdCompletionRate.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        completeionRateThisMonth = (decimal)result;
+                    }
+
+                    lblCompletionRate.Text = completeionRateThisMonth.ToString("N2");
                 }
             }
         }
