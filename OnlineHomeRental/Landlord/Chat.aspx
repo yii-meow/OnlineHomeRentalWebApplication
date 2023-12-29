@@ -4,10 +4,11 @@
     <div class="chat">
         <div class="chat-container">
             <div class="user-list">
-                <asp:Repeater ID="TenantRepeater" runat="server" DataSourceID="SqlDataSource1">
+                <asp:Repeater ID="TenantRepeater" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="TenantRepeater_ItemDataBound">
                     <ItemTemplate>
                         <div class="user">
-                            <asp:LinkButton ID="btnChatUser" Text='<%# Eval("UserId")%>' runat="server" OnClick="Session_click" CommandArgument='<%# Eval("ChatSessionId") %>' CssClass="userSession_button" />
+                            <asp:LinkButton ID="btnChatUser" Text='<%# Eval("UserId")%>' runat="server"
+                                OnClick="Session_click" CommandArgument='<%# Eval("ChatSessionId") %>'/>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
@@ -15,7 +16,7 @@
 
             <div class="chat-content">
                 <div class="messages-container">
-                    <asp:Repeater ID="MessageRepeater" runat="server" DataSourceID="">
+                    <asp:Repeater ID="MessageRepeater" runat="server">
                         <ItemTemplate>
                             <%# Eval("SenderType").ToString() == "Tenant" ? 
                                 "<div class='message received'>" :

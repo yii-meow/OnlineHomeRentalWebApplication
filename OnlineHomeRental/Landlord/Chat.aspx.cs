@@ -29,7 +29,10 @@ namespace OnlineHomeRental.Landlord
         protected void Session_click(object sender, EventArgs e)
         {
             string chatSessionId = ((LinkButton)sender).CommandArgument;
+
             Bind_Message(chatSessionId);
+
+            Response.Redirect("~/Landlord/Chat.aspx?ChatSessionId=" + chatSessionId);
         }
 
         private void Bind_Message(string ChatSessionId)
@@ -84,6 +87,27 @@ namespace OnlineHomeRental.Landlord
             }
             Bind_Message(chatSessionId);
             lblSendMessage.Text = "";
+        }
+        protected void TenantRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                LinkButton btnChatUser = (LinkButton)e.Item.FindControl("btnChatUser");
+
+                if (btnChatUser != null)
+                {
+                    string chatSessionId = DataBinder.Eval(e.Item.DataItem, "ChatSessionId").ToString();
+
+                    string currentChatSessionId = "0";
+
+                    if (Request.QueryString["ChatSessionId"] != null)
+                    {
+                        currentChatSessionId = Request.QueryString["ChatSessionId"];
+                    }
+
+                    btnChatUser.CssClass = currentChatSessionId == chatSessionId ? "userSession_button selected" : "userSession_button";
+                }
+            }
         }
     }
 }

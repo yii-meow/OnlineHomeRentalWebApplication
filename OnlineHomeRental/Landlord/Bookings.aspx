@@ -11,6 +11,8 @@
                     <asp:BoundField DataField="BookingId" HeaderText="Booking Id" InsertVisible="False" ReadOnly="True" SortExpression="BookingId" />
                     <asp:BoundField DataField="CheckInDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check In Date" SortExpression="CheckInDate" />
                     <asp:BoundField DataField="CheckOutDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check Out Date" SortExpression="CheckOutDate" />
+                    <asp:BoundField DataField="PropertyId" HeaderText="Property Id" InsertVisible="False" ReadOnly="True" SortExpression="PropertyId" />
+                    <asp:BoundField DataField="PropertyName" HeaderText="Property Name" InsertVisible="False" ReadOnly="True" SortExpression="PropertyName" />
                     <asp:BoundField DataField="BookingStatus" HeaderText="Booking Status" SortExpression="Booking Status" />
                     <asp:TemplateField HeaderText="Actions">
                         <ItemTemplate>
@@ -46,7 +48,7 @@
                         <span class="booking-id">Booking Id : <%# Eval("BookingId") %>
                         </span>
                         <div class="payment-details mt-3">
-                            <div class="payment-status">
+                            <div class="payment-status" style='<%# Eval("PaymentStatus").ToString().Equals("Successful", StringComparison.OrdinalIgnoreCase) ? "background-color: green;": "background-color: red;" %>'>
                                 <%# Eval("PaymentStatus") %>
                             </div>
 
@@ -106,23 +108,23 @@
                                             <%# Convert.ToDateTime(Eval("CheckInDate")).ToString("d/M/yyyy") %> - <%# Convert.ToDateTime(Eval("CheckOutDate")).ToString("d/M/yyyy") %>
                                         </p>
                                     </td>
-                                    <td>5 months</td>
-                                    <td class="text-right">RM <%# Convert.ToDouble(Eval("PaymentAmount")).ToString("0.00") %></td>
+                                    <td><%# Eval("Duration") %> day(s)</td>
+                                    <td class="text-right"><%# Convert.ToDouble(Eval("PaymentAmount")).ToString("C") %></td>
                                 </tr>
                             </tbody>
 
                             <tfoot class="text-right">
                                 <tr>
                                     <td colspan="2"><strong>Subtotal:</strong></td>
-                                    <td>RM <%# Convert.ToDouble(Eval("PaymentAmount")).ToString("0.00") %></td>
+                                    <td><%# (Convert.ToDouble(Eval("PaymentAmount")) * 0.94).ToString("C") %></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><strong>Sales Tax (6%):</strong></td>
-                                    <td>RM 0.00</td>
+                                    <td><%# (Convert.ToDouble(Eval("PaymentAmount")) * 0.06).ToString("C") %></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><strong>Total:</strong></td>
-                                    <td>RM <%# Convert.ToDouble(Eval("PaymentAmount")).ToString("0.00") %></td>
+                                    <td><%# Convert.ToDouble(Eval("PaymentAmount")).ToString("C") %></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -133,14 +135,14 @@
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId WHERE LandlordId = @LandlordId">
+        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId INNER JOIN Property ON Booking.PropertyId = Property.PropertyId WHERE Booking.LandlordId = @LandlordId">
         <SelectParameters>
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, 
+        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, Booking.Duration,
                         Property.PropertyName, Property.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
                         [User].Name, [User].Gender, [User].PhoneNo, [User].Email, Tenant.BillingAddress
                     FROM Booking

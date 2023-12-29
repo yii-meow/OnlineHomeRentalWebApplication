@@ -224,8 +224,8 @@
     }
 
         .home .topBookedProperty p {
-            font-size:17px;
-            margin-top:20px;
+            font-size: 17px;
+            margin-top: 20px;
         }
 
 .activity-feed {
@@ -665,6 +665,11 @@
         font-weight: bold;
     }
 
+.propertyBookingDetails{
+    padding:20px;
+    margin-bottom:50px;
+}
+
 .bookingHistory {
     padding: 20px;
     display: flex;
@@ -770,6 +775,14 @@
         width: 300px;
         text-decoration: none;
     }
+
+        .user .userSession_button.selected {
+            width:inherit;
+            background-color: cornflowerblue; /* Set the background color to your desired highlight color */
+            font-weight: bold; /* Make the text bold or apply other styles as needed */
+            padding:4px;
+            padding-left:10px;
+        }
 
 .messages-container {
     flex: 3;
