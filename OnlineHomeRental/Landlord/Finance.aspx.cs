@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,11 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                BindCanvasData();
+            }
+
             DateTime lastMonthDate = DateTime.Now.AddMonths(-1);
             DateTime lastLastMonthDate = DateTime.Now.AddMonths(-2);
 
@@ -289,9 +295,9 @@ namespace OnlineHomeRental.Landlord
 
                     object result = cmdUnusedPropertyDurationLastMonth.ExecuteScalar();
 
-                    if(result != DBNull.Value)
+                    if (result != DBNull.Value)
                     {
-                        lastMonthUnusedPropertyDuration = (int)result; 
+                        lastMonthUnusedPropertyDuration = (int)result;
                     }
                 }
 
@@ -321,12 +327,12 @@ namespace OnlineHomeRental.Landlord
                 {
                     if (lastMonthUnusedPropertyDuration > lastLastMonthunusedPropertyDuration)
                     {
-                        lblUnusedDurationDif.ForeColor = System.Drawing.Color.Green;
+                        lblUnusedDurationDif.ForeColor = System.Drawing.Color.Red;
                         lblUnusedDurationDif.Text = "+";
                     }
                     else
                     {
-                        lblUnusedDurationDif.ForeColor = System.Drawing.Color.Red;
+                        lblUnusedDurationDif.ForeColor = System.Drawing.Color.Green;
                     }
                     lblUnusedDurationDif.Text += (lastMonthUnusedPropertyDuration - lastLastMonthunusedPropertyDuration).ToString();
                 }
@@ -391,17 +397,88 @@ namespace OnlineHomeRental.Landlord
                     {
                         if (lastMonthAverageBookingPrice > lastLastMonthAverageBookingPrice)
                         {
-                            lblAvgBookingDif.ForeColor = System.Drawing.Color.Red;
+                            lblAvgBookingDif.ForeColor = System.Drawing.Color.Green;
                             lblAvgBookingDif.Text = "+";
                         }
                         else
                         {
-                            lblAvgBookingDif.ForeColor = System.Drawing.Color.Green;
+                            lblAvgBookingDif.ForeColor = System.Drawing.Color.Red;
                         }
                         lblAvgBookingDif.Text += (lastMonthAverageBookingPrice - lastLastMonthAverageBookingPrice).ToString("C");
                     }
                 }
             }
+        }
+        protected string GetPaymentStatusStyle(string paymentStatus)
+        {
+            if (paymentStatus.Equals("Successful", StringComparison.OrdinalIgnoreCase))
+            {
+                return "color: green;";
+            }
+            else
+            {
+                return "color: red;";
+            }
+        }
+
+        private void BindCanvasData()
+        {
+            // Replace this connection string with your actual connection string
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(strCon))
+            {
+                string strRevenue = @"
+                    WITH Last6Months AS (
+                        SELECT DISTINCT
+                            MONTH(DATEADD(MONTH, -Number - 1, GETDATE())) AS MonthNumber
+                        FROM master.dbo.spt_values
+                        WHERE Type = 'P' AND Number BETWEEN 0 AND 5
+                    )
+
+                    SELECT 
+                        l.MonthNumber AS BookingMonth,
+                        COALESCE(YEAR(b.BookingTime), YEAR(GETDATE())) AS BookingYear,
+                        COALESCE(SUM(p.PaymentAmount), 0) AS TotalRevenue
+                    FROM Last6Months l
+                    LEFT JOIN Booking b ON l.MonthNumber = MONTH(b.BookingTime) AND b.LandlordId = 1
+                    LEFT JOIN Payment p ON b.BookingId = p.BookingId
+                    GROUP BY l.MonthNumber, COALESCE(YEAR(b.BookingTime), YEAR(GETDATE()))
+                    ORDER BY COALESCE(YEAR(b.BookingTime), YEAR(GETDATE())), l.MonthNumber;
+                ";
+
+                using (SqlCommand command = new SqlCommand(strRevenue, connection))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Convert DataTable to JSON for use in JavaScript
+                    string jsonBookingData = ConvertDataTableToJson(dataTable);
+
+                    // Inject the JSON data into the JavaScript block
+                    ScriptManager.RegisterStartupScript(this, GetType(), "DrawCanvas", $"DrawCanvas({jsonBookingData});", true);
+                }
+            }
+        }
+        private string ConvertDataTableToJson(DataTable dataTable)
+        {
+            System.Web.Script.Serialization.JavaScriptSerializer serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, object>> rows = new System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, object>>();
+            System.Collections.Generic.Dictionary<string, object> row;
+
+            foreach (DataRow dr in dataTable.Rows)
+            {
+                row = new System.Collections.Generic.Dictionary<string, object>();
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    row.Add(col.ColumnName, dr[col]);
+                }
+                rows.Add(row);
+            }
+
+            return serializer.Serialize(rows);
         }
     }
 }

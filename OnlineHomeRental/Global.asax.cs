@@ -18,7 +18,7 @@ namespace OnlineHomeRental
         protected void Session_Start(object sender, EventArgs e)
         {
             // Session timeout in 7 days
-            Session.Timeout = 24 * 60 * 7;
+            Session.Timeout = 24 * 60 * 7 * 10;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

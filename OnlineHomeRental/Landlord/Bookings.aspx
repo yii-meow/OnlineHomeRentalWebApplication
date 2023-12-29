@@ -11,7 +11,6 @@
                     <asp:BoundField DataField="BookingId" HeaderText="Booking Id" InsertVisible="False" ReadOnly="True" SortExpression="BookingId" />
                     <asp:BoundField DataField="CheckInDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check In Date" SortExpression="CheckInDate" />
                     <asp:BoundField DataField="CheckOutDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check Out Date" SortExpression="CheckOutDate" />
-                    <asp:BoundField DataField="PropertyId" HeaderText="Property Id" InsertVisible="False" ReadOnly="True" SortExpression="PropertyId" />
                     <asp:BoundField DataField="PropertyName" HeaderText="Property Name" InsertVisible="False" ReadOnly="True" SortExpression="PropertyName" />
                     <asp:BoundField DataField="BookingStatus" HeaderText="Booking Status" SortExpression="Booking Status" />
                     <asp:TemplateField HeaderText="Actions">

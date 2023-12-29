@@ -23,11 +23,11 @@ namespace OnlineHomeRental.Landlord
 
                 if (bookingStatus == "Completed")
                 {
-                    e.Row.Cells[4].ForeColor = System.Drawing.Color.Green;
+                    e.Row.Cells[5].ForeColor = System.Drawing.Color.Green;
                 }
                 else if (bookingStatus == "Cancelled")
                 {
-                    e.Row.Cells[4].ForeColor = System.Drawing.Color.Red;
+                    e.Row.Cells[5].ForeColor = System.Drawing.Color.Red;
                 }
             }
         }
