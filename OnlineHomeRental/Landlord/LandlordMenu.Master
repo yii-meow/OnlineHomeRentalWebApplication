@@ -103,11 +103,12 @@
                 <%--<img src="/Data/defaultPP.png" alt="User Image" class="user-image">--%>
 
                 <!-- User Details -->
-                <div class="user-details">
-                    <span class="text-lg"><b>
-                        <asp:Literal runat="server" ID="LandlordUsername" /></b></span>
-                </div>
-
+                <asp:Hyperlink ID="LinkButton1" runat="server" NavigateUrl="~/Landlord/AccountSetting.aspx">
+                    <div class="user-details">
+                        <span class="text-lg"><b>
+                            <asp:Literal runat="server" ID="LandlordUsername" /></b></span>
+                    </div>
+                </asp:Hyperlink>
                 <!-- Exit Icon -->
                 <asp:LinkButton ID="ExitLink" runat="server" OnClick="ExitLink_Click" CssClass="exit-icon">
                     <i class="fa fa-sign-out text-white"></i>
