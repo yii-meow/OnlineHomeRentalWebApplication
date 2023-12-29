@@ -9,7 +9,7 @@
         </header>
 
         <section>
-            <h5 class="mt-4"><b>Summary of Records for November 2023 (compared to last month)</b></h5>
+            <h5 class="mt-4"><b>Summary of Records <asp:Literal ID="lblMonthRecord" runat="server" /> (compared to last month)</b></h5>
             <div class="finance-cards mt-3 p-3">
                 <div class="finance-item">
                     <p>Total Sales (+)</p>

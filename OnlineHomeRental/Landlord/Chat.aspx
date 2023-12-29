@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="chat">
         <div class="chat-container">
-
             <div class="user-list">
                 <asp:Repeater ID="TenantRepeater" runat="server" DataSourceID="SqlDataSource1">
                     <ItemTemplate>
@@ -29,7 +28,7 @@
                 </div>
                 <div class="message-input">
                     <asp:TextBox ID="lblSendMessage" CssClass="sendMessageLabel" runat="server" placeholder="Type your message..." />
-                    <asp:Button ID="btnSendMessage" CssClass="btn btn-primary" runat="server" OnClick="Send_Message" Text="Send"/>
+                    <asp:Button ID="btnSendMessage" CssClass="btn btn-primary" runat="server" OnClick="Send_Message" Text="Send" />
                 </div>
             </div>
         </div>

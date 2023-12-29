@@ -11,7 +11,9 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            DateTime currentDate = DateTime.Now.AddMonths(-1);
+            string formattedDate = currentDate.ToString("MMM yyyy");
+            lblMonthRecord.Text = formattedDate;
         }
     }
 }

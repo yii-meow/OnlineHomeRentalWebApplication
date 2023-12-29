@@ -14,6 +14,16 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Check if the TenantId is present in the query string from booking.aspx
+                if (Request.QueryString["ChatSessionId"] != null)
+                {
+                    // Get the TenantId from the query string
+                    string chatSessionId = Request.QueryString["ChatSessionId"];
+                    Bind_Message(chatSessionId);
+                }
+            }
         }
 
         protected void Session_click(object sender, EventArgs e)

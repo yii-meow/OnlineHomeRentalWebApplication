@@ -12,6 +12,13 @@
                     <asp:BoundField DataField="CheckInDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check In Date" SortExpression="CheckInDate" />
                     <asp:BoundField DataField="CheckOutDate" DataFormatString="{0:dd MMM yyyy}" HeaderText="Check Out Date" SortExpression="CheckOutDate" />
                     <asp:BoundField DataField="BookingStatus" HeaderText="Booking Status" SortExpression="Booking Status" />
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" OnClick="Chat_Click" CommandArgument='<%# Eval("TenantId") %>'>
+                                <button type="button" class="btn-primary">Chat</button>
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -126,7 +133,7 @@
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Booking WHERE LandlordId = @LandlordId">
+        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId WHERE LandlordId = @LandlordId">
         <SelectParameters>
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
