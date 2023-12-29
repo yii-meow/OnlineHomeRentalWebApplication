@@ -24,6 +24,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Literal lblMonthRecord;
 
         /// <summary>
+        /// lblLastMonthRecord control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblLastMonthRecord;
+
+        /// <summary>
         /// lblTotalSales control.
         /// </summary>
         /// <remarks>
@@ -48,7 +57,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblTotalBooking;
+        protected global::System.Web.UI.WebControls.Label lblTotalBooking;
 
         /// <summary>
         /// lblTotalBookingDif control.
@@ -57,7 +66,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblTotalBookingDif;
+        protected global::System.Web.UI.WebControls.Label lblTotalBookingDif;
 
         /// <summary>
         /// lblNetProfit control.
@@ -66,7 +75,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblNetProfit;
+        protected global::System.Web.UI.WebControls.Label lblNetProfit;
 
         /// <summary>
         /// lblNetProfitDif control.
@@ -75,7 +84,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblNetProfitDif;
+        protected global::System.Web.UI.WebControls.Label lblNetProfitDif;
 
         /// <summary>
         /// lblCancelledBooking control.
@@ -84,7 +93,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCancelledBooking;
+        protected global::System.Web.UI.WebControls.Label lblCancelledBooking;
 
         /// <summary>
         /// lblCancelledBookingDif control.
@@ -93,7 +102,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblCancelledBookingDif;
+        protected global::System.Web.UI.WebControls.Label lblCancelledBookingDif;
 
         /// <summary>
         /// lblUnusedDuration control.
@@ -102,7 +111,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblUnusedDuration;
+        protected global::System.Web.UI.WebControls.Label lblUnusedDuration;
 
         /// <summary>
         /// lblUnusedDurationDif control.
@@ -111,7 +120,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblUnusedDurationDif;
+        protected global::System.Web.UI.WebControls.Label lblUnusedDurationDif;
 
         /// <summary>
         /// lblAvgBooking control.
@@ -120,7 +129,7 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblAvgBooking;
+        protected global::System.Web.UI.WebControls.Label lblAvgBooking;
 
         /// <summary>
         /// lblAvgBookingDif control.
@@ -129,6 +138,6 @@ namespace OnlineHomeRental.Landlord
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblAvgBookingDif;
+        protected global::System.Web.UI.WebControls.Label lblAvgBookingDif;
     }
 }

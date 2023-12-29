@@ -9,31 +9,31 @@
         </header>
 
         <section>
-            <h5 class="mt-4"><b>Summary of Records <asp:Literal ID="lblMonthRecord" runat="server" /> (compared to last month)</b></h5>
+            <h5 class="mt-4"><b>Summary of Records <asp:Literal ID="lblMonthRecord" runat="server" /> (compared to <asp:Literal ID="lblLastMonthRecord" runat="server" />)</b></h5>
             <div class="finance-cards mt-3 p-3">
                 <div class="finance-item">
-                    <p>Total Sales (+)</p>
+                    <p>Total Booking</p>
                     <p class="value"><asp:Label ID="lblTotalSales" runat="server" /> (<asp:Label ID="lblTotalSalesDif" runat="server"/>)</p>
                 </div>
                 <div class="finance-item">
-                    <p>Total Booking (+)</p>
-                    <p class="value"><asp:Literal ID="lblTotalBooking" runat="server" /> (<asp:Literal ID="lblTotalBookingDif" runat="server" />)</p>
+                    <p>Total Booking</p>
+                    <p class="value"><asp:Label ID="lblTotalBooking" runat="server" /> (<asp:Label ID="lblTotalBookingDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
-                    <p>Net Profit:</p>
-                    <p class="value"><asp:Literal ID="lblNetProfit" runat="server" /> (<asp:Literal ID="lblNetProfitDif" runat="server" />)</p>
+                    <p>Net Profit</p>
+                    <p class="value"><asp:Label ID="lblNetProfit" runat="server" /> (<asp:Label ID="lblNetProfitDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
-                    <p>Cancelled Booking (-)</p>
-                    <p class="value"><asp:Literal ID="lblCancelledBooking" runat="server" /> (<asp:Literal ID="lblCancelledBookingDif" runat="server" />)</p>
+                    <p>Cancelled Booking</p>
+                    <p class="value"><asp:Label ID="lblCancelledBooking" runat="server" /> (<asp:Label ID="lblCancelledBookingDif" runat="server" />)</p>
                 </div>
                 <div class="finance-item">
-                    <p>Unused Property Duration:</p>
-                    <p class="value"><asp:Literal runat="server" ID="lblUnusedDuration" /> (<asp:Literal runat="server" ID="lblUnusedDurationDif" />)</p>
+                    <p>Unused Property Duration</p>
+                    <p class="value"><asp:Label runat="server" ID="lblUnusedDuration" /> (<asp:Label runat="server" ID="lblUnusedDurationDif" />)</p>
                 </div>
                 <div class="finance-item">
                     <p>Average Booking Price</p>
-                    <p class="value"><asp:Literal ID="lblAvgBooking" runat="server" /> (<asp:Literal ID="lblAvgBookingDif" runat="server" />)</p>
+                    <p class="value"><asp:Label ID="lblAvgBooking" runat="server" /> (<asp:Label ID="lblAvgBookingDif" runat="server" />)</p>
                 </div>
             </div>
         </section>
