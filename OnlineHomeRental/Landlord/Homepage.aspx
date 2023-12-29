@@ -99,21 +99,6 @@
                 <div class="dashboard-card">
                     <div class="row">
                         <div class="col-md-10">
-                            <span class="text-secondary">Top Repeated Time from user</span>
-                            <p>
-                                <asp:Literal runat="server" ID="lblRepeatedUser" />5
-                            </p>
-                        </div>
-
-                        <div class="col-md-2 mt-5">
-                            <i class="bi bi-arrow-repeat text-info"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dashboard-card">
-                    <div class="row">
-                        <div class="col-md-10">
                             <span class="text-secondary">Completion Rate</span>
                             <p class="text-success">
                                 <asp:Literal runat="server" ID="lblCompletionRate" />
@@ -157,9 +142,22 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="dashboard-card topBookedProperty">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <span class="text-secondary">Top 3 Booked Property</span>
+                            <p class="font-weight-normal">
+                                <asp:Literal runat="server" ID="lblTop3BookedProperties"/>
+                            </p>
+                        </div>
+
+                        <div class="col-md-2 mt-5">
+                            <i class="bi bi-hand-thumbs-up-fill"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
 
             <!-- Most Recent 5 notifications -->
             <div class="activity-feed">

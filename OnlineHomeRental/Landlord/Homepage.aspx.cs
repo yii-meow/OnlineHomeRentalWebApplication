@@ -22,7 +22,6 @@ namespace OnlineHomeRental.Landlord
             using (SqlConnection con = new SqlConnection(strCon))
             {
                 con.Open();
-
                 string queryTotalRevenue = "SELECT SUM(P.PaymentAmount) FROM Booking B " +
                                            "INNER JOIN Payment P ON B.BookingId = P.BookingId " +
                                            "WHERE LandlordId = @LandlordId";
@@ -43,28 +42,22 @@ namespace OnlineHomeRental.Landlord
                     lblTotalRevenue.Text = totalRevenue.ToString("C");
                 }
 
-                string strTop3Properties = "SELECT TOP 1 P.PropertyName " +
+                string strTopPropery = "SELECT TOP 1 P.PropertyName " +
                                    "FROM Booking B " +
                                    "INNER JOIN Property P ON B.PropertyId = P.PropertyId " +
                                    "WHERE B.LandlordId = @LandlordId " +
                                    "GROUP BY B.PropertyId, P.PropertyName " +
                                    "ORDER BY COUNT(*) DESC";
-                using (SqlCommand cmdTopProperty = new SqlCommand(strTop3Properties, con))
+                using (SqlCommand cmdTopProperty = new SqlCommand(strTopPropery, con))
                 {
                     cmdTopProperty.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    string topBookedProperty = null;
+                    string topBookedProperty = "None";
                     object result = cmdTopProperty.ExecuteScalar();
 
-                    if (result != DBNull.Value)
-                    {
+                    if (result != DBNull.Value && result != null)
+                    { 
                         topBookedProperty = (string)result;
                     }
-
-                    else
-                    {
-                        topBookedProperty = "None";
-                    }
-
                     lblTopBookedProperty.Text = topBookedProperty;
                 }
 
@@ -206,8 +199,47 @@ namespace OnlineHomeRental.Landlord
 
                     lblTotalPotentialLoss.Text = potentialLoss.ToString("C");
                 }
+
+                string strTop3Properties = "SELECT TOP 3 P.PropertyName " +
+                                   "FROM Booking B " +
+                                   "INNER JOIN Property P ON B.PropertyId = P.PropertyId " +
+                                   "WHERE B.LandlordId = @LandlordId " +
+                                   "GROUP BY B.PropertyId, P.PropertyName " +
+                                   "ORDER BY COUNT(*) DESC";
+
+                string top3Propeties = "";
+
+                using (SqlCommand cmdTop3Properties = new SqlCommand(strTop3Properties, con))
+                {
+                    cmdTop3Properties.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    using (SqlDataReader reader = cmdTop3Properties.ExecuteReader())
+                    {
+                        int ranking = 1;
+                        // Check if there are rows returned
+                        if (reader.HasRows)
+                        {
+                            // Loop through the result set
+                            while (reader.Read())
+                            {
+                                // Access the PropertyName column from the result set
+                                string propertyName = reader["PropertyName"].ToString();
+
+                                // Concatenate property names to form the top 3 list
+                                top3Propeties += $"{ranking}. {propertyName}<br/><br/>";
+                                ranking++;
+                            }
+
+                            // Display the top 3 properties in the label
+                            lblTop3BookedProperties.Text = top3Propeties;
+                        }
+                        else
+                        {
+                            // Handle the case when there are no rows
+                            lblTop3BookedProperties.Text = "No booked properties found.";
+                        }
+                    }
+                }
             }
         }
-
     }
 }

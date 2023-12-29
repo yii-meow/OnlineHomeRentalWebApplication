@@ -5,23 +5,19 @@
         <h2>Notifications</h2>
 
         <ul class="notification-list">
-            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
-                <itemtemplate>
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
                     <li class="notification-item">
                         <div class="notification-type"><%#Eval("NotificationType")%></div>
                         <div class="notification-title"><%#Eval("NotificationTitle")%></div>
                         <div class="notification-description"><%#Eval("NotificationDescription")%></div>
                         <div class="notification-date"><%#Eval("NotificationTime")%></div>
                     </li>
-                </itemtemplate>
+                </ItemTemplate>
             </asp:Repeater>
         </ul>
-    </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Notification WHERE UserId = @UserId">
-        <selectparameters>
-            <asp:SessionParameter Name="UserId" SessionField="UserId" Type="String" />
-        </selectparameters>
-    </asp:SqlDataSource>
+        <%-- If there is no any notification --%>
+        <asp:Label ID="lblNoNotification" runat="server" Text="<br/><h5>No notification so far...</h5>" Visible="false"></asp:Label>
+    </div>
 </asp:Content>

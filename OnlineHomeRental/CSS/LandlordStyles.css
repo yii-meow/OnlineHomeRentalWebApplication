@@ -219,6 +219,15 @@
         transform: scale(1.05);
     }
 
+    .home .topBookedProperty {
+        height: 220px;
+    }
+
+        .home .topBookedProperty p {
+            font-size:17px;
+            margin-top:20px;
+        }
+
 .activity-feed {
     margin-top: 80px;
 }
@@ -477,8 +486,8 @@
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
-    min-height:90vh;
-    max-height:fit-content;
+    min-height: 90vh;
+    max-height: fit-content;
 }
 
     .notification-body .notification-list {

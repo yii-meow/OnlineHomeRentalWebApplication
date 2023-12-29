@@ -87,15 +87,6 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Literal lblAvgBooking;
 
         /// <summary>
-        /// lblRepeatedUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal lblRepeatedUser;
-
-        /// <summary>
         /// lblCompletionRate control.
         /// </summary>
         /// <remarks>
@@ -121,5 +112,14 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblTotalPotentialLoss;
+
+        /// <summary>
+        /// lblTop3BookedProperties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblTop3BookedProperties;
     }
 }
