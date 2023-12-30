@@ -2,7 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
+    <div id="alertDiv" runat="server" class="alert d-none alert-dismissible fade show" role="alert">
+        <span id="alertMessage"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
         <ItemTemplate>
             <div class="account-setting">
                 <div class="container">
@@ -30,18 +37,21 @@
                                 <input type="email" class="form-control" id="phoneNo" value='<%# Eval("PhoneNo") %>' readonly>
                             </div>
 
-                            <!-- Profile Image -->
-                            <div class="form-group">
-                                <label for="profileImage">Profile Image</label>
-                                <input type="email" class="form-control" id="profileImage" value="Update Profile Image" readonly>
-                            </div>
-
                             <!-- Bank Account No -->
                             <div class="form-group">
                                 <label for="bankAccount">Bank Account</label>
                                 <input type="email" class="form-control" id="bankAccount" value='<%# Eval("BankAccount") != DBNull.Value ? Eval("BankAccount").ToString() : "None" %>' readonly>
                             </div>
-                            <button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"><i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Details</button>
+
+                            <%--<button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"><i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Details</button>--%>
+
+                            <button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"
+                                data-name='<%# Eval("Name") %>'
+                                data-email='<%# Eval("Email") %>'
+                                data-phone-no='<%# Eval("PhoneNo") %>'
+                                data-bank-account='<%# Eval("BankAccount") != DBNull.Value ? Eval("BankAccount").ToString() : "None" %>'>
+                                <i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Details
+                            </button>
 
                             <p class="text-right">Account created at: June 2023</p>
                             <hr />
@@ -109,23 +119,19 @@
                     <!-- Form fields for editing details -->
                     <div class="form-group">
                         <label for="editName">Name</label>
-                        <asp:TextBox runat="server" ID="tbEditName" value='<%# Eval("Name") %>' CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="tbEditName" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editEmail">Email</label>
-                        <asp:TextBox runat="server" ID="tbEditEmail" value='<%# Eval("Email") %>' CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="tbEditEmail" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editPhoneNo">Phone No</label>
-                        <asp:TextBox runat="server" ID="tbEditPhoneNo" value='<%# Eval("PhoneNo") %>' CssClass="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="editProfileImage">Profile Image</label>
-                        <input type="text" class="form-control" id="editProfileImage">
+                        <asp:TextBox runat="server" ID="tbEditPhoneNo" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editBankAccount">Bank Account</label>
-                        <asp:TextBox runat="server" ID="tbEditBankAccount" value='<%# Eval("BankAccount") %>' CssClass="form-control" />
+                        <asp:TextBox runat="server" ID="tbEditBankAccount" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -142,4 +148,23 @@
             <asp:SessionParameter Name="UserId" SessionField="UserId" Type="string" />
         </SelectParameters>
     </asp:SqlDataSource>
+
+    <script>
+        // Preset Edit Personal Details textboxes value
+        $('#editDetailsModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+
+            // Extract data from attributes of the triggering button
+            var name = button.data('name');
+            var email = button.data('email');
+            var phoneNo = button.data('phone-no');
+            var bankAccount = button.data('bank-account');
+
+            // Set the values in the modal textboxes
+            $('#tbEditName').val(name);
+            $('#tbEditEmail').val(email);
+            $('#tbEditPhoneNo').val(phoneNo);
+            $('#tbEditBankAccount').val(bankAccount);
+        });
+    </script>
 </asp:Content>
