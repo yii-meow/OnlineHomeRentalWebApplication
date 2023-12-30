@@ -38,9 +38,11 @@ namespace OnlineHomeRental.Landlord
             {
                 connection.Open();
 
-                double averageRatings = 0;
+                decimal averageRatings = 0;
                 string strGetAverageRatings = @"
-                    SELECT AVG(RatingScore) FROM Review WHERE PropertyId = @PropertyId;
+                    SELECT AVG(CAST(RatingScore AS DECIMAL(10, 2))) AS AverageRating
+                    FROM Review
+                    WHERE PropertyId = @PropertyId
                 ";
 
                 using (SqlCommand cmdGetAverageRatings = new SqlCommand(strGetAverageRatings, connection))
@@ -51,10 +53,15 @@ namespace OnlineHomeRental.Landlord
 
                     if (result != DBNull.Value)
                     {
-                        //averageRatings = result; 
+                        averageRatings = (decimal)result; 
+                    }
+                    else
+                    {
+                        lblAverageRatings.Text = "None";
+                        return;
                     }
                 }
-                lblAverageRatings.Text = averageRatings.ToString();
+                lblAverageRatings.Text = averageRatings.ToString("N2") + " <i class=\"bi bi-star-fill\"></i>";
             }
         }
 

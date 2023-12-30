@@ -67,6 +67,11 @@ namespace OnlineHomeRental.Landlord
             // Get the message from the TextBox
             string message = lblSendMessage.Text.Trim();
 
+            if (string.IsNullOrEmpty(message))
+            {
+                return;
+            }
+
             string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(strCon))

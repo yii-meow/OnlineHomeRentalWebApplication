@@ -23,7 +23,14 @@
                                 <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
                                 <label for="reg-log"></label>
                                 <div class="card-3d-wrap mx-auto">
+
+                                    <div class="bg-danger text-white mb-2 p-2">
+                                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="" />
+                                        <asp:Label ID="lblError" runat="server" />
+                                    </div>
+
                                     <div class="card-3d-wrapper">
+                                        <!-- Login Page -->
                                         <div class="card-front">
                                             <div class="center-wrap">
                                                 <div class="dropdown">
@@ -39,17 +46,17 @@
                                                     </button>
                                                 </div>
                                                 <div class="section text-center">
-                                                    <asp:Label ID="lblError" runat="server" />
                                                     <h4 class="mb-4 pb-3">Log In</h4>
-
                                                     <div class="form-group">
                                                         <asp:TextBox CssClass="form-style" ID="tbLandlordUsername" runat="server" placeholder="Username" />
                                                         <i class="input-icon uil uil-at"></i>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbLandlordUsername" ErrorMessage="Username is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
                                                     </div>
 
                                                     <div class="form-group mt-2">
                                                         <asp:TextBox CssClass="form-style" ID="tbLandlordPassword" runat="server" placeholder="Password" TextMode="Password" />
                                                         <i class="input-icon uil uil-lock-alt"></i>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbLandlordPassword" ErrorMessage="Password is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
                                                     </div>
 
                                                     <asp:LinkButton ID="btnLogin" runat="server" CssClass="btn mt-4" OnClick="Login_Click" Text="Login" />
@@ -67,7 +74,11 @@
                                                     <h4 class="mb-3 pb-3 mt-3">Sign Up</h4>
                                                     <div class="form-group">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordUsername" runat="server" placeholder="Username" title="Username must contains 8 or more characters" />
-                                                        <i class="input-icon uil uil-user"></i>
+                                                        <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbRegLandlordUsername" ErrorMessage="Username is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbLandlordUsername"
+                                                            ErrorMessage="Username must contain 8 or more characters." ForeColor="Red"
+                                                            ValidationExpression="^.{8,}$" Display="Dynamic"></asp:RegularExpressionValidator>
+                                                        <i class="input-icon uil uil-user"></i>--%>
                                                     </div>
                                                     <div class="form-group mt-3">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordPassword" runat="server" placeholder="Password" TextMode="Password" title="Password must contains 10 or more characters including alphanumeric characters" />
@@ -84,7 +95,7 @@
                                                     <div class="form-group gender-radio mt-3">
                                                         <asp:RadioButtonList CssClass="form-style gender-radio" ID="rbRegLandlordGender" runat="server" RepeatDirection="Horizontal">
                                                             <asp:ListItem Text="Male" Value="M" />
-                                                            <asp:ListItem Text="Female" Value="F" CssClass="female"/>
+                                                            <asp:ListItem Text="Female" Value="F" CssClass="female" />
                                                         </asp:RadioButtonList>
                                                         <i class="input-icon uil uil-mars"></i>
                                                     </div>

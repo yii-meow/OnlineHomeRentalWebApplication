@@ -36,7 +36,7 @@
             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                 <ItemTemplate>
                     <div class="property-card">
-                        <img class="property-img" src="property.jpg" alt="Property Image">
+                        <img class="property-img" src='<%# Eval("Thumbnail") %>' alt="Property Image">
                         <div class="property-details">
                             <div class="property-id">ID: <%#Eval("PropertyId")%></div>
                             <div class="property-name"><%#Eval("PropertyName")%></div>

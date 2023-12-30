@@ -42,6 +42,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.FileUpload fileUploadImage;
 
         /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+
+        /// <summary>
         /// btnUploadImage control.
         /// </summary>
         /// <remarks>
@@ -87,6 +96,24 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Button btnUpdatePassword;
 
         /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+
+        /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+
+        /// <summary>
         /// tbEditName control.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditName;
+
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
         /// tbEditEmail control.
@@ -105,6 +141,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.TextBox tbEditEmail;
 
         /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+
+        /// <summary>
         /// tbEditPhoneNo control.
         /// </summary>
         /// <remarks>
@@ -112,6 +157,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEditPhoneNo;
+
+        /// <summary>
+        /// RegularExpressionValidatorBankAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidatorBankAccount;
 
         /// <summary>
         /// tbEditBankAccount control.

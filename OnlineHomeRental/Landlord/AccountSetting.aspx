@@ -42,7 +42,7 @@
                                 <label for="bankAccount">Bank Account</label>
                                 <input type="email" class="form-control" id="bankAccount" value='<%# Eval("BankAccount") != DBNull.Value ? Eval("BankAccount").ToString() : "None" %>' readonly>
                             </div>
-                            
+
                             <button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"
                                 data-name='<%# Eval("Name") %>'
                                 data-email='<%# Eval("Email") %>'
@@ -84,7 +84,9 @@
                                 }
                             %>
                         <p class="mt-3">Choose New Profile Image</p>
-                        <asp:FileUpload ID="fileUploadImage" runat="server" /><br />
+                        <asp:FileUpload ID="fileUploadImage" runat="server" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="fileUploadImage" ErrorMessage="Image is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <br />
                         <asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click" CssClass="btn btn-primary mt-4 w-25" />
                     </div>
                     <hr />
@@ -147,21 +149,32 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="text-light bg-danger p-2 mb-3" />
+
                     <!-- Form fields for editing details -->
                     <div class="form-group">
                         <label for="editName">Name</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEditName" ErrorMessage="Name is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:TextBox runat="server" ID="tbEditName" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editEmail">Email</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEditEmail" ErrorMessage="Email is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:TextBox runat="server" ID="tbEditEmail" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editPhoneNo">Phone No</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEditPhoneNo" ErrorMessage="Phone No is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
                         <asp:TextBox runat="server" ID="tbEditPhoneNo" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editBankAccount">Bank Account</label>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorBankAccount" runat="server"
+                            ControlToValidate="tbEditBankAccount"
+                            ErrorMessage="Bank Account Number must be 12 digits."
+                            ForeColor="Red"
+                            ValidationExpression="^\d{12}$"
+                            Display="Dynamic"></asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" ID="tbEditBankAccount" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                 </div>

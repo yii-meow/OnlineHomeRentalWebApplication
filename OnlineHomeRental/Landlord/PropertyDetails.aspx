@@ -16,8 +16,7 @@
             <div class="container">
                 <div>
                     <p class="mb-4">
-                        Average Ratings:
-                    <asp:Literal ID="lblAverageRatings" runat="server" />
+                        Average Ratings: <asp:Literal ID="lblAverageRatings" runat="server" />
                     </p>
                 </div>
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">

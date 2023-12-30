@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
@@ -15,7 +16,7 @@ namespace OnlineHomeRental.Landlord
         {
             if (!IsPostBack)
             {
-                for (int i= 1; i <= 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
                     ddlNumberOfBedroom.Items.Add(new ListItem(i.ToString(), i.ToString()));
                 }
@@ -38,12 +39,33 @@ namespace OnlineHomeRental.Landlord
             bool wifiAvailability = cbWiFi.Checked;
             string preferences = txtPreferences.Text;
 
+            string thumbnail = Path.GetFileName(thumbnailUpload.FileName);
+            thumbnailUpload.SaveAs(Server.MapPath("/Data/" + thumbnail));
+
+            string image1 = Path.GetFileName(image1Upload.FileName);
+            image1Upload.SaveAs(Server.MapPath("/Data/" + image1));
+
+            string image2 = null;
+            string image3 = null;
+
+            if (image2Upload.HasFile)
+            {
+                image2 = Path.GetFileName(image2Upload.FileName);
+                image2Upload.SaveAs(Server.MapPath("/Data/" + image2));
+            }
+
+            if (image3Upload.HasFile)
+            {
+                image3 = Path.GetFileName(image3Upload.FileName);
+                image3Upload.SaveAs(Server.MapPath("/Data/" + image3));
+            }
+
             // Assuming you have a connection string in your web.config
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             // SQL query to insert a record
-            string insertQuery = "INSERT INTO [Property] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice, NumberOfBedroom, AreaSqft, AirCondAvailability, WaterHeaterAvailability, WifiAvailability, Preferences, Thumbnail, Image1) " +
-                                "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice, @NumberOfBedroom, @AreaSqft, @AirCondAvailability, @WaterHeaterAvailability, @WifiAvailability, @Preferences, @Thumbnail, @Image1)";
+            string insertQuery = "INSERT INTO [Property] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice, NumberOfBedroom, AreaSqft, AirCondAvailability, WaterHeaterAvailability, WifiAvailability, Preferences, Thumbnail, Image1, Image2, Image3) " +
+                                "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice, @NumberOfBedroom, @AreaSqft, @AirCondAvailability, @WaterHeaterAvailability, @WifiAvailability, @Preferences, @Thumbnail, @Image1, @Image2, @Image3)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -54,8 +76,8 @@ namespace OnlineHomeRental.Landlord
                 using (SqlCommand cmdSelect = new SqlCommand("SELECT LandlordId FROM Landlord WHERE UserId = @UserId", connection))
                 {
                     cmdSelect.Parameters.AddWithValue("@UserId", Session["UserId"]);
-                    landlordId = (int)cmdSelect.ExecuteScalar();                    
-                } 
+                    landlordId = (int)cmdSelect.ExecuteScalar();
+                }
 
                 using (SqlCommand command = new SqlCommand(insertQuery, connection))
                 {
@@ -71,8 +93,10 @@ namespace OnlineHomeRental.Landlord
                     command.Parameters.AddWithValue("@WaterHeaterAvailability", waterHeaterAvailability);
                     command.Parameters.AddWithValue("@WifiAvailability", wifiAvailability);
                     command.Parameters.AddWithValue("@Preferences", preferences);
-                    command.Parameters.AddWithValue("@Thumbnail", "/Data/Property.jpg");
-                    command.Parameters.AddWithValue("@Image1", "/Data/Property.jpg");
+                    command.Parameters.AddWithValue("@Thumbnail", $"/Data/{thumbnail}");
+                    command.Parameters.AddWithValue("@Image1", $"/Data/{image1}");
+                    command.Parameters.AddWithValue("@Image2", $"/Data/{image2}");
+                    command.Parameters.AddWithValue("@Image3", $"/Data/{image3}");
 
                     command.ExecuteNonQuery();
 
