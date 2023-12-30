@@ -12,12 +12,18 @@
 
     <div class="morePropertyDetails">
         <div class="mt-1">
+            <button type="button" class="btn btn-primary viewRatingButton" data-toggle="modal" data-target="#viewRatingsModal">View Ratings</button>
             <div class="container">
+                <div>
+                    <p class="mb-4">
+                        Average Ratings:
+                    <asp:Literal ID="lblAverageRatings" runat="server" />
+                    </p>
+                </div>
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
                     <ItemTemplate>
                         <h2><%# Eval("PropertyName") %></h2>
                         <hr />
-                        <p class="mb-4">Ratings: ⭐⭐⭐⭐⭐</p>
                         <div class="property-images">
                             <!-- Add a carousel or image slider for property images -->
                             <!-- Use a JavaScript library like Bootstrap Carousel -->
@@ -142,6 +148,40 @@
                             <h5>No Bookings so far...</h5>
                         </EmptyDataTemplate>
                     </asp:GridView>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Ratings Modal -->
+    <div class="modal fade" id="viewRatingsModal" tabindex="-1" role="dialog" aria-labelledby="viewRatingsModalModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewRatingsModalModalLabel">View Ratings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource3">
+                            <ItemTemplate>
+                                <div class="viewRating">
+                                    <p><%# Eval("UserId") %></p>
+                                    <p class="text-danger"><%# ConvertToStars(Eval("RatingScore")) %></p>
+                                    <p class="text-secondary text-sm"><%# Eval("ReviewDate") %></p>
+                                    <p class="mt-2"><%# Eval("ReviewMessage") %></p>
+                                </div>
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                <hr />
+                            </SeparatorTemplate>
+                        </asp:Repeater>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -278,7 +318,19 @@
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId WHERE LandlordId = @LandlordId AND PropertyId = @PropertyId">
+        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId WHERE LandlordId = @LandlordId AND PropertyId = @PropertyId ORDER BY Booking.BookingTime DESC">
+        <SelectParameters>
+            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
+            <asp:QueryStringParameter Name="PropertyId" QueryStringField="PropertyId" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+
+    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
+        SelectCommand="SELECT [User].UserId, Review.RatingScore, Review.ReviewMessage, Review.ReviewDate FROM Review INNER JOIN Booking ON Booking.BookingId = Review.BookingId 
+        INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId 
+        INNER JOIN [User] ON [User].UserId = Tenant.UserId 
+        WHERE Booking.PropertyId = @PropertyId 
+        ORDER BY Review.ReviewDate DESC">
         <SelectParameters>
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
             <asp:QueryStringParameter Name="PropertyId" QueryStringField="PropertyId" Type="Int32" />

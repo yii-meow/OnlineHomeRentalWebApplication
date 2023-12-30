@@ -13,14 +13,48 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Set Client side Javascript confirmation dialogue for deleting property
             if (!IsPostBack)
             {
                 for (int i = 1; i <= 10; i++)
                 {
                     ddlNumberOfBedroom.Items.Add(new ListItem(i.ToString(), i.ToString()));
                 }
-
                 HiddenField1.Value = "Are you sure you want to delete?";
+            }
+
+            // Get Average Ratings of the property
+            string propertyId = "";
+
+            if (Request.QueryString["PropertyId"] != null)
+            {
+                // Get the TenantId from the query string
+                propertyId = Request.QueryString["PropertyId"];
+            }
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                double averageRatings = 0;
+                string strGetAverageRatings = @"
+                    SELECT AVG(RatingScore) FROM Review WHERE PropertyId = @PropertyId;
+                ";
+
+                using (SqlCommand cmdGetAverageRatings = new SqlCommand(strGetAverageRatings, connection))
+                {
+                    cmdGetAverageRatings.Parameters.AddWithValue("@PropertyId", propertyId);
+
+                    object result = cmdGetAverageRatings.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        //averageRatings = result; 
+                    }
+                }
+                lblAverageRatings.Text = averageRatings.ToString();
             }
         }
 
@@ -174,6 +208,15 @@ namespace OnlineHomeRental.Landlord
                     }
                 }
             }
+        }
+        protected string ConvertToStars(object ratingScoreObj)
+        {
+            int ratingScore = 0;
+            if (ratingScoreObj != null)
+            {
+                ratingScore = Convert.ToInt32(ratingScoreObj);
+            }
+            return string.Concat(Enumerable.Repeat("<i class='bi bi-star-fill'></i>", ratingScore));
         }
     }
 }
