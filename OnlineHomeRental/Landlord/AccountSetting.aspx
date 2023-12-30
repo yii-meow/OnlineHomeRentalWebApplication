@@ -42,9 +42,7 @@
                                 <label for="bankAccount">Bank Account</label>
                                 <input type="email" class="form-control" id="bankAccount" value='<%# Eval("BankAccount") != DBNull.Value ? Eval("BankAccount").ToString() : "None" %>' readonly>
                             </div>
-
-                            <%--<button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"><i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Details</button>--%>
-
+                            
                             <button type="button" class="btn btn-save mt-2 w-25" data-toggle="modal" data-target="#editDetailsModal"
                                 data-name='<%# Eval("Name") %>'
                                 data-email='<%# Eval("Email") %>'
@@ -56,6 +54,7 @@
                             <hr />
                         </ItemTemplate>
                     </asp:Repeater>
+
                     <!-- Image Section -->
                     <h2 class="card-title mt-4">Profile Image</h2>
                     <p class="text-muted">Update your profile image.</p>

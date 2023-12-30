@@ -665,9 +665,14 @@
         font-weight: bold;
     }
 
-.propertyBookingDetails{
-    padding:20px;
-    margin-bottom:50px;
+.editPropertyDetailsButton{
+    position:absolute;
+    bottom:0;
+}
+
+.propertyBookingDetails {
+    padding: 20px;
+    margin-bottom: 50px;
 }
 
 .bookingHistory {
