@@ -63,8 +63,8 @@ namespace OnlineHomeRental.Landlord
                     {
                         while (reader.Read())
                         {
-                            lastMonthSales = ((decimal)reader["LastMonthSales"]);
-                            lastLastMonthSales = ((decimal)reader["LastLastMonthSales"]);
+                            lastMonthSales = reader["LastMonthSales"] != DBNull.Value ? Convert.ToDecimal(reader["LastMonthSales"]) : 0;
+                            lastLastMonthSales = reader["LastLastMonthSales"] != DBNull.Value ? Convert.ToDecimal(reader["LastLastMonthSales"]) : 0;
                         }
                     }
 
@@ -175,8 +175,8 @@ namespace OnlineHomeRental.Landlord
                     {
                         while (reader.Read())
                         {
-                            lastMonthNetProfit = ((decimal)reader["LastMonthNetProfit"]);
-                            lastLastMonthNetProfit = ((decimal)reader["LastLastMonthNetProfit"]);
+                            lastMonthNetProfit = reader["LastMonthNetProfit"] != DBNull.Value ? Convert.ToDecimal(reader["LastMonthNetProfit"]) : 0;
+                            lastLastMonthNetProfit = reader["LastLastMonthNetProfit"] != DBNull.Value ? Convert.ToDecimal(reader["LastLastMonthNetProfit"]) : 0;
                         }
                     }
 
@@ -381,8 +381,13 @@ namespace OnlineHomeRental.Landlord
                     {
                         while (reader.Read())
                         {
-                            lastMonthAverageBookingPrice = ((decimal)reader["LastMonthAverageBookingPrice"]);
-                            lastLastMonthAverageBookingPrice = ((decimal)reader["LastLastMonthAverageBookingPrice"]);
+                            lastMonthAverageBookingPrice = reader["LastMonthAverageBookingPrice"] != DBNull.Value
+                                ? Convert.ToDecimal(reader["LastMonthAverageBookingPrice"])
+                                : 0;
+
+                            lastLastMonthAverageBookingPrice = reader["LastLastMonthAverageBookingPrice"] != DBNull.Value
+                                ? Convert.ToDecimal(reader["LastLastMonthAverageBookingPrice"])
+                                : 0;
                         }
                     }
 
@@ -441,7 +446,7 @@ namespace OnlineHomeRental.Landlord
                         COALESCE(YEAR(b.BookingTime), YEAR(GETDATE())) AS BookingYear,
                         COALESCE(SUM(p.PaymentAmount), 0) AS TotalRevenue
                     FROM Last6Months l
-                    LEFT JOIN Booking b ON l.MonthNumber = MONTH(b.BookingTime) AND b.LandlordId = 1
+                    LEFT JOIN Booking b ON l.MonthNumber = MONTH(b.BookingTime) AND b.LandlordId = @LandlordId
                     LEFT JOIN Payment p ON b.BookingId = p.BookingId
                     GROUP BY l.MonthNumber, COALESCE(YEAR(b.BookingTime), YEAR(GETDATE()))
                     ORDER BY COALESCE(YEAR(b.BookingTime), YEAR(GETDATE())), l.MonthNumber;
@@ -449,6 +454,8 @@ namespace OnlineHomeRental.Landlord
 
                 using (SqlCommand command = new SqlCommand(strRevenue, connection))
                 {
+                    command.Parameters.AddWithValue("@LandlordId", Session["LandlordId"]);
+
                     connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();

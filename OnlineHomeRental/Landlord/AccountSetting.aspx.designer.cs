@@ -51,6 +51,42 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.Button btnUploadImage;
 
         /// <summary>
+        /// tbCurrentPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbCurrentPassword;
+
+        /// <summary>
+        /// tbNewPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNewPassword;
+
+        /// <summary>
+        /// tbNewPasswordRepeat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbNewPasswordRepeat;
+
+        /// <summary>
+        /// btnUpdatePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdatePassword;
+
+        /// <summary>
         /// tbEditName control.
         /// </summary>
         /// <remarks>

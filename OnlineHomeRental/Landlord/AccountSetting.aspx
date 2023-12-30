@@ -97,7 +97,7 @@
                     <div class="form-group">
                         <label for="currentPasword">Current Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="currentPasword" placeholder="Enter current password">
+                            <asp:TextBox runat="server" ID="tbCurrentPassword" CssClass="form-control" TextMode="Password" placeholder="Enter current password" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-eye"></i>
@@ -109,7 +109,7 @@
                     <div class="form-group">
                         <label for="newPassword">New Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                            <asp:TextBox runat="server" ID="tbNewPassword" CssClass="form-control" TextMode="Password" placeholder="Enter new password" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-eye"></i>
@@ -121,7 +121,7 @@
                     <div class="form-group">
                         <label for="repeatPassword">Repeat Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat new password">
+                            <asp:TextBox runat="server" ID="tbNewPasswordRepeat" CssClass="form-control" TextMode="Password" placeholder="Repeat new password" />
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fa fa-eye"></i>
@@ -131,7 +131,7 @@
                     </div>
 
                     <!-- Save Button -->
-                    <button type="button" class="btn btn-save mt-2">Update Password</button>
+                    <asp:Button ID="btnUpdatePassword" runat="server" OnClick="btnUpdatePassword_Click" Text="Update Password" CssClass="btn btn-save mt-2" />
                 </div>
             </div>
         </div>

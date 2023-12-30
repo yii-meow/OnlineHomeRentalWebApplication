@@ -158,30 +158,43 @@ namespace OnlineHomeRental.Landlord
             {
                 con.Open();
 
-                // Insert query with parameters
-                string insertQuery = "INSERT INTO [dbo].[User] (UserId, UserPassword, UserType, AccountCreatedDate, Name, Gender, PhoneNo, Email) " +
+                // create new user
+                string strCreateUser = "INSERT INTO [dbo].[User] (UserId, UserPassword, UserType, AccountCreatedDate, Name, Gender, PhoneNo, Email) " +
                                      "VALUES (@UserId, @UserPassword, @UserType, @AccountCreatedDate, @Name, @Gender, @PhoneNo, @Email)";
 
-                using (SqlCommand cmd = new SqlCommand(insertQuery, con))
+                using (SqlCommand cmdCreateUser = new SqlCommand(strCreateUser, con))
                 {
                     // Add parameters
-                    cmd.Parameters.AddWithValue("@UserId", LandlordRegUsername);
-                    cmd.Parameters.AddWithValue("@UserPassword", LandlordRegPassword);
-                    cmd.Parameters.AddWithValue("@UserType", "landlord");
-                    cmd.Parameters.AddWithValue("@AccountCreatedDate", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@Name", LandlordRegName);
-                    cmd.Parameters.AddWithValue("@Gender", LandlordRegGender);
-                    cmd.Parameters.AddWithValue("@PhoneNo", LandlordRegPhoneNo);
-                    cmd.Parameters.AddWithValue("@Email", LandlordRegEmail);
+                    cmdCreateUser.Parameters.AddWithValue("@UserId", LandlordRegUsername);
+                    cmdCreateUser.Parameters.AddWithValue("@UserPassword", LandlordRegPassword);
+                    cmdCreateUser.Parameters.AddWithValue("@UserType", "landlord");
+                    cmdCreateUser.Parameters.AddWithValue("@AccountCreatedDate", DateTime.Now);
+                    cmdCreateUser.Parameters.AddWithValue("@Name", LandlordRegName);
+                    cmdCreateUser.Parameters.AddWithValue("@Gender", LandlordRegGender);
+                    cmdCreateUser.Parameters.AddWithValue("@PhoneNo", LandlordRegPhoneNo);
+                    cmdCreateUser.Parameters.AddWithValue("@Email", LandlordRegEmail);
 
-                    cmd.ExecuteNonQuery();
+                    int rowAffected = cmdCreateUser.ExecuteNonQuery();
+
+                    if (rowAffected > 0)
+                    {
+                        // create new landlord
+                        string strCreateLandlord = "INSERT INTO Landlord(UserId) VALUES (@UserId)";
+
+                        using (SqlCommand cmdCreateLandlord = new SqlCommand(strCreateLandlord, con))
+                        {
+                            // Add parameters
+                            cmdCreateLandlord.Parameters.AddWithValue("@UserId", LandlordRegUsername);
+                            cmdCreateLandlord.ExecuteNonQuery();
+                        }
+                    }
                 }
             }
 
             // Redirect or perform any other actions after successful registration
-            string script = $"alert('Register Successfully! Please use your username and password to login.');";
+            string script = "alert('Register Successfully! Please use your username and password to login.'); " +
+                "setTimeout(function() { window.location.href = '/LandlordLoginPage.aspx'; }, 3000);";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", script, true);
-            Response.Redirect("/LandlordLoginPage.aspx");
         }
 
     }

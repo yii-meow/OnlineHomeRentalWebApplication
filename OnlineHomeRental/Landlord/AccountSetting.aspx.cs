@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -124,7 +126,6 @@ namespace OnlineHomeRental.Landlord
 
         private void UpdateProfileImageInDatabase(string imagePath)
         {
-            // Use parameterized query to prevent SQL injection
             string strUpdateProfileImage = "UPDATE [User] SET ProfileImage = @ImagePath WHERE UserId = @UserId";
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -170,6 +171,98 @@ namespace OnlineHomeRental.Landlord
                         alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
                     }
                 }
+            }
+        }
+
+        protected void btnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            string currentPassword = tbCurrentPassword.Text;
+            string newPassword = tbNewPassword.Text;
+            string newPasswordRepeat = tbNewPasswordRepeat.Text;
+
+            // Repeated password not matched
+            if (!newPassword.Equals(newPasswordRepeat))
+            {
+                return;
+            }
+
+            // Compare current password with the database
+            string strGetPassword = "SELECT UserPassword FROM [User] WHERE UserId = @UserId";
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string dbPassword = "";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmdGetPassword = new SqlCommand(strGetPassword, connection))
+                {
+                    cmdGetPassword.Parameters.AddWithValue("@UserId", Session["UserId"]);
+
+                    connection.Open();
+                    object result = cmdGetPassword.ExecuteScalar();
+
+                    if(result!= DBNull.Value && result != null)
+                    {
+                        dbPassword = (string)result;
+                    }
+                }
+            }
+
+            // Password not match with db
+            if (HashPassword(currentPassword) != dbPassword)
+            {
+                return;
+            }
+            else
+            {
+                string newPasswordHash = HashPassword(newPassword);
+
+                string strUpdatePassword = "UPDATE [USER] SET UserPassword = @Password WHERE UserId = @UserId";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmdUpdatePassword = new SqlCommand(strUpdatePassword, connection))
+                    {
+                        cmdUpdatePassword.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                        cmdUpdatePassword.Parameters.AddWithValue("@Password", newPasswordHash);
+
+                        connection.Open();
+                        int rowAffected = cmdUpdatePassword.ExecuteNonQuery();
+
+                        if (rowAffected > 0)
+                        {
+                            // Both updates were successful
+                            alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
+
+                            // Set the alert message
+                            alertDiv.InnerHtml = "Updated Password Successfully !";
+
+                            // Make the alert visible
+                            alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+                        }
+
+                        else
+                        {
+                            alertDiv.Attributes["class"] = $"alert alert-danger alert-dismissible fade show";
+
+                            // Set the alert message
+                            alertDiv.InnerHtml = "Failed to Update Password !";
+
+                            // Make the alert visible
+                            alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+                        }
+                    }
+                }
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
             }
         }
     }
