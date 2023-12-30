@@ -33,6 +33,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
+        /// homeLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl homeLinkLi;
+
+        /// <summary>
         /// PropertyLink control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink PropertyLink;
+
+        /// <summary>
+        /// propertyLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl propertyLinkLi;
 
         /// <summary>
         /// HyperLink2 control.
@@ -51,6 +69,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
 
         /// <summary>
+        /// bookingLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bookingLinkLi;
+
+        /// <summary>
         /// HyperLink3 control.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+
+        /// <summary>
+        /// notificationLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notificationLinkLi;
 
         /// <summary>
         /// HyperLink4 control.
@@ -69,6 +105,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
 
         /// <summary>
+        /// chatLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chatLinkLi;
+
+        /// <summary>
         /// HyperLink5 control.
         /// </summary>
         /// <remarks>
@@ -78,6 +123,15 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
 
         /// <summary>
+        /// financeLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl financeLinkLi;
+
+        /// <summary>
         /// HyperLink6 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +139,15 @@ namespace OnlineHomeRental.Landlord
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLink6;
+
+        /// <summary>
+        /// accountLinkLi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl accountLinkLi;
 
         /// <summary>
         /// LinkButton1 control.

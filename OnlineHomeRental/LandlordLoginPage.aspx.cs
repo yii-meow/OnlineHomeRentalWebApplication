@@ -52,7 +52,7 @@ namespace OnlineHomeRental.Landlord
                 Response.Cookies.Add(profileImageCookie);
                 profileImageCookie.Expires = DateTime.Now.AddDays(15);
 
-                Response.Redirect("/Landlord/HomePage.aspx");
+                Response.Redirect("/Landlord/Homepage.aspx");
             }
             // Login failed
             else

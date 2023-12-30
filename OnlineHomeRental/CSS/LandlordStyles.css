@@ -16,6 +16,11 @@
     position: fixed;
 }
 
+.active {
+    background-color: lightblue; /* You can change this to any color you want */
+    color: darkblue;
+}
+
 .menu-nav ul {
     padding: 0;
     margin: 20px 0;

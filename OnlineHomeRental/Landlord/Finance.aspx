@@ -15,7 +15,7 @@
                 <asp:Literal ID="lblLastMonthRecord" runat="server" />)</b></h5>
             <div class="finance-cards mt-3 p-3">
                 <div class="finance-item">
-                    <p>Total Booking</p>
+                    <p>Total Revenue</p>
                     <p class="value">
                         <asp:Label ID="lblTotalSales" runat="server" />
                         (<asp:Label ID="lblTotalSalesDif" runat="server" />)
