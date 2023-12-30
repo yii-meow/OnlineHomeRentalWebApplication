@@ -667,7 +667,12 @@
 
 .editPropertyDetailsButton{
     position:absolute;
-    bottom:0;
+    bottom:80px;
+}
+
+.deletePropertyDetailsButton {
+    position: absolute;
+    bottom: 0;
 }
 
 .propertyBookingDetails {

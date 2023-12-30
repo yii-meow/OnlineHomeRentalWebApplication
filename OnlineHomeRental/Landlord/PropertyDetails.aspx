@@ -1,6 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="~/Landlord/PropertyDetails.aspx.cs" Inherits="OnlineHomeRental.Landlord.PropertyDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="alertDiv" runat="server" class="alert d-none alert-dismissible fade show" role="alert">
+        <span id="alertMessage"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <asp:HiddenField ID="HiddenField1" runat="server" />
+
     <div class="morePropertyDetails">
         <div class="mt-1">
             <div class="container">
@@ -78,7 +87,6 @@
                                 <asp:Label ID="lblWifiAvailability" runat="server" Text='<%# Eval("WifiAvailability") %>'></asp:Label>
                                     </p>
                                 </div>
-
                                 <button type="button" class="btn btn-success w-100 editPropertyDetailsButton" data-toggle="modal" data-target="#editPropertyDetailsModal"
                                     data-property-name='<%# Eval("PropertyName") %>'
                                     data-property-address='<%# Eval("PropertyAddress") %>'
@@ -93,11 +101,14 @@
                                     data-wifi-availability='<%# Eval("WifiAvailability") %>'>
                                     <i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Property Details
                                 </button>
+
+                                <asp:LinkButton ID="btnDeleteProperty" runat="server" CssClass="btn btn-danger w-100 deletePropertyDetailsButton" OnClick="btnDeleteProperty_Click" OnClientClick="return Confirm();" CommandArgument='<%# Eval("PropertyId") %>'>
+                                    <i class="bi bi-trash3-fill mr-3"></i> Delete Property
+                                </asp:LinkButton>
                             </div>
                         </div>
                     </ItemTemplate>
                 </asp:DataList>
-
                 <hr />
 
                 <div class="propertyBookingDetails">
@@ -178,7 +189,8 @@
 
                     <div class="form-group">
                         <label for="numberOfBedroom">Number of Bedroom</label>
-                        <asp:TextBox ID="tbNumberOfBedroom" runat="server" CssClass="form-control" ClientIDMode="Static" />
+                        <asp:DropDownList ID="ddlNumberOfBedroom" runat="server" CssClass="form-control" ClientIDMode="Static">
+                        </asp:DropDownList>
                     </div>
 
                     <div class="form-group">
@@ -209,7 +221,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button runat="server" ID="btnSavePropertyDetails" type="button" class="btn btn-primary" Text="Save Changes" />
+                    <asp:Button runat="server" ID="btnSavePropertyDetails" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnSavePropertyDetails_Click" />
                 </div>
             </div>
         </div>
@@ -256,11 +268,18 @@
             $('#tbPropertyPrice').val(propertyPrice);
             $('#tbListingDescription').val(listingDescription);
             $('#tbPreferences').val(preferences);
-            $('#tbNumberOfBedroom').val(numberOfBedroom);
+            $('#ddlNumberOfBedroom').val(numberOfBedroom);
             $('#tbAreaSqft').val(areaSqft);
             $('#chkAirCondAvailability').prop('checked', airCondAvailability);
             $('#chkWaterHeaterAvailability').prop('checked', waterHeaterAvailability);
             $('#chkWifiAvailability').prop('checked', wifiAvailability);
         });
+
+        function Confirm() {
+            var message = document.getElementById('<%= HiddenField1.ClientID %>').value;
+            if (message) {
+                return confirm(message);
+            }
+        }
     </script>
 </asp:Content>

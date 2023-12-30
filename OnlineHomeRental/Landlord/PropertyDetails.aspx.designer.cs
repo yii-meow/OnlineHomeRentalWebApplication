@@ -15,6 +15,24 @@ namespace OnlineHomeRental.Landlord
     {
 
         /// <summary>
+        /// alertDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertDiv;
+
+        /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+
+        /// <summary>
         /// DataList1 control.
         /// </summary>
         /// <remarks>
@@ -87,13 +105,13 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.TextBox tbPreferences;
 
         /// <summary>
-        /// tbNumberOfBedroom control.
+        /// ddlNumberOfBedroom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbNumberOfBedroom;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNumberOfBedroom;
 
         /// <summary>
         /// tbAreaSqft control.
