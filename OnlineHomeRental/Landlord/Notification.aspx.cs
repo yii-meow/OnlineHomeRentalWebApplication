@@ -67,7 +67,7 @@ namespace OnlineHomeRental.Landlord
 
             using (SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
             {
-                string query = "SELECT * FROM Notification WHERE UserId = @UserId";
+                string query = "SELECT * FROM Notification WHERE UserId = @UserId ORDER BY NotificationTime DESC";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

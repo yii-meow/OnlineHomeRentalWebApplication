@@ -1,6 +1,13 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="Bookings.aspx.cs" Inherits="OnlineHomeRental.Landlord.BookingHistory" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div id="alertDiv" runat="server" class="alert d-none alert-dismissible fade show" role="alert">
+        <span id="alertMessage"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <div class="bookingHistory">
 
         <div class="col-md-5">
@@ -39,7 +46,7 @@
         </div>
 
         <div class="col-md-6">
-            <asp:DataList ID="DataList1" runat="server" CssClass="auto-style7" DataSourceID="SqlDataSource2">
+            <asp:DataList ID="DataList1" runat="server" CssClass="auto-style7" DataSourceID="SqlDataSource2" OnItemDataBound="DataList1_ItemDataBound">
                 <ItemTemplate>
                     <div class="receipt-container">
                         <!-- Payment Details Section -->
@@ -128,20 +135,36 @@
                             </tfoot>
                         </table>
                     </div>
+
+                    <div class="updateBookingStatus mt-3">
+                        <h6>Update Booking Status &nbsp;(Booking ID: <%# Eval("BookingId") %>)</h6>
+
+                        <div class="mt-3 p-2">
+                            <asp:DropDownList ID="ddlBookingStatus" runat="server" CssClass="form-control-sm">
+                                <asp:ListItem Value="Pending">Pending</asp:ListItem>
+                                <asp:ListItem Value="Confirmed">Confirmed</asp:ListItem>
+                                <asp:ListItem Value="Completed">Completed</asp:ListItem>
+                                <asp:ListItem Value="Cancelled">Cancelled</asp:ListItem>
+                            </asp:DropDownList>
+
+                            <asp:Button ID="btnUpdateBookingStatus" runat="server" Text="Update" CssClass="btn btn-success ml-5" OnClick="btnUpdateBookingStatus_Click" CommandArgument='<%# Eval("BookingId") %>' />
+                        </div>
+                    </div>
+
                 </ItemTemplate>
             </asp:DataList>
         </div>
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId INNER JOIN Property ON Booking.PropertyId = Property.PropertyId WHERE Booking.LandlordId = @LandlordId">
+        SelectCommand="SELECT * FROM Booking INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId INNER JOIN Property ON Booking.PropertyId = Property.PropertyId WHERE Booking.LandlordId = @LandlordId ORDER BY Booking.CheckInDate DESC">
         <SelectParameters>
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, Booking.Duration,
+        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, Booking.Duration, Booking.BookingStatus,
                         Property.PropertyName, Property.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
                         [User].Name, [User].Gender, [User].PhoneNo, [User].Email, Tenant.BillingAddress
                     FROM Booking

@@ -670,16 +670,6 @@
         font-weight: bold;
     }
 
-.editPropertyDetailsButton{
-    position:absolute;
-    bottom:80px;
-}
-
-.deletePropertyDetailsButton {
-    position: absolute;
-    bottom: 0;
-}
-
 .propertyBookingDetails {
     padding: 20px;
     margin-bottom: 50px;
@@ -742,6 +732,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.updateBookingStatus{
+    text-align:center;
+    padding:20px;
+    border-radius:25px;
 }
 
 .chat {

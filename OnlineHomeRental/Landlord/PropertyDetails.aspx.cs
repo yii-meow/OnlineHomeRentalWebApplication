@@ -124,5 +124,56 @@ namespace OnlineHomeRental.Landlord
                 }
             }
         }
+
+        protected void btnRequestMaintenance_Click(object sender, EventArgs e)
+        {
+            string propertyId = "";
+
+            if (Request.QueryString["PropertyId"] != null)
+            {
+                // Get the TenantId from the query string
+                propertyId = Request.QueryString["PropertyId"];
+            }
+
+            string maintenanceType = ddlMaintenanceType.SelectedValue;
+            string maintenanceDescription = tbMaintenanceDescription.Text;
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string strRequestMaintenance = @"
+                    INSERT INTO PropertyMaintenanceRequest(PropertyId,MaintenanceType,Description,Status,DateRequested,Log) 
+                    VALUES (@PropertyId,@MaintenanceType,@Description,@Status,@DateRequested,@Log)
+                ";
+
+                using (SqlCommand cmdRequestMaintenance = new SqlCommand(strRequestMaintenance, connection))
+                {
+                    cmdRequestMaintenance.Parameters.AddWithValue("@PropertyId", propertyId);
+                    cmdRequestMaintenance.Parameters.AddWithValue("@MaintenanceType", maintenanceType);
+                    cmdRequestMaintenance.Parameters.AddWithValue("@Description", maintenanceDescription);
+                    cmdRequestMaintenance.Parameters.AddWithValue("@Status", "Pending");
+                    cmdRequestMaintenance.Parameters.AddWithValue("@DateRequested", DateTime.Now);
+                    cmdRequestMaintenance.Parameters.AddWithValue("@Log", "");
+
+                    int rowsAffected = cmdRequestMaintenance.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        DataList1.DataBind();
+
+                        alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
+
+                        // Set the alert message
+                        alertDiv.InnerHtml = "Successfully Created Maintenance Request !";
+
+                        // Make the alert visible
+                        alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+                    }
+                }
+            }
+        }
     }
 }

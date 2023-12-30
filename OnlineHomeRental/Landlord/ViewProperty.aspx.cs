@@ -37,9 +37,6 @@ namespace OnlineHomeRental.Landlord
             lblReturnedFilterRecord.Text = "";
             string selectedPropertyType = propertyType.SelectedValue;
 
-            // Update the SqlDataSource SelectCommand based on the selected property type
-            //SqlDataSource1.SelectCommand = "SELECT * FROM Property WHERE LandlordId = @LandlordId";
-
             if (selectedPropertyType != "all")
             {
                 SqlDataSource1.SelectCommand += $" AND [PropertyType] = '{selectedPropertyType}'";

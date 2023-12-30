@@ -64,7 +64,7 @@
                             </div>
 
                             <div class="position-relative">
-                                <div class="property-moreDetails">
+                                <div class="property-moreDetails mb-4">
                                     <p class="mb-4">
                                         Number of Bedrooms:
                                 <asp:Label ID="lblNumberOfBedroom" runat="server" Text='<%# Eval("NumberOfBedroom") %>'></asp:Label>
@@ -87,7 +87,13 @@
                                 <asp:Label ID="lblWifiAvailability" runat="server" Text='<%# Eval("WifiAvailability") %>'></asp:Label>
                                     </p>
                                 </div>
-                                <button type="button" class="btn btn-success w-100 editPropertyDetailsButton" data-toggle="modal" data-target="#editPropertyDetailsModal"
+
+                                <button type="button" class="btn btn-info w-100 mt-5" data-toggle="modal" data-target="#requestMaintenanceModal"
+                                    data-property-name='<%# Eval("PropertyName") %>'>
+                                    <i class="bi bi-telephone-fill text-success text-light mr-3" style="font-size: 1.2em;"></i>Request Maintenance
+                                </button>
+
+                                <button type="button" class="btn btn-success w-100 editPropertyDetailsButton mt-4" data-toggle="modal" data-target="#editPropertyDetailsModal"
                                     data-property-name='<%# Eval("PropertyName") %>'
                                     data-property-address='<%# Eval("PropertyAddress") %>'
                                     data-property-type='<%# Eval("PropertyType") %>'
@@ -102,7 +108,7 @@
                                     <i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Property Details
                                 </button>
 
-                                <asp:LinkButton ID="btnDeleteProperty" runat="server" CssClass="btn btn-danger w-100 deletePropertyDetailsButton" OnClick="btnDeleteProperty_Click" OnClientClick="return Confirm();" CommandArgument='<%# Eval("PropertyId") %>'>
+                                <asp:LinkButton ID="btnDeleteProperty" runat="server" CssClass="btn btn-danger w-100 deletePropertyDetailsButton mt-4" OnClick="btnDeleteProperty_Click" OnClientClick="return Confirm();" CommandArgument='<%# Eval("PropertyId") %>'>
                                     <i class="bi bi-trash3-fill mr-3"></i> Delete Property
                                 </asp:LinkButton>
                             </div>
@@ -136,6 +142,42 @@
                             <h5>No Bookings so far...</h5>
                         </EmptyDataTemplate>
                     </asp:GridView>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Maintenance Modal -->
+    <div class="modal fade" id="requestMaintenanceModal" tabindex="-1" role="dialog" aria-labelledby="requestMaintenanceModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="requestMaintenanceModalLabel">Request Maintenance</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="propertyType">Maintenance Type</label>
+                        <asp:DropDownList ID="ddlMaintenanceType" CssClass="form-control" runat="server" ClientIDMode="Static">
+                            <asp:ListItem Value="Plumbing">Plumbing</asp:ListItem>
+                            <asp:ListItem Value="Electrical">Electrical</asp:ListItem>
+                            <asp:ListItem Value="Wifi">Wifi</asp:ListItem>
+                            <asp:ListItem Value="WaterHeater">Water Heater</asp:ListItem>
+                            <asp:ListItem Value="Safety">Safety</asp:ListItem>
+                            <asp:ListItem Value="Others">Others</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Maintenance Description</label>
+                        <asp:TextBox ID="tbMaintenanceDescription" runat="server" CssClass="form-control" ClientIDMode="Static" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <asp:Button runat="server" ID="btnRequestMaintenance" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnRequestMaintenance_Click" />
                 </div>
             </div>
         </div>
