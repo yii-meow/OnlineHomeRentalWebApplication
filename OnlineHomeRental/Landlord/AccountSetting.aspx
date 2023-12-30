@@ -9,12 +9,12 @@
         </button>
     </div>
 
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
-        <ItemTemplate>
-            <div class="account-setting">
-                <div class="container">
-                    <div class="card">
-                        <div class="card-body">
+    <div class="account-setting">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                        <ItemTemplate>
                             <!-- Personal Information Section -->
                             <h2 class="card-title">Personal Information</h2>
                             <p class="text-muted">View and update your personal information.</p>
@@ -52,58 +52,90 @@
                                 data-bank-account='<%# Eval("BankAccount") != DBNull.Value ? Eval("BankAccount").ToString() : "None" %>'>
                                 <i class="bi bi-pencil-square text-success text-light mr-3" style="font-size: 1.2em;"></i>Edit Details
                             </button>
-
-                            <p class="text-right">Account created at: June 2023</p>
+                            <p class="text-right">Account created at: <%# Eval("AccountCreatedDate") %></p>
                             <hr />
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <!-- Image Section -->
+                    <h2 class="card-title mt-4">Profile Image</h2>
+                    <p class="text-muted">Update your profile image.</p>
+                    <!-- Update Profile Image -->
+                    <div class="form-group">
+                        <p>Current Profile Image</p>
+                        <% 
+                            // Retrieve the value of the "UserProfileImage" cookie
+                            string userProfileImagePath = Request.Cookies["UserProfileImage"]?.Value;
 
-                            <!-- Change Password Section -->
-                            <h2 class="card-title mt-4">Change Password</h2>
-                            <p class="text-muted">Update your account password.</p>
-                            <!-- New Password -->
-                            <div class="form-group">
-                                <label for="currentPasword">Current Password</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="currentPasword" placeholder="Enter current password">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- New Password -->
-                            <div class="form-group">
-                                <label for="newPassword">New Password</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Repeat Password -->
-                            <div class="form-group">
-                                <label for="repeatPassword">Repeat Password</label>
-                                <div class="input-group">
-                                    <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat new password">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            // Check if the cookie exists and has a value
+                            if (!string.IsNullOrEmpty(userProfileImagePath))
+                            {
+                        %>
+                        <!-- User Image -->
+                        <img src="<%= userProfileImagePath %>" alt="User Image" class="user-image">
+                        <%
+                            }
+                            else
+                            {
+                                // If the cookie doesn't exist or has no value, provide a default image
+                        %>
+                        <!-- Default User Image -->
+                        <img src="/Data/defaultPP.png" alt="Default User Image" class="user-image">
+                        (No Profile Image)
+                            <%
+                                }
+                            %>
+                        <p class="mt-3">Choose New Profile Image</p>
+                        <asp:FileUpload ID="fileUploadImage" runat="server" /><br />
+                        <asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click" CssClass="btn btn-primary mt-4 w-25" />
+                    </div>
+                    <hr />
 
-                            <!-- Save Button -->
-                            <button type="button" class="btn btn-save mt-2">Update Password</button>
+                    <!-- Change Password Section -->
+                    <h2 class="card-title mt-4">Change Password</h2>
+                    <p class="text-muted">Update your account password.</p>
+                    <!-- New Password -->
+                    <div class="form-group">
+                        <label for="currentPasword">Current Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="currentPasword" placeholder="Enter current password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </div>
                         </div>
                     </div>
+                    <!-- New Password -->
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat Password -->
+                    <div class="form-group">
+                        <label for="repeatPassword">Repeat Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat new password">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <button type="button" class="btn btn-save mt-2">Update Password</button>
                 </div>
             </div>
-        </ItemTemplate>
-    </asp:Repeater>
+        </div>
+    </div>
 
     <!-- Edit Personal Details Modal -->
     <div class="modal fade" id="editDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsModalLabel" aria-hidden="true">

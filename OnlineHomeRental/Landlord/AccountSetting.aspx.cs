@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -78,11 +79,13 @@ namespace OnlineHomeRental.Landlord
                             // Check the result
                             if (rowsAffectedLandlord > 0)
                             {
+                                Repeater1.DataBind();
+
                                 // Both updates were successful
                                 alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
 
                                 // Set the alert message
-                                alertDiv.InnerHtml = "Successfully Edited Personal Details!";
+                                alertDiv.InnerHtml = "Successfully Edited Personal Details !";
 
                                 // Make the alert visible
                                 alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
@@ -90,13 +93,82 @@ namespace OnlineHomeRental.Landlord
                             else
                             {
                                 // Something went wrong with Landlord table update
-                                //Response.Write("Landlord update failed!");
+                                alertDiv.Attributes["class"] = $"alert alert-danger alert-dismissible fade show";
+
+                                // Set the alert message
+                                alertDiv.InnerHtml = "Failed to edit personal details !";
+
+                                // Make the alert visible
+                                alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
                             }
                         }
-
-
                     }
+                }
+            }
+        }
 
+        protected void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            if (fileUploadImage.HasFile)
+            {
+                string fileName = Path.GetFileName(fileUploadImage.FileName);
+                string filePath = "/Data/" + fileName;
+
+                // Save the file
+                fileUploadImage.SaveAs(Server.MapPath(filePath));
+
+                // Update the database with the file path
+                UpdateProfileImageInDatabase(filePath);
+            }
+        }
+
+        private void UpdateProfileImageInDatabase(string imagePath)
+        {
+            // Use parameterized query to prevent SQL injection
+            string strUpdateProfileImage = "UPDATE [User] SET ProfileImage = @ImagePath WHERE UserId = @UserId";
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmdUpdateProfileImage = new SqlCommand(strUpdateProfileImage, connection))
+                {
+                    cmdUpdateProfileImage.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    cmdUpdateProfileImage.Parameters.AddWithValue("@ImagePath", imagePath);
+
+                    connection.Open();
+                    int rowAffected = cmdUpdateProfileImage.ExecuteNonQuery();
+
+                    // Check the result
+                    if (rowAffected > 0)
+                    {
+                        // Reset Profile Image Cookie
+                        HttpCookie profileImageCookie = new HttpCookie("UserProfileImage");
+                        profileImageCookie.Value = imagePath;
+                        profileImageCookie.Expires = DateTime.Now.AddDays(15);
+                        Response.Cookies.Add(profileImageCookie);
+
+                        Response.Redirect(Request.RawUrl, false);
+
+                        // Both updates were successful
+                        alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
+
+                        // Set the alert message
+                        alertDiv.InnerHtml = "Updated Profile Image Successfully!";
+
+                        // Make the alert visible
+                        alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+                    }
+                    else
+                    {
+                        alertDiv.Attributes["class"] = $"alert alert-danger alert-dismissible fade show";
+
+                        // Set the alert message
+                        alertDiv.InnerHtml = "Failed to upload profile image!";
+
+                        // Make the alert visible
+                        alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+                    }
                 }
             }
         }

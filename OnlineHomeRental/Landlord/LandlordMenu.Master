@@ -98,9 +98,6 @@
                     }
                 %>
 
-                <!-- User Image -->
-                <%--<img src="/Data/defaultPP.png" alt="User Image" class="user-image">--%>
-
                 <!-- User Details -->
                 <asp:Hyperlink ID="LinkButton1" runat="server" NavigateUrl="~/Landlord/AccountSetting.aspx">
                     <div class="user-details">
