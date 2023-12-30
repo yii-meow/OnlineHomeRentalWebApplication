@@ -212,7 +212,14 @@ namespace OnlineHomeRental.Landlord
             // Password not match with db
             if (HashPassword(currentPassword) != dbPassword)
             {
-                return;
+                // Both updates were successful
+                alertDiv.Attributes["class"] = $"alert alert-danger alert-dismissible fade show";
+
+                // Set the alert message
+                alertDiv.InnerHtml = "Current Password is not matched with existing record !";
+
+                // Make the alert visible
+                alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
             }
             else
             {

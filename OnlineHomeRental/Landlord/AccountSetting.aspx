@@ -56,6 +56,8 @@
                     </asp:Repeater>
 
                     <!-- Image Section -->
+                    <asp:ValidationSummary ID="ValidationProfileImageSummary" runat="server" CssClass="text-light bg-danger p-2 mb-3" ValidationGroup="ValidationProfileImage" />
+
                     <h2 class="card-title mt-4">Profile Image</h2>
                     <p class="text-muted">Update your profile image.</p>
                     <!-- Update Profile Image -->
@@ -85,54 +87,50 @@
                             %>
                         <p class="mt-3">Choose New Profile Image</p>
                         <asp:FileUpload ID="fileUploadImage" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="fileUploadImage" ErrorMessage="Image is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="fileUploadImage" ErrorMessage="Image is Required." ForeColor="Red" ValidationGroup="ValidationProfileImage">*</asp:RequiredFieldValidator>
                         <br />
-                        <asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click" CssClass="btn btn-primary mt-4 w-25" />
+                        <asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click" CssClass="btn btn-primary mt-4 w-25" ValidationGroup="ValidationProfileImage" />
                     </div>
                     <hr />
 
                     <!-- Change Password Section -->
+                    <asp:ValidationSummary ID="ValidationPasswordSummary" runat="server" CssClass="text-light bg-danger p-2 mb-3" ValidationGroup="ValidationPassword" />
+
                     <h2 class="card-title mt-4">Change Password</h2>
                     <p class="text-muted">Update your account password.</p>
-                    <!-- New Password -->
+                    <!-- Current Password -->
                     <div class="form-group">
-                        <label for="currentPasword">Current Password</label>
+                        <label for="currentPassword">Current Password</label>
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="tbCurrentPassword" CssClass="form-control" TextMode="Password" placeholder="Enter current password" />
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-eye"></i>
-                                </span>
-                            </div>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbCurrentPassword" ErrorMessage="Current Password is Required." ForeColor="Red" ValidationGroup="ValidationPassword">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
+
                     <!-- New Password -->
                     <div class="form-group">
                         <label for="newPassword">New Password</label>
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="tbNewPassword" CssClass="form-control" TextMode="Password" placeholder="Enter new password" />
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-eye"></i>
-                                </span>
-                            </div>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbNewPassword" ErrorMessage="New Password is Required." ForeColor="Red" ValidationGroup="ValidationPassword">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorPassword" runat="server" ControlToValidate="tbNewPassword"
+                                ErrorMessage="Password must be at least 8 characters long and contain both alphabetic and numeric characters."
+                                ForeColor="Red" ValidationExpression="^(?=.*[A-Za-z])(?=.*\d).{8,}$" ValidationGroup="ValidationPassword">*</asp:RegularExpressionValidator>
                         </div>
                     </div>
+
                     <!-- Repeat Password -->
                     <div class="form-group">
                         <label for="repeatPassword">Repeat Password</label>
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="tbNewPasswordRepeat" CssClass="form-control" TextMode="Password" placeholder="Repeat new password" />
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="fa fa-eye"></i>
-                                </span>
-                            </div>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="tbNewPasswordRepeat" ControlToCompare="tbNewPassword" Type="String" Operator="Equal" ErrorMessage="Repeat password is not matched with new password" ForeColor="Red" ValidationGroup="ValidationPassword">*</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbNewPassword" ErrorMessage="Repeat Password is Required." ForeColor="Red" ValidationGroup="ValidationPassword">*</asp:RequiredFieldValidator>
                         </div>
                     </div>
 
                     <!-- Save Button -->
-                    <asp:Button ID="btnUpdatePassword" runat="server" OnClick="btnUpdatePassword_Click" Text="Update Password" CssClass="btn btn-save mt-2" />
+                    <asp:Button ID="btnUpdatePassword" runat="server" OnClick="btnUpdatePassword_Click" Text="Update Password" CssClass="btn btn-save mt-2" ValidationGroup="ValidationPassword" />
                 </div>
             </div>
         </div>
@@ -149,22 +147,29 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="text-light bg-danger p-2 mb-3" />
+                    <asp:ValidationSummary ID="ValidationPersonalDetailsSummary" runat="server" CssClass="text-light bg-danger p-2 mb-3" ValidationGroup="ValidationPersonalDetails" />
 
                     <!-- Form fields for editing details -->
                     <div class="form-group">
                         <label for="editName">Name</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEditName" ErrorMessage="Name is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbEditName" ErrorMessage="Name is Required." ForeColor="Red" ValidationGroup="ValidationPersonalDetails">*</asp:RequiredFieldValidator>
                         <asp:TextBox runat="server" ID="tbEditName" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editEmail">Email</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEditEmail" ErrorMessage="Email is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbEditEmail" ErrorMessage="Email is Required." ForeColor="Red" ValidationGroup="ValidationPersonalDetails">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ControlToValidate="tbEditEmail"
+                            ErrorMessage="Enter a valid email address" ForeColor="Red"
+                            ValidationExpression="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+                            ValidationGroup="ValidationPersonalDetails">*</asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" ID="tbEditEmail" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
                         <label for="editPhoneNo">Phone No</label>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEditPhoneNo" ErrorMessage="Phone No is Required." ForeColor="Red">*</asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbEditPhoneNo" ErrorMessage="Phone No is Required." ForeColor="Red" ValidationGroup="ValidationPersonalDetails">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorPhone" runat="server" ControlToValidate="tbEditPhoneNo"
+                            ErrorMessage="Enter a valid Malaysian phone number" ForeColor="Red"
+                            ValidationExpression="^(\+?6?01)[0-46-9]-*[0-9]{7,8}$" ValidationGroup="ValidationPersonalDetails">*</asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" ID="tbEditPhoneNo" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                     <div class="form-group">
@@ -174,13 +179,14 @@
                             ErrorMessage="Bank Account Number must be 12 digits."
                             ForeColor="Red"
                             ValidationExpression="^\d{12}$"
-                            Display="Dynamic"></asp:RegularExpressionValidator>
+                            Display="Dynamic"
+                            ValidationGroup="ValidationPersonalDetails"></asp:RegularExpressionValidator>
                         <asp:TextBox runat="server" ID="tbEditBankAccount" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button runat="server" ID="btnSavePersonalDetails" type="button" class="btn btn-primary" OnClick="btnSavePersonalDetails_Click" Text="Save Changes" />
+                    <asp:Button runat="server" ID="btnSavePersonalDetails" type="button" class="btn btn-primary" OnClick="btnSavePersonalDetails_Click" Text="Save Changes" ValidationGroup="ValidationPersonalDetails" />
                 </div>
             </div>
         </div>
