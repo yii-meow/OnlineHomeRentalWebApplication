@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="~/Landlord/PropertyDetails.aspx.cs" Inherits="OnlineHomeRental.Landlord.PropertyDetails" %>
+<%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="~/Landlord/PropertyDetails.aspx.cs" Inherits="OnlineHomeRental.Landlord.PropertyDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="alertDiv" runat="server" class="alert d-none alert-dismissible fade show" role="alert">
@@ -100,22 +100,26 @@
                                         Number of Bedrooms:
                                 <asp:Label ID="lblNumberOfBedroom" runat="server" Text='<%# Eval("NumberOfBedroom") %>'></asp:Label>
                                     </p>
-                                    <p class="mb-4">
+                                    <p class="mb-5">
                                         Area:
                                 <asp:Label ID="lblArea" runat="server" Text='<%# Eval("AreaSqft") %>'></asp:Label>
+                                        :
                                         ft&sup2;
                                     </p>
-                                    <p class="mb-4">
-                                        Air Conditioning:
-                                <asp:Label ID="lblAirCondAvailability" runat="server" Text='<%# Eval("AirCondAvailability") %>'></asp:Label>
+                                    <p class="mt-3 mb-4">
+                                        Air Conditioning <i class="bi bi-fan mr-3"></i>
+                                        <asp:Label ID="lblAirCondAvailability" runat="server"
+                                            Text='<%# (bool)Eval("AirCondAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
                                     </p>
                                     <p class="mb-4">
-                                        Water Heater:
-                                <asp:Label ID="lblWaterHeaterAvailability" runat="server" Text='<%# Eval("WaterHeaterAvailability") %>'></asp:Label>
+                                        Water Heater <i class="bi bi-droplet-fill mr-3"></i>
+                                        <asp:Label ID="lblWaterHeaterAvailability" runat="server"
+                                            Text='<%# (bool)Eval("WaterHeaterAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
                                     </p>
                                     <p class="mb-4">
-                                        Wi-Fi:
-                                <asp:Label ID="lblWifiAvailability" runat="server" Text='<%# Eval("WifiAvailability") %>'></asp:Label>
+                                        Wi-Fi: <i class="bi bi-wifi mr-3"></i>
+                                        <asp:Label ID="lblWifiAvailability" runat="server"
+                                            Text='<%# (bool)Eval("WifiAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
                                     </p>
                                 </div>
 
@@ -356,10 +360,17 @@
                     <hr />
                     <h4>Images</h4>
                     <div class="form-group mt-2">
-                        Thumbnail: <asp:FileUpload ID="fuThumbnail" runat="server" /><br /><br />
-                        Image 1: <asp:FileUpload ID="fuImage1" runat="server" /><br /><br />
-                        Image 2: <asp:FileUpload ID="fuImage2" runat="server" /><br /><br />
-                        Image 3: <asp:FileUpload ID="fuImage3" runat="server" />
+                        Thumbnail:
+                        <asp:FileUpload ID="fuThumbnail" runat="server" /><br />
+                        <br />
+                        Image 1:
+                        <asp:FileUpload ID="fuImage1" runat="server" /><br />
+                        <br />
+                        Image 2:
+                        <asp:FileUpload ID="fuImage2" runat="server" /><br />
+                        <br />
+                        Image 3:
+                        <asp:FileUpload ID="fuImage3" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer">
