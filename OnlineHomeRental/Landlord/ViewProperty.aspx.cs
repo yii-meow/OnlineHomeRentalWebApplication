@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -28,13 +29,14 @@ namespace OnlineHomeRental.Landlord
                     int numberOfProperties = (int)cmdSelect.ExecuteScalar();
 
                     lblTotalProperties.Text = numberOfProperties.ToString();
-                } 
+                }
             }
         }
 
         protected void ApplyFilter_Click(object sender, EventArgs e)
         {
             lblReturnedFilterRecord.Text = "";
+            lblSearchedPropertyTotalResult.Text = "";
             string selectedPropertyType = propertyType.SelectedValue;
 
             if (selectedPropertyType != "all")
@@ -54,6 +56,37 @@ namespace OnlineHomeRental.Landlord
                 lblReturnedFilterRecord.Text = "<b>" + returned_record.ToString() + "</b> record(s).";
             }
             Repeater1.DataBind();
+        }
+
+        protected void tbSearchbar_TextChanged(object sender, EventArgs e)
+        {
+            string searched_value = tbSearchbar.Text;
+            lblReturnedFilterRecord.Text = "";
+            lblSearchedPropertyTotalResult.Text = "";
+
+            SqlDataSource1.SelectParameters["SearchedValue"].DefaultValue = "%" + searched_value + "%";
+
+            Repeater1.DataBind();
+
+            // Get total property of the searched result
+            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            using (SqlConnection con = new SqlConnection(strCon))
+            {
+                con.Open();
+
+                string strSearchedTotalPropertyResult = "SELECT COUNT(*) FROM Property WHERE LandlordId = @LandlordId AND PropertyName LIKE @PropertyName";
+
+                using (SqlCommand cmdSearchedTotalPropertyResult = new SqlCommand(strSearchedTotalPropertyResult, con))
+                {
+                    cmdSearchedTotalPropertyResult.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    cmdSearchedTotalPropertyResult.Parameters.AddWithValue("@PropertyName", "%" + searched_value + "%");
+
+                    int numberOfProperties = (int)cmdSearchedTotalPropertyResult.ExecuteScalar();
+
+                    lblSearchedPropertyTotalResult.Text = "<b>" + numberOfProperties.ToString() + "</b> result(s) has been returned based on your search.";
+                }
+            }
         }
     }
 }

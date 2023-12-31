@@ -32,6 +32,12 @@
             </div>
         </div>
 
+        <div class="mt-2">
+            <label for="tbSearchbar">Search property: </label>
+            <asp:TextBox ID="tbSearchbar" runat="server" placeholder="Search Property..." OnTextChanged="tbSearchbar_TextChanged" AutoPostBack="true" />
+            <asp:Label ID="lblSearchedPropertyTotalResult" runat="server" CssClass="ml-2 text-info" />
+        </div>
+
         <div class="property-cards">
             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                 <ItemTemplate>
@@ -60,9 +66,10 @@
     </div>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>"
-        SelectCommand="SELECT * FROM Property WHERE LandlordId = @LandlordId">
+        SelectCommand="SELECT * FROM Property WHERE LandlordId = @LandlordId AND PropertyName LIKE @SearchedValue">
         <SelectParameters>
             <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
+            <asp:Parameter Name="SearchedValue" Type="String" DefaultValue="%" />
         </SelectParameters>
     </asp:SqlDataSource>
 

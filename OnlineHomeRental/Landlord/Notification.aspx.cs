@@ -51,7 +51,6 @@ namespace OnlineHomeRental.Landlord
                 {
                     command.Parameters.AddWithValue("@UserId", Session["UserId"]);
 
-                    // ExecuteScalar returns the count of notifications
                     int notificationCount = (int)command.ExecuteScalar();
 
                     // If there are notifications (count is greater than 0), return true; otherwise, return false
@@ -71,7 +70,6 @@ namespace OnlineHomeRental.Landlord
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Replace 'YourUserId' with the actual user ID
                     command.Parameters.AddWithValue("@UserId", Session["UserId"]);
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
