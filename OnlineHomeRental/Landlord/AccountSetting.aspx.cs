@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -83,6 +84,19 @@ namespace OnlineHomeRental.Landlord
                             {
                                 Repeater1.DataBind();
 
+                                string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                        "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                                using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                                {
+                                    command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                                    command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                                    command.Parameters.AddWithValue("@NotificationTitle", "Account Details Update");
+                                    command.Parameters.AddWithValue("@NotificationDescription", "Successfully updated account details.");
+                                    command.Parameters.AddWithValue("@NotificationType", "Account Details Update");
+                                    command.ExecuteNonQuery();
+                                }
+
                                 // Both updates were successful
                                 alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
 
@@ -143,6 +157,19 @@ namespace OnlineHomeRental.Landlord
                     // Check the result
                     if (rowAffected > 0)
                     {
+                        string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                        "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                        using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                            command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                            command.Parameters.AddWithValue("@NotificationTitle", "Update Profile Image");
+                            command.Parameters.AddWithValue("@NotificationDescription", "Successfully updated profile image.");
+                            command.Parameters.AddWithValue("@NotificationType", "Update Profile Image");
+                            command.ExecuteNonQuery();
+                        }
+
                         // Reset Profile Image Cookie
                         HttpCookie profileImageCookie = new HttpCookie("UserProfileImage");
                         profileImageCookie.Value = imagePath;
@@ -261,6 +288,19 @@ namespace OnlineHomeRental.Landlord
 
                         if (rowAffected > 0)
                         {
+                            string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                        "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                            using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                            {
+                                command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                                command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                                command.Parameters.AddWithValue("@NotificationTitle", "Update Password");
+                                command.Parameters.AddWithValue("@NotificationDescription", "Successfully updated account password.");
+                                command.Parameters.AddWithValue("@NotificationType", "Update Password");
+                                command.ExecuteNonQuery();
+                            }
+
                             // Both updates were successful
                             alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
 

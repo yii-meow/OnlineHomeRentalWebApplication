@@ -162,6 +162,7 @@ namespace OnlineHomeRental.Landlord
                 string strCreateUser = "INSERT INTO [dbo].[User] (UserId, UserPassword, UserType, AccountCreatedDate, Name, Gender, PhoneNo, Email) " +
                                      "VALUES (@UserId, @UserPassword, @UserType, @AccountCreatedDate, @Name, @Gender, @PhoneNo, @Email)";
 
+
                 using (SqlCommand cmdCreateUser = new SqlCommand(strCreateUser, con))
                 {
                     // Add parameters
@@ -186,6 +187,19 @@ namespace OnlineHomeRental.Landlord
                             // Add parameters
                             cmdCreateLandlord.Parameters.AddWithValue("@UserId", LandlordRegUsername);
                             cmdCreateLandlord.ExecuteNonQuery();
+                        }
+
+                        string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                            "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                        using (SqlCommand command = new SqlCommand(insertNotificationQuery, con))
+                        {
+                            command.Parameters.AddWithValue("@UserId", LandlordRegUsername);
+                            command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                            command.Parameters.AddWithValue("@NotificationTitle", "Account Creation");
+                            command.Parameters.AddWithValue("@NotificationDescription", "Successfully create account ! We are happy to have you as one of our landlord!");
+                            command.Parameters.AddWithValue("@NotificationType", "Account Creation");
+                            command.ExecuteNonQuery();
                         }
                     }
                 }

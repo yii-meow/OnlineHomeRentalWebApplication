@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -170,7 +171,7 @@ namespace OnlineHomeRental.Landlord
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@WaterHeaterAvailability", waterHeaterAvailability);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@WifiAvailability", wifiAvailability);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@Thumbnail", thumbnail);
-                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image1",image1);
+                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image1", image1);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image2", image2);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image3", image3);
 
@@ -179,6 +180,19 @@ namespace OnlineHomeRental.Landlord
                     if (rowsAffected > 0)
                     {
                         DataList1.DataBind();
+
+                        string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                    "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                        using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                            command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                            command.Parameters.AddWithValue("@NotificationTitle", "Property Amendment");
+                            command.Parameters.AddWithValue("@NotificationDescription", "Amended Property: " + propertyName);
+                            command.Parameters.AddWithValue("@NotificationType", "Property Amendment");
+                            command.ExecuteNonQuery();
+                        }
 
                         alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
 
@@ -218,6 +232,19 @@ namespace OnlineHomeRental.Landlord
 
                     if (rowsAffected > 0)
                     {
+                        string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                    "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                        using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                            command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                            command.Parameters.AddWithValue("@NotificationTitle", "Property Deletion");
+                            command.Parameters.AddWithValue("@NotificationDescription", "Deleted Property: " + propertyId);
+                            command.Parameters.AddWithValue("@NotificationType", "Property Deletion");
+                            command.ExecuteNonQuery();
+                        }
+
                         Response.Redirect("~/Landlord/ViewProperty.aspx");
                     }
                 }
@@ -261,6 +288,19 @@ namespace OnlineHomeRental.Landlord
 
                     if (rowsAffected > 0)
                     {
+                        string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                                    "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                        using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                        {
+                            command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                            command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                            command.Parameters.AddWithValue("@NotificationTitle", "Request Property Maintenance");
+                            command.Parameters.AddWithValue("@NotificationDescription", "Successfully requeted maintenance for property ID: " + propertyId + ".Maintenance Type: " + maintenanceType);
+                            command.Parameters.AddWithValue("@NotificationType", "Request Property Maintenance");
+                            command.ExecuteNonQuery();
+                        }
+
                         DataList1.DataBind();
 
                         alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";

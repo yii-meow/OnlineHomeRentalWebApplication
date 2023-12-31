@@ -63,10 +63,6 @@ namespace OnlineHomeRental.Landlord
             // Assuming you have a connection string in your web.config
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            // SQL query to insert a record
-            string insertQuery = "INSERT INTO [Property] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice, NumberOfBedroom, AreaSqft, AirCondAvailability, WaterHeaterAvailability, WifiAvailability, Preferences, Thumbnail, Image1, Image2, Image3) " +
-                                "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice, @NumberOfBedroom, @AreaSqft, @AirCondAvailability, @WaterHeaterAvailability, @WifiAvailability, @Preferences, @Thumbnail, @Image1, @Image2, @Image3)";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -79,7 +75,11 @@ namespace OnlineHomeRental.Landlord
                     landlordId = (int)cmdSelect.ExecuteScalar();
                 }
 
-                using (SqlCommand command = new SqlCommand(insertQuery, connection))
+                // SQL query to insert a record
+                string insertPropertyQuery = "INSERT INTO [Property] (LandlordId, PropertyName, PropertyType, PropertyAddress, ListingDescription, PropertyPrice, NumberOfBedroom, AreaSqft, AirCondAvailability, WaterHeaterAvailability, WifiAvailability, Preferences, Thumbnail, Image1, Image2, Image3) " +
+                                    "VALUES (@LandlordId, @PropertyName, @PropertyType, @PropertyAddress, @ListingDescription, @PropertyPrice, @NumberOfBedroom, @AreaSqft, @AirCondAvailability, @WaterHeaterAvailability, @WifiAvailability, @Preferences, @Thumbnail, @Image1, @Image2, @Image3)";
+
+                using (SqlCommand command = new SqlCommand(insertPropertyQuery, connection))
                 {
                     command.Parameters.AddWithValue("@LandlordId", landlordId);
                     command.Parameters.AddWithValue("@PropertyName", propertyName);
@@ -99,9 +99,22 @@ namespace OnlineHomeRental.Landlord
                     command.Parameters.AddWithValue("@Image3", image3 != null ? "/Data/" + image2 : (object)DBNull.Value);
 
                     command.ExecuteNonQuery();
-
-                    connection.Close();
                 }
+
+                string insertNotificationQuery = "INSERT INTO Notification(UserId,NotificationTime,NotificationTitle,NotificationDescription,NotificationType) " +
+                    "VALUES(@UserId,@NotificationTime,@NotificationTitle, @NotificationDescription, @NotificationType)";
+
+                using (SqlCommand command = new SqlCommand(insertNotificationQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", Session["UserId"]);
+                    command.Parameters.AddWithValue("@NotificationTime", DateTime.Now);
+                    command.Parameters.AddWithValue("@NotificationTitle", "Added Property - " + propertyName + "");
+                    command.Parameters.AddWithValue("@NotificationDescription", "Property " + propertyName + " has been added. Property type: " + propertyType + " , Address: " + propertyAddress);
+                    command.Parameters.AddWithValue("@NotificationType", "Add Property");
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
             }
 
             alertDiv.Attributes["class"] = $"alert alert-success alert-dismissible fade show";
