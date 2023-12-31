@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -53,7 +54,7 @@ namespace OnlineHomeRental.Landlord
 
                     if (result != DBNull.Value)
                     {
-                        averageRatings = (decimal)result; 
+                        averageRatings = (decimal)result;
                     }
                     else
                     {
@@ -87,7 +88,59 @@ namespace OnlineHomeRental.Landlord
             bool waterHeaterAvailability = chkWaterHeaterAvailability.Checked;
             bool wifiAvailability = chkWifiAvailability.Checked;
 
+            string thumbnail = null;
+            string image1 = null;
+            string image2 = null;
+            string image3 = null;
+
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string strGetImages = "SELECT Thumbnail, Image1, Image2, Image3 FROM Property WHERE PropertyId = @PropertyId";
+
+                using (SqlCommand cmdGetImages = new SqlCommand(strGetImages, connection))
+                {
+                    // Assuming you have the PropertyId value stored in a variable named propertyId
+                    cmdGetImages.Parameters.AddWithValue("@PropertyId", propertyId);
+
+                    connection.Open();
+                    using (SqlDataReader reader = cmdGetImages.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Retrieve values from the reader and assign them to variables
+                            thumbnail = reader["Thumbnail"].ToString();
+                            image1 = reader["Image1"].ToString();
+                            image2 = reader["Image2"].ToString();
+                            image3 = reader["Image3"].ToString();
+                        }
+                    }
+                }
+            }
+
+            if (fuThumbnail.HasFile)
+            {
+                thumbnail = "/Data/" + Path.GetFileName(fuThumbnail.FileName);
+                fuThumbnail.SaveAs(Server.MapPath(thumbnail));
+            }
+
+            if (fuImage1.HasFile)
+            {
+                image1 = "/Data/" + Path.GetFileName(fuImage1.FileName);
+                fuImage1.SaveAs(Server.MapPath(image1));
+            }
+
+            if (fuImage2.HasFile)
+            {
+                image2 = "/Data/" + Path.GetFileName(fuImage2.FileName);
+                fuImage2.SaveAs(Server.MapPath(image2));
+            }
+
+            if (fuImage3.HasFile)
+            {
+                image3 = "/Data/" + Path.GetFileName(fuImage3.FileName);
+                fuImage3.SaveAs(Server.MapPath(image3));
+            }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -97,7 +150,8 @@ namespace OnlineHomeRental.Landlord
                     UPDATE [Property]
                     SET PropertyName = @PropertyName, PropertyAddress = @PropertyAddress, PropertyType = @PropertyType, PropertyPrice = @PropertyPrice,
                     ListingDescription = @ListingDescription, Preferences = @Preferences, NumberOfBedroom = @NumberOfBedroom, AreaSqft = @AreaSqft,
-                    AirCondAvailability = @AirCondAvailability, WaterHeaterAvailability = @WaterHeaterAvailability, WifiAvailability = @WifiAvailability
+                    AirCondAvailability = @AirCondAvailability, WaterHeaterAvailability = @WaterHeaterAvailability, WifiAvailability = @WifiAvailability,
+                    Thumbnail = @Thumbnail, Image1 = @Image1, Image2 = @Image2, Image3 = @Image3
                     WHERE PropertyId = @PropertyId
                 ";
 
@@ -115,6 +169,10 @@ namespace OnlineHomeRental.Landlord
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@AirCondAvailability", airCondAvailability);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@WaterHeaterAvailability", waterHeaterAvailability);
                     cmdUpdatePropertyDetails.Parameters.AddWithValue("@WifiAvailability", wifiAvailability);
+                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Thumbnail", thumbnail);
+                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image1",image1);
+                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image2", image2);
+                    cmdUpdatePropertyDetails.Parameters.AddWithValue("@Image3", image3);
 
                     int rowsAffected = cmdUpdatePropertyDetails.ExecuteNonQuery();
 

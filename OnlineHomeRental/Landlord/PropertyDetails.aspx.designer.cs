@@ -312,6 +312,42 @@ namespace OnlineHomeRental.Landlord
         protected global::System.Web.UI.WebControls.CheckBox chkWifiAvailability;
 
         /// <summary>
+        /// fuThumbnail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuThumbnail;
+
+        /// <summary>
+        /// fuImage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuImage1;
+
+        /// <summary>
+        /// fuImage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuImage2;
+
+        /// <summary>
+        /// fuImage3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuImage3;
+
+        /// <summary>
         /// btnSavePropertyDetails control.
         /// </summary>
         /// <remarks>

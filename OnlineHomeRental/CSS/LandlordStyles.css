@@ -16,14 +16,14 @@
     position: fixed;
 }
 
-.viewRatingButton{
-    top:100px;
-    right:10px;
-    float:right;
+.viewRatingButton {
+    top: 100px;
+    right: 10px;
+    float: right;
 }
 
 .active {
-    background-color: lightblue; 
+    background-color: lightblue;
     color: darkblue;
 }
 
@@ -555,9 +555,9 @@
     max-height: fit-content;
 }
 
-.addPropertyForm div{
-    margin-top:1rem;
-}
+    .addPropertyForm div {
+        margin-top: 1rem;
+    }
 
     .addPropertyForm h2 {
         color: #333;
@@ -680,6 +680,24 @@
         font-weight: bold;
     }
 
+/*#carouselExampleIndicators {
+    max-height: 700px;*/ /* Set your desired maximum height */
+    /*overflow: hidden;*/ /* Hide any overflow beyond the maximum height */
+/*}
+
+.carousel-inner {
+    height: 100%;*/ /* Set the height to 100% to fill the container */
+/*}
+
+.carousel-item {
+    height: 100%;*/ /* Set the height of each item to 100% */
+/*}
+
+    .carousel-item img {
+        height: 100%;*/ /* Set the height of each image to 100% of the item */
+        /*object-fit: fill;*/ /* Ensure the image covers the entire item */
+    /*}*/
+
 .propertyBookingDetails {
     padding: 20px;
     margin-bottom: 50px;
@@ -744,10 +762,10 @@
     align-items: center;
 }
 
-.updateBookingStatus{
-    text-align:center;
-    padding:20px;
-    border-radius:25px;
+.updateBookingStatus {
+    text-align: center;
+    padding: 20px;
+    border-radius: 25px;
 }
 
 .chat {
@@ -798,11 +816,11 @@
     }
 
         .user .userSession_button.selected {
-            width:inherit;
-            background-color: cornflowerblue; 
+            width: inherit;
+            background-color: cornflowerblue;
             font-weight: bold;
-            padding:4px;
-            padding-left:10px;
+            padding: 4px;
+            padding-left: 10px;
         }
 
 .messages-container {
@@ -942,7 +960,7 @@
 }
 
 canvas {
-    padding:20px;
+    padding: 20px;
 }
 
 .revenue-chart {

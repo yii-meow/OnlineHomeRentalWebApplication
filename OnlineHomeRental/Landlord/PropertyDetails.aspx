@@ -24,10 +24,35 @@
                     <ItemTemplate>
                         <h2><%# Eval("PropertyName") %></h2>
                         <hr />
-                        <div class="property-images">
-                            <!-- Add a carousel or image slider for property images -->
-                            <!-- Use a JavaScript library like Bootstrap Carousel -->
-                            <img src='<%# Eval("Image1") %>' />
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src='<%# Eval("Thumbnail") %>' alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src='<%# Eval("Image1") %>' alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src='<%# Eval("Image2") %>' alt="Third slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src='<%# Eval("Image3") %>' alt="Fourth slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
 
                         <div class="property-details-container">
@@ -327,6 +352,14 @@
                             <asp:CheckBox ID="chkWifiAvailability" CssClass="form-check-input" runat="server" ClientIDMode="Static" />
                             <label class="form-check-label" for="wifiAvailability">Wi-Fi</label>
                         </div>
+                    </div>
+                    <hr />
+                    <h4>Images</h4>
+                    <div class="form-group mt-2">
+                        Thumbnail: <asp:FileUpload ID="fuThumbnail" runat="server" /><br /><br />
+                        Image 1: <asp:FileUpload ID="fuImage1" runat="server" /><br /><br />
+                        Image 2: <asp:FileUpload ID="fuImage2" runat="server" /><br /><br />
+                        Image 3: <asp:FileUpload ID="fuImage3" runat="server" />
                     </div>
                 </div>
                 <div class="modal-footer">

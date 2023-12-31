@@ -73,7 +73,7 @@
                                                     <div class="form-group">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordUsername" runat="server" placeholder="Username" title="Username must contains 8 or more characters" />
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbRegLandlordUsername" ErrorMessage="Username is Required." ForeColor="Red" ValidationGroup="ValidationRegister">*</asp:RequiredFieldValidator>
-                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbLandlordUsername"
+                                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="tbRegLandlordUsername"
                                                             ErrorMessage="Username must contain 8 or more characters." ForeColor="Red"
                                                             ValidationExpression="^.{8,}$" Display="Dynamic"
                                                             ValidationGroup="ValidationRegister"></asp:RegularExpressionValidator>
@@ -86,7 +86,7 @@
                                                         <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="tbRegLandlordPassword" ControlToCompare="tbRegLandlordUsername" Type="String" Operator="Equal" ErrorMessage="Password cannot match with username." ForeColor="Red" ValidationGroup="ValidationRegister">*</asp:CompareValidator>                                                       
                                                         <asp:RegularExpressionValidator ID="RegularExpressionValidatorPassword" runat="server" ControlToValidate="tbRegLandlordPassword"
                                                             ErrorMessage="Password must be at least 8 characters long and contain both alphabetic and numeric characters."
-                                                            ForeColor="Red" ValidationExpression="^(?=.*[A-Za-z])(?=.*\d).{8,}$" ValidationGroup="ValidationPassword">*</asp:RegularExpressionValidator>
+                                                            ForeColor="Red" ValidationExpression="^(?=.*[A-Za-z])(?=.*\d).{8,}$" ValidationGroup="ValidationRegister">*</asp:RegularExpressionValidator>
                                                     </div>
                                                     <div class="form-group mt-3">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordConfirmedPassword" runat="server" placeholder="Confirmed Password" TextMode="Password" title="Confirmed password must matched with the password" />

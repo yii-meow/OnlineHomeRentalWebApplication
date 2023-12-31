@@ -95,8 +95,8 @@ namespace OnlineHomeRental.Landlord
                     command.Parameters.AddWithValue("@Preferences", preferences);
                     command.Parameters.AddWithValue("@Thumbnail", $"/Data/{thumbnail}");
                     command.Parameters.AddWithValue("@Image1", $"/Data/{image1}");
-                    command.Parameters.AddWithValue("@Image2", $"/Data/{image2}");
-                    command.Parameters.AddWithValue("@Image3", $"/Data/{image3}");
+                    command.Parameters.AddWithValue("@Image2", image2 != null ? "/Data/" + image2 : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@Image3", image3 != null ? "/Data/" + image2 : (object)DBNull.Value);
 
                     command.ExecuteNonQuery();
 
