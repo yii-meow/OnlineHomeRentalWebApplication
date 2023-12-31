@@ -74,7 +74,18 @@
                                     <div class="col-md-6">
                                         <table class="table table-hover">
                                             <tr>
-                                                <th scope="row" class="bg-light p-2">Payment Date:</th>
+                                                <th scope="row" class="bg-light p-2">Payment ID:</th>
+                                                <td class="p-2"># <%# Eval("PaymentId") %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="bg-light p-2">Booking Time:</th>
+                                                <td class="p-2">
+                                                    <%# Convert.ToDateTime(Eval("BookingTime")).ToString("d/M/yyyy HH:mm") %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="bg-light p-2">Payment Time:</th>
                                                 <td class="p-2">
                                                     <%# Convert.ToDateTime(Eval("PaymentDate")).ToString("d/M/yyyy HH:mm") %>
                                                 </td>
@@ -164,8 +175,8 @@
     </asp:SqlDataSource>
 
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, Booking.Duration, Booking.BookingStatus,
-                        Property.PropertyName, Property.PropertyType, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
+        SelectCommand="SELECT Booking.BookingId, Booking.PropertyId, Booking.CheckInDate, Booking.CheckOutDate, Booking.Duration, Booking.BookingStatus, Booking.BookingTime,
+                        Property.PropertyName, Property.PropertyType, Payment.PaymentId, Payment.PaymentAmount, Payment.PaymentMethod, Payment.PaymentDate, Payment.PaymentStatus,
                         [User].Name, [User].Gender, [User].PhoneNo, [User].Email, Tenant.BillingAddress
                     FROM Booking
                     INNER JOIN Property ON Booking.PropertyId = Property.PropertyId

@@ -174,6 +174,14 @@ namespace OnlineHomeRental.Landlord
             }
         }
 
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (Session["UserId"] != null)
+            {
+                args.IsValid = (args.Value != Session["UserId"].ToString());
+            }
+        }
+
         protected void btnUpdatePassword_Click(object sender, EventArgs e)
         {
             string currentPassword = tbCurrentPassword.Text;
@@ -183,6 +191,20 @@ namespace OnlineHomeRental.Landlord
             // Repeated password not matched
             if (!newPassword.Equals(newPasswordRepeat))
             {
+                return;
+            }
+
+            // Password same with username
+            if(newPassword == Session["UserId"].ToString())
+            {
+                alertDiv.Attributes["class"] = $"";
+
+                // Set the alert message
+                alertDiv.InnerHtml = "";
+
+                // Make the alert visible
+                alertDiv.Attributes["class"] = alertDiv.Attributes["class"].Replace("d-none", "");
+
                 return;
             }
 

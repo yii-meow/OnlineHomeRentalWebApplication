@@ -16,7 +16,8 @@
             <div class="container">
                 <div>
                     <p class="mb-4">
-                        Average Ratings: <asp:Literal ID="lblAverageRatings" runat="server" />
+                        Average Ratings:
+                        <asp:Literal ID="lblAverageRatings" runat="server" />
                     </p>
                 </div>
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
@@ -197,8 +198,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <asp:ValidationSummary ID="ValidationMaintenanceRequestSummary" runat="server" CssClass="text-light bg-danger p-2 mb-3" ValidationGroup="ValidationMaintenanceRequest" />
                     <div class="form-group">
                         <label for="propertyType">Maintenance Type</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlMaintenanceType" ErrorMessage="Maintenance Type is Required." ForeColor="Red" ValidationGroup="ValidationMaintenanceRequest">*</asp:RequiredFieldValidator>
                         <asp:DropDownList ID="ddlMaintenanceType" CssClass="form-control" runat="server" ClientIDMode="Static">
                             <asp:ListItem Value="Plumbing">Plumbing</asp:ListItem>
                             <asp:ListItem Value="Electrical">Electrical</asp:ListItem>
@@ -211,12 +214,13 @@
 
                     <div class="form-group">
                         <label for="description">Maintenance Description</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbMaintenanceDescription" ErrorMessage="Maintenance Description is Required." ForeColor="Red" ValidationGroup="ValidationMaintenanceRequest">*</asp:RequiredFieldValidator>
                         <asp:TextBox ID="tbMaintenanceDescription" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button runat="server" ID="btnRequestMaintenance" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnRequestMaintenance_Click" />
+                    <asp:Button runat="server" ID="btnRequestMaintenance" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnRequestMaintenance_Click" ValidationGroup="ValidationMaintenanceRequest" />
                 </div>
             </div>
         </div>
@@ -233,18 +237,23 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <asp:ValidationSummary ID="ValidationPropertyDetailsSummary" runat="server" CssClass="text-light bg-danger p-2 mb-3" ValidationGroup="ValidationPropertyDetails" />
+
                     <div class="form-group">
                         <label for="propertyName">Property Name</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbPropertyName" ErrorMessage="Property Name is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
                         <asp:TextBox ID="tbPropertyName" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
 
                     <div class="form-group">
                         <label for="propertyAddress">Property Address</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="tbPropertyAddress" ErrorMessage="Property Address is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
                         <asp:TextBox ID="tbPropertyAddress" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
 
                     <div class="form-group">
                         <label for="propertyType">Property Type</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="ddlPropertyType" ErrorMessage="Property type is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
                         <asp:DropDownList ID="ddlPropertyType" CssClass="form-control" runat="server" ClientIDMode="Static">
                             <asp:ListItem Value="Residential">Residential</asp:ListItem>
                             <asp:ListItem Value="Flat">Flat</asp:ListItem>
@@ -255,11 +264,21 @@
 
                     <div class="form-group">
                         <label for="propertyPrice">Property Price</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbPropertyPrice" ErrorMessage="Property price is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="regexValidator" runat="server"
+                            ControlToValidate="tbPropertyPrice"
+                            ErrorMessage="Please enter a valid decimal value for price."
+                            ValidationExpression="^\d+(\.\d+)?$"
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ValidationGroup="ValidationPropertyDetails">
+                        </asp:RegularExpressionValidator>
                         <asp:TextBox ID="tbPropertyPrice" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
 
                     <div class="form-group">
                         <label for="listingDescription">Listing Description</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbListingDescription" ErrorMessage="Listing description is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
                         <asp:TextBox ID="tbListingDescription" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
 
@@ -270,12 +289,22 @@
 
                     <div class="form-group">
                         <label for="numberOfBedroom">Number of Bedroom</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="ddlNumberOfBedroom" ErrorMessage="Number of Bedroom is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
                         <asp:DropDownList ID="ddlNumberOfBedroom" runat="server" CssClass="form-control" ClientIDMode="Static">
                         </asp:DropDownList>
                     </div>
 
                     <div class="form-group">
                         <label for="areaSqft">Area Sqft</label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="tbAreaSqft" ErrorMessage="Area sqft is Required." ForeColor="Red" ValidationGroup="ValidationPropertyDetails">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                            ControlToValidate="tbAreaSqft"
+                            ErrorMessage="Please enter a valid decimal value for area sqft."
+                            ValidationExpression="^\d+(\.\d+)?$"
+                            Display="Dynamic"
+                            ForeColor="Red"
+                            ValidationGroup="ValidationPropertyDetails">
+                        </asp:RegularExpressionValidator>
                         <asp:TextBox ID="tbAreaSqft" runat="server" CssClass="form-control" ClientIDMode="Static" />
                     </div>
 
@@ -302,7 +331,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <asp:Button runat="server" ID="btnSavePropertyDetails" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnSavePropertyDetails_Click" />
+                    <asp:Button runat="server" ID="btnSavePropertyDetails" type="button" class="btn btn-primary" Text="Save Changes" OnClick="btnSavePropertyDetails_Click" ValidationGroup="ValidationPropertyDetails" />
                 </div>
             </div>
         </div>

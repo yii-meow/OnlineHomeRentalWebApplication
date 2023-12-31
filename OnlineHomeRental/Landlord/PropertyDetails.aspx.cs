@@ -61,7 +61,7 @@ namespace OnlineHomeRental.Landlord
                         return;
                     }
                 }
-                lblAverageRatings.Text = averageRatings.ToString("N2") + " <i class=\"bi bi-star-fill\"></i>";
+                lblAverageRatings.Text = averageRatings.ToString("N2") + " <i class=\"bi bi-star-fill text-danger\"></i>";
             }
         }
 

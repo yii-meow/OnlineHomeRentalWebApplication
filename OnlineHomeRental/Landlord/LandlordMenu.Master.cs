@@ -26,7 +26,7 @@ namespace OnlineHomeRental.Landlord
             {
                 homeLinkLi.Attributes["class"] = "nav-item active";
             }
-            else if (Request.Url.AbsolutePath.EndsWith("Property.aspx"))
+            else if (Request.Url.AbsolutePath.EndsWith("Property.aspx") || Request.Url.AbsolutePath.EndsWith("PropertyDetails.aspx"))
             {
                 propertyLinkLi.Attributes["class"] = "submenu nav-item active";
             }

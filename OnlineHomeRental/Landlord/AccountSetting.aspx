@@ -113,6 +113,8 @@
                         <div class="input-group">
                             <asp:TextBox runat="server" ID="tbNewPassword" CssClass="form-control" TextMode="Password" placeholder="Enter new password" />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbNewPassword" ErrorMessage="New Password is Required." ForeColor="Red" ValidationGroup="ValidationPassword">*</asp:RequiredFieldValidator>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Password cannot match with username." ForeColor="Red" 
+                                ValidationGroup="ValidationPassword" OnServerValidate="CustomValidator1_ServerValidate" ControlToValidate="tbNewPassword">*</asp:CustomValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidatorPassword" runat="server" ControlToValidate="tbNewPassword"
                                 ErrorMessage="Password must be at least 8 characters long and contain both alphabetic and numeric characters."
                                 ForeColor="Red" ValidationExpression="^(?=.*[A-Za-z])(?=.*\d).{8,}$" ValidationGroup="ValidationPassword">*</asp:RegularExpressionValidator>

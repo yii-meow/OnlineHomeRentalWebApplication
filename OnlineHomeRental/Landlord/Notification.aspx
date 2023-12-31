@@ -7,8 +7,8 @@
         <ul class="notification-list">
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
-                    <li class="notification-item">
-                        <div class="notification-type"><%#Eval("NotificationType")%></div>
+                    <li class="notification-item mt-4">
+                        <%--<div class="notification-type"><%#Eval("NotificationType")%></div>--%>
                         <div class="notification-title"><%#Eval("NotificationTitle")%></div>
                         <div class="notification-description"><%#Eval("NotificationDescription")%></div>
                         <div class="notification-date"><%#Eval("NotificationTime")%></div>
