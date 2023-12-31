@@ -664,11 +664,15 @@
 
     .morePropertyDetails .main-details,
     .morePropertyDetails .property-description,
-    .morePropertyDetails .property-moreDetails {
+    .morePropertyDetails .property-moreDetails, .morePropertyDetails .property-preferences {
         background-color: #ffffff;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .morePropertyDetails .property-description {
+        height:300px;
     }
 
     .morePropertyDetails .property-details p {
@@ -680,23 +684,32 @@
         font-weight: bold;
     }
 
-/*#carouselExampleIndicators {
-    max-height: 700px;*/ /* Set your desired maximum height */
-    /*overflow: hidden;*/ /* Hide any overflow beyond the maximum height */
-/*}
+.property-moreDetails .amenitiesLabel {
+    width: 200px;
+    display: inline-block;
+    padding:10px;
+    text-align:center;
+    line-height:30px;
+}
 
-.carousel-inner {
-    height: 100%;*/ /* Set the height to 100% to fill the container */
-/*}
+    .property-moreDetails .amenitiesLabel i {
+        font-size: 22px;
+    }
+
+.property-moreDetails .amenities {
+    font-size: 22px;
+}
 
 .carousel-item {
-    height: 100%;*/ /* Set the height of each item to 100% */
-/*}
+    height: 600px; /* Adjust this value to your desired height */
+    overflow: hidden;
+}
 
     .carousel-item img {
-        height: 100%;*/ /* Set the height of each image to 100% of the item */
-        /*object-fit: fill;*/ /* Ensure the image covers the entire item */
-    /*}*/
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
 .propertyBookingDetails {
     padding: 20px;

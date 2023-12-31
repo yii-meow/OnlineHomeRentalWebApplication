@@ -28,8 +28,8 @@
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                <%# !Convert.IsDBNull(Eval("Image2")) ? "<li data-target='#carouselExampleIndicators' data-slide-to='2'></li>" : "" %>
+                                <%# !Convert.IsDBNull(Eval("Image3")) ? "<li data-target='#carouselExampleIndicators' data-slide-to='3'></li>" : "" %>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -38,12 +38,8 @@
                                 <div class="carousel-item">
                                     <img class="d-block w-100" src='<%# Eval("Image1") %>' alt="Second slide">
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src='<%# Eval("Image2") %>' alt="Third slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src='<%# Eval("Image3") %>' alt="Fourth slide">
-                                </div>
+                                <%# !Convert.IsDBNull(Eval("Image2")) ? "<div class='carousel-item'><img class='d-block w-100' src='" + Eval("Image2") + "' alt='Third slide'></div>" : "" %>
+                                <%# !Convert.IsDBNull(Eval("Image3")) ? "<div class='carousel-item'><img class='d-block w-100' src='" + Eval("Image3") + "' alt='Fourth slide'></div>" : "" %>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -53,6 +49,16 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
                             </a>
+                        </div>
+
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                         </div>
 
                         <div class="property-details-container">
@@ -85,7 +91,7 @@
                                     </p>
                                 </div>
 
-                                <div class="property-description">
+                                <div class="property-preferences">
                                     <p class="mb-4">
                                         <b><u>Preferences</u></b><br />
                                         <br />
@@ -103,23 +109,31 @@
                                     <p class="mb-5">
                                         Area:
                                 <asp:Label ID="lblArea" runat="server" Text='<%# Eval("AreaSqft") %>'></asp:Label>
-                                        :
                                         ft&sup2;
                                     </p>
-                                    <p class="mt-3 mb-4">
-                                        Air Conditioning <i class="bi bi-fan mr-3"></i>
+                                    <p class="mt-3 mb-2">
+                                        <div class="amenitiesLabel">
+                                            <i class="bi bi-fan text-info"></i>
+                                            <div>Air Conditioning</div>
+                                        </div>
                                         <asp:Label ID="lblAirCondAvailability" runat="server"
-                                            Text='<%# (bool)Eval("AirCondAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
+                                            Text='<%# (bool)Eval("AirCondAvailability") ? "<i class=\"bi bi-check-circle-fill text-success amenities\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger amenities\"></i>" %>'></asp:Label>
                                     </p>
                                     <p class="mb-4">
-                                        Water Heater <i class="bi bi-droplet-fill mr-3"></i>
+                                        <div class="amenitiesLabel">
+                                            <i class="bi bi-droplet-fill text-primary"></i>
+                                            <div>Water Heater</div>
+                                        </div>
                                         <asp:Label ID="lblWaterHeaterAvailability" runat="server"
-                                            Text='<%# (bool)Eval("WaterHeaterAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
+                                            Text='<%# (bool)Eval("WaterHeaterAvailability") ? "<i class=\"bi bi-check-circle-fill text-success amenities\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger amenities\"></i>" %>'></asp:Label>
                                     </p>
                                     <p class="mb-4">
-                                        Wi-Fi: <i class="bi bi-wifi mr-3"></i>
+                                        <div class="amenitiesLabel">
+                                            <i class="bi bi-wifi text-success"></i>
+                                            <div>Wi-Fi</div>
+                                        </div>
                                         <asp:Label ID="lblWifiAvailability" runat="server"
-                                            Text='<%# (bool)Eval("WifiAvailability") ? "<i class=\"bi bi-check-circle-fill text-success\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger\"></i>" %>'></asp:Label>
+                                            Text='<%# (bool)Eval("WifiAvailability") ? "<i class=\"bi bi-check-circle-fill text-success amenities\"></i>" : "<i class=\"bi bi-x-circle-fill text-danger amenities\"></i>" %>'></asp:Label>
                                     </p>
                                 </div>
 
