@@ -33,13 +33,13 @@
                                             <div class="center-wrap">
                                                 <div class="dropdown">
                                                     <!-- The button with the icon -->
-                                                    <button class="dropdown-button" onclick="toggleDropdown()">
+                                                    <button type="button" class="dropdown-button" onclick="toggleDropdown()">
                                                         <i class="input-icon uil uil-user icon"></i>
                                                         <!-- The dropdown content -->
                                                         <div class="dropdown-content" id="myDropdown" style="display: none; left: -150px; top: -35px;">
                                                             <!-- Dropdown items -->
                                                             <asp:HyperLink ID="Landlord_Login_Link" runat="server" NavigateUrl="~/LandlordLoginPage.aspx" Text="Landlord" CssClass="dropdown-item" />
-                                                            <asp:HyperLink ID="Tenant_Login_Link" runat="server" NavigateUrl="~/LandlordLoginPage.aspx" Text="Tenant" CssClass="dropdown-item" />
+                                                            <asp:HyperLink ID="Tenant_Login_Link" runat="server" NavigateUrl="~/TenantLoginPage.aspx" Text="Tenant" CssClass="dropdown-item" />
                                                         </div>
                                                     </button>
                                                 </div>
@@ -79,15 +79,22 @@
                                                             ValidationGroup="ValidationRegister"></asp:RegularExpressionValidator>
                                                         <i class="input-icon uil uil-user"></i>
                                                     </div>
+
                                                     <div class="form-group mt-3">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordPassword" runat="server" placeholder="Password" TextMode="Password" title="Password must be at least 8 characters long and contain both alphabetic and numeric characters." />
                                                         <i class="input-icon uil uil-lock-alt"></i>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="tbRegLandlordPassword" ErrorMessage="Password is Required." ForeColor="Red" ValidationGroup="ValidationRegister">*</asp:RequiredFieldValidator>
-                                                        <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="tbRegLandlordPassword" ControlToCompare="tbRegLandlordUsername" Type="String" Operator="Equal" ErrorMessage="Password cannot match with username." ForeColor="Red" ValidationGroup="ValidationRegister">*</asp:CompareValidator>                                                       
                                                         <asp:RegularExpressionValidator ID="RegularExpressionValidatorPassword" runat="server" ControlToValidate="tbRegLandlordPassword"
                                                             ErrorMessage="Password must be at least 8 characters long and contain both alphabetic and numeric characters."
                                                             ForeColor="Red" ValidationExpression="^(?=.*[A-Za-z])(?=.*\d).{8,}$" ValidationGroup="ValidationRegister">*</asp:RegularExpressionValidator>
+
+                                                        <!-- CustomValidator for checking if password is the same as the username -->
+                                                        <asp:CustomValidator ID="CustomValidatorPasswordUsername" runat="server" ControlToValidate="tbRegLandlordPassword"
+                                                            ErrorMessage="Password cannot match with username." ForeColor="Red"
+                                                            OnServerValidate="CustomValidatorPasswordUsername_ServerValidate"
+                                                            ValidationGroup="ValidationRegister"></asp:CustomValidator>
                                                     </div>
+
                                                     <div class="form-group mt-3">
                                                         <asp:TextBox CssClass="form-style" ID="tbRegLandlordConfirmedPassword" runat="server" placeholder="Confirmed Password" TextMode="Password" title="Confirmed password must matched with the password" />
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbRegLandlordConfirmedPassword" ErrorMessage="Confirmed Password is Required." ForeColor="Red" ValidationGroup="ValidationRegister">*</asp:RequiredFieldValidator>

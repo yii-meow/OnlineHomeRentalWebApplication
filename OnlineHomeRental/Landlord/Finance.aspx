@@ -64,18 +64,6 @@
                 <span><u>Revenue (last 6 months)</u></span>
                 <canvas id="revenueChart" width="600" height="400"></canvas>
             </div>
-
-            <div class="reports">
-                <h5>Monthly Reports</h5>
-                <ul class="report-list">
-                    <li><a href="/Data/1.pdf" target="_blank">November 2023</a></li>
-                    <li><a href="/Data/1.pdf" target="_blank">October 2023</a></li>
-                    <li><a href="/Data/1.pdf" target="_blank">September 2023</a></li>
-                    <li><a href="/Data/1.pdf" target="_blank">August 2023</a></li>
-                    <li><a href="/Data/1.pdf" target="_blank">July 2023</a></li>
-                    <li><a href="/Data/1.pdf" target="_blank">June 2023</a></li>
-                </ul>
-            </div>
         </section>
 
         <section class="transaction-history">

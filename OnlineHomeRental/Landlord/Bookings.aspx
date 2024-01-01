@@ -125,7 +125,7 @@
                                             <%# Convert.ToDateTime(Eval("CheckInDate")).ToString("d/M/yyyy") %> - <%# Convert.ToDateTime(Eval("CheckOutDate")).ToString("d/M/yyyy") %>
                                         </p>
                                     </td>
-                                    <td><%# Eval("Duration") %> day(s)</td>
+                                    <td><%# Eval("Duration") %> day (s)</td>
                                     <td class="text-right"><%# Convert.ToDouble(Eval("PaymentAmount")).ToString("C") %></td>
                                 </tr>
                             </tbody>

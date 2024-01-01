@@ -1,6 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Landlord/LandlordMenu.Master" AutoEventWireup="true" CodeBehind="~/Landlord/PropertyDetails.aspx.cs" Inherits="OnlineHomeRental.Landlord.PropertyDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div id="alertDiv" runat="server" class="alert d-none alert-dismissible fade show" role="alert">
         <span id="alertMessage"></span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -12,7 +13,6 @@
 
     <div class="morePropertyDetails">
         <div class="mt-1">
-            <button type="button" class="btn btn-primary viewRatingButton" data-toggle="modal" data-target="#viewRatingsModal">View Ratings</button>
             <div class="container">
                 <div>
                     <p class="mb-4">
@@ -22,6 +22,8 @@
                 </div>
                 <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
                     <ItemTemplate>
+                        <button type="button" class="btn btn-primary viewRatingButton" data-toggle="modal" data-target="#viewRatingsModal">View Ratings</button>
+
                         <h2><%# Eval("PropertyName") %></h2>
                         <hr />
                         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

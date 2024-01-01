@@ -38,7 +38,7 @@ namespace OnlineHomeRental.Landlord
             {
                 notificationLinkLi.Attributes["class"] = "nav-item active";
             }
-            else if (Request.Url.AbsolutePath.EndsWith("Chat.aspx"))
+            else if (Request.Url.AbsolutePath.EndsWith("LandlordChat.aspx"))
             {
                 chatLinkLi.Attributes["class"] = "nav-item active";
             }

@@ -70,6 +70,7 @@
     <Content Include="Global.asax" />
     <Content Include="LandlordLoginPage.aspx" />
     <Content Include="Landlord\Homepage.aspx" />
+    <Content Include="Landlord\LandlordChat.aspx" />
     <Content Include="Landlord\Notification.aspx" />
     <Content Include="TenantForgetPassword.aspx" />
     <Content Include="Tenant\AboutUs.aspx" />
@@ -2213,7 +2214,6 @@
     <Content Include="Landlord\AccountSetting.aspx" />
     <Content Include="Landlord\AddProperty.aspx" />
     <Content Include="Landlord\Bookings.aspx" />
-    <Content Include="Landlord\Chat.aspx" />
     <Content Include="Landlord\Finance.aspx" />
     <Content Include="Landlord\Property.aspx" />
     <Content Include="Landlord\PropertyDetails.aspx" />
@@ -2238,8 +2238,10 @@
     <Content Include="lib\wow\wow.min.js" />
     <Content Include="Tenant\Payment.aspx" />
     <Content Include="Tenant\PaymentStatus.aspx" />
+    <Content Include="Tenant\PersonalDetails.aspx" />
     <Content Include="Tenant\PropertyDetail.aspx" />
-    <Content Include="Tenant\TenantLP.aspx" />
+    <Content Include="TenantLoginPage.aspx" />
+    <Content Include="Tenant\TenantChat.aspx" />
     <Content Include="Tenant\ViewProperties.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -2260,6 +2262,13 @@
     </Compile>
     <Compile Include="Landlord\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landlord\LandlordChat.aspx.cs">
+      <DependentUpon>LandlordChat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landlord\LandlordChat.aspx.designer.cs">
+      <DependentUpon>LandlordChat.aspx</DependentUpon>
     </Compile>
     <Compile Include="Landlord\Notification.aspx.cs">
       <DependentUpon>Notification.aspx</DependentUpon>
@@ -2317,13 +2326,6 @@
     <Compile Include="Landlord\Bookings.aspx.designer.cs">
       <DependentUpon>Bookings.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Landlord\Chat.aspx.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Landlord\Chat.aspx.designer.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Landlord\Finance.aspx.cs">
       <DependentUpon>Finance.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2367,6 +2369,13 @@
       <DependentUpon>PaymentStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tenant\PersonalDetails.aspx.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tenant\PersonalDetails.aspx.designer.cs">
+      <DependentUpon>PersonalDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tenant\PropertyDetail.aspx.cs">
       <DependentUpon>PropertyDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2374,12 +2383,19 @@
     <Compile Include="Tenant\PropertyDetail.aspx.designer.cs">
       <DependentUpon>PropertyDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Tenant\TenantLP.aspx.cs">
-      <DependentUpon>TenantLP.aspx</DependentUpon>
+    <Compile Include="TenantLoginPage.aspx.cs">
+      <DependentUpon>TenantLoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Tenant\TenantLP.aspx.designer.cs">
-      <DependentUpon>TenantLP.aspx</DependentUpon>
+    <Compile Include="TenantLoginPage.aspx.designer.cs">
+      <DependentUpon>TenantLoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tenant\TenantChat.aspx.cs">
+      <DependentUpon>TenantChat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tenant\TenantChat.aspx.designer.cs">
+      <DependentUpon>TenantChat.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tenant\TenantMenu.Master.cs">
       <DependentUpon>TenantMenu.Master</DependentUpon>

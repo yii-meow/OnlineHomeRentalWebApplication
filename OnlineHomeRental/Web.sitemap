@@ -9,7 +9,7 @@
 		</siteMapNode>
 		<siteMapNode url="~/Landlord/Bookings.aspx" title="Bookings Information"  description="Booking History" />
 		<siteMapNode url="~/Landlord/Notification.aspx" title="Landlord Notification"  description="Landlord Notification" />
-		<siteMapNode url="~/Landlord/Chat.aspx" title="Chat"  description="Chat" />
+		<siteMapNode url="~/Landlord/LandlordChat.aspx" title="Chat"  description="Chat" />
 		<siteMapNode url="~/Landlord/Finance.aspx" title="Finance"  description="Finance" />
 		<siteMapNode url="~/Landlord/AccountSetting.aspx" title="Account Setting"  description="Account Setting" />
 	</siteMapNode>

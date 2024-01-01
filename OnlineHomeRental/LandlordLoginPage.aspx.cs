@@ -21,6 +21,8 @@ namespace OnlineHomeRental.Landlord
 
         protected void Login_Click(object sender, EventArgs e)
         {
+            Session["UserId"] = "";
+
             string LandlordUsername = tbLandlordUsername.Text;
             string LandlordPassword = tbLandlordPassword.Text;
             string hashedPassword = HashPassword(LandlordPassword);
@@ -209,6 +211,15 @@ namespace OnlineHomeRental.Landlord
             string script = "alert('Register Successfully! Please use your username and password to login.'); " +
                 "setTimeout(function() { window.location.href = '/LandlordLoginPage.aspx'; }, 3000);";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", script, true);
+        }
+
+        protected void CustomValidatorPasswordUsername_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string username = tbRegLandlordUsername.Text.Trim();
+            string password = tbRegLandlordPassword.Text.Trim();
+
+            // Check if the password is the same as the username
+            args.IsValid = !username.Equals(password, StringComparison.Ordinal);
         }
 
     }

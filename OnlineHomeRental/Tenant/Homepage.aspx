@@ -29,36 +29,45 @@
 
 
     <!-- Search Start -->
-    <div class="container-fluid bg-primary mb-5 wow fadeIn " data-wow-delay="0.1s " style="padding: 35px;">
-        <div class="container ">
-            <div class="row g-2 ">
-                <div class="col-md-10 ">
-                    <div class="row g-2 ">
+    <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-md-10">
+                    <div class="row g-2">
                         <div class="col-md-3">
-                            <input type="text" class="form-control border-0 py-3 " placeholder="Enter Your Min Budget" />
+                            <asp:DropDownList CssClass="form-select border-0 py-3" ID="ddlPropType" runat="server">
+                                <asp:ListItem Selected="True">-- Select Property Type --</asp:ListItem>
+                                <asp:ListItem>Residential</asp:ListItem>
+                                <asp:ListItem>Flat</asp:ListItem>
+                                <asp:ListItem>Apartment</asp:ListItem>
+                                <asp:ListItem>Condominium</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                         <div class="col-md-3">
-                            <input type="text" class="form-control border-0 py-3 " placeholder="Enter Your Max Budget" />
+                            <asp:DropDownList CssClass="form-select border-0 py-3" ID="ddlAirCond" runat="server">
+                                <asp:ListItem Selected="True">Need Air Conditional?</asp:ListItem>
+                                <asp:ListItem>Yes</asp:ListItem>
+                                <asp:ListItem>Doesn't have to be</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-select border-0 py-3 ">
-                                <option selected="">Property Type</option>
-                                <option value="1">Residential</option>
-                                <option value="2">Flat</option>
-                                <option value="3">Apartment</option>
-                                <option value="4">Condominium</option>
-                            </select>
+                            <asp:DropDownList CssClass="form-select border-0 py-3" ID="ddlWaterHeater" runat="server">
+                                <asp:ListItem Selected="True">Need Water Heater?</asp:ListItem>
+                                <asp:ListItem>Yes</asp:ListItem>
+                                <asp:ListItem>Doesn't have to be</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-select border-0 py-3 ">
-                                <option selected="">Location</option>
-                                <option value="1">Setapak</option>
-                            </select>
+                            <asp:DropDownList CssClass="form-select border-0 py-3" ID="ddlWifi" runat="server">
+                                <asp:ListItem Selected="True">Need Wifi?</asp:ListItem>
+                                <asp:ListItem>Yes</asp:ListItem>
+                                <asp:ListItem>Doesn't have to be</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 ">
-                    <button class="btn btn-dark border-0 w-100 py-3 ">Search</button>
+                <div class="col-md-2">
+                    <asp:Button CssClass="btn btn-dark border-0 w-100 py-3" ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
                 </div>
             </div>
         </div>
@@ -75,46 +84,58 @@
             </div>
             <div class="row g-4 ">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp " data-wow-delay="0.1s ">
-                    <a class="cat-item d-block bg-light text-center rounded p-3 " href="#">
+                    <a class="cat-item d-block bg-light text-center rounded p-3 ">
                         <div class="rounded p-4 ">
                             <div class="icon mb-3 ">
                                 <img class="img-fluid " src="/img/icon-luxury.png" alt="Icon" />
                             </div>
                             <h6>Residential</h6>
-                            <span>999 Properties</span>
+                            <span>
+                                <asp:Label ID="lblNoOfResidential" runat="server" Text="0"></asp:Label>
+                                Properties
+                            </span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp " data-wow-delay="0.3s ">
-                    <a class="cat-item d-block bg-light text-center rounded p-3 " href="#">
+                    <a class="cat-item d-block bg-light text-center rounded p-3 ">
                         <div class="rounded p-4 ">
                             <div class="icon mb-3 ">
                                 <img class="img-fluid " src="/img/icon-house.png" alt="Icon" />
                             </div>
                             <h6>Flat</h6>
-                            <span>999 Properties</span>
+                            <span>
+                                <asp:Label ID="lblNoOfFlat" runat="server" Text="0"></asp:Label>
+                                Properties
+                            </span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp " data-wow-delay="0.5s ">
-                    <a class="cat-item d-block bg-light text-center rounded p-3 " href="#">
+                    <a class="cat-item d-block bg-light text-center rounded p-3 ">
                         <div class="rounded p-4 ">
                             <div class="icon mb-3 ">
                                 <img class="img-fluid " src="/img/icon-apartment.png" alt="Icon" />
                             </div>
                             <h6>Apartment</h6>
-                            <span>999 Properties</span>
+                            <span>
+                                <asp:Label ID="lblNoOfApartment" runat="server" Text="0"></asp:Label>
+                                Properties
+                            </span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp " data-wow-delay="0.7s ">
-                    <a class="cat-item d-block bg-light text-center rounded p-3 " href="#">
+                    <a class="cat-item d-block bg-light text-center rounded p-3 ">
                         <div class="rounded p-4 ">
                             <div class="icon mb-3 ">
                                 <img class="img-fluid " src="/img/icon-condominium.png" alt="Icon" />
                             </div>
                             <h6>Condominium</h6>
-                            <span>999 Properties</span>
+                            <span>
+                                <asp:Label ID="lblNoOfCondo" runat="server" Text="0"></asp:Label>
+                                Properties
+                            </span>
                         </div>
                     </a>
                 </div>
@@ -139,7 +160,7 @@
                     <p><i class="fa fa-check text-primary me-3 "></i>Customized Search</p>
                     <p><i class="fa fa-check text-primary me-3 "></i>Verified Listings</p>
                     <p><i class="fa fa-check text-primary me-3 "></i>Expert Assistance</p>
-                    <a class="btn btn-primary py-3 px-5 mt-3 " href="#">Read More</a>
+                    <a class="btn btn-primary py-3 px-5 mt-3 " href="AboutUs.aspx">Read More</a>
                 </div>
             </div>
         </div>
@@ -161,120 +182,52 @@
             <div class="tab-content ">
                 <div id="tab-1 " class="tab-pane fade show p-0 active ">
                     <div class="row g-4 ">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.1s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid" src="/Data/Property.jpg" alt="" /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
+                        <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+                            <ItemTemplate>
+                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a href="#">
+                                                <img class="img-fluid" src="<%# Eval("Thumbnail") %>" alt="property" />
+                                            </a>
+                                            <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                                <%# Eval("PropertyType") %>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">RM <%# Eval("PropertyPrice") %>
+                                            </h5>
+                                            <a class="d-block h5 mb-2" style="display: inline-block !important;" href="PropertyDetail.aspx?PropertyId=<%# Eval("PropertyId") %>">
+                                                <%# Eval("PropertyName") %>
+                                            </a>
+                                            <p>
+                                                <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                                <%# Eval("PropertyAddress") %>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>
+                                                <%# Eval("NumberOfBedroom") %> Bedroom
+                                            </small>
+                                            <small class="flex-fill text-center py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>
+                                                <%# Eval("AreaSqft") %> Sqft
+                                            </small>
+                                        </div>
+                                        <div class="d-flex border-top">
+                                            <small class="flex-fill text-center border-end py-2">
+                                                <%# GetIcon(Convert.ToBoolean(Eval("AirCondAvailability"))) %>Air Conditional
+                                            </small>
+                                            <small class="flex-fill text-center border-end py-2">
+                                                <%# GetIcon(Convert.ToBoolean(Eval("WaterHeaterAvailability"))) %>Water Heater
+                                            </small>
+                                            <small class="flex-fill text-center py-2">
+                                                <%# GetIcon(Convert.ToBoolean(Eval("WifiAvailability"))) %>Wifi
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="p-4 pb-0">
-                                    <h5 class="text-primary mb-3">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.3s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid " src="/Data/Property.jpg" alt=" " /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
-                                </div>
-                                <div class="p-4 pb-0 ">
-                                    <h5 class="text-primary mb-3 ">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.5s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid " src="/Data/Property.jpg" alt=" " /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
-                                </div>
-                                <div class="p-4 pb-0 ">
-                                    <h5 class="text-primary mb-3 ">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.1s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid " src="/Data/Property.jpg" alt="" /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
-                                </div>
-                                <div class="p-4 pb-0 ">
-                                    <h5 class="text-primary mb-3 ">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.3s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid " src="/Data/Property.jpg" alt="" /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
-                                </div>
-                                <div class="p-4 pb-0 ">
-                                    <h5 class="text-primary mb-3 ">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-delay="0.5s ">
-                            <div class="property-item rounded overflow-hidden ">
-                                <div class="position-relative overflow-hidden ">
-                                    <a href="#">
-                                        <img class="img-fluid " src="/Data/Property.jpg" alt="" /></a>
-                                    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3 ">Property Type</div>
-                                </div>
-                                <div class="p-4 pb-0 ">
-                                    <h5 class="text-primary mb-3 ">RM 999.99</h5>
-                                    <a class="d-block h5 mb-2 " href="#">Property Name</a>
-                                    <p><i class="fa fa-map-marker-alt text-primary me-2 "></i>Property Location</p>
-                                </div>
-                                <div class="d-flex border-top ">
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-ruler-combined text-primary me-2 "></i>999 Sqft</small>
-                                    <small class="flex-fill text-center border-end py-2 "><i class="fa fa-bed text-primary me-2 "></i>9 Bed</small>
-                                    <small class="flex-fill text-center py-2 "><i class="fa fa-bath text-primary me-2 "></i>9 Bath</small>
-                                </div>
-                            </div>
-                        </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
                         <div class="col-12 text-center wow fadeInUp " data-wow-delay="0.1s ">
                             <a class="btn btn-primary py-3 px-5 " href="ViewProperties.aspx">View More Properties</a>
                         </div>
@@ -283,6 +236,7 @@
             </div>
         </div>
     </div>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP 9 [PropertyId], [PropertyName], [PropertyType], [PropertyAddress], [PropertyPrice], [NumberOfBedroom], CAST([AreaSqft] AS INT) AS [AreaSqft], [AirCondAvailability], [WaterHeaterAvailability], [WifiAvailability], [Thumbnail] FROM [Property] ORDER BY NEWID();"></asp:SqlDataSource>
     <!-- Property List End -->
 
 
@@ -296,36 +250,48 @@
             <div class="owl-carousel testimonial-carousel wow fadeInUp " data-wow-delay="0.1s ">
                 <div class="testimonial-item bg-light rounded p-3 ">
                     <div class="bg-white border rounded p-4 ">
-                        <p>Client's Comment</p>
+                        <p class="justify-text">I found my dream apartment through this website! The search filters were so convenient, and the listings were comprehensive. The entire process, from browsing to moving in, was smooth. Highly recommend!</p>
                         <div class="d-flex align-items-center ">
-                            <img class="img-fluid flex-shrink-0 rounded " src="/Data/pp.jpg" style="width: 45px; height: 45px;" />
+                            <img class="img-fluid flex-shrink-0 rounded " src="/img/female.png" style="width: 45px; height: 45px;" />
                             <div class="ps-3 ">
-                                <h6 class="fw-bold mb-1 ">Client's Name</h6>
-                                <small>Client's Gender</small>
+                                <h6 class="fw-bold mb-1 ">Sarah</h6>
+                                <small>Female</small>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item bg-light rounded p-3 ">
                     <div class="bg-white border rounded p-4 ">
-                        <p>Client's Comment</p>
+                        <p class="justify-text">Great experience renting through this platform. The variety of properties available made it easy to find exactly what I was looking for. The support team was responsive and helpful whenever I had questions. Will definitely use again!</p>
                         <div class="d-flex align-items-center ">
-                            <img class="img-fluid flex-shrink-0 rounded " src="/Data/pp.jpg" style="width: 45px; height: 45px;" />
+                            <img class="img-fluid flex-shrink-0 rounded " src="/img/male.png" style="width: 45px; height: 45px;" />
                             <div class="ps-3 ">
-                                <h6 class="fw-bold mb-1">Client's Name</h6>
-                                <small>Client's Gender</small>
+                                <h6 class="fw-bold mb-1">Michael Tiong</h6>
+                                <small>Male</small>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-item bg-light rounded p-3 ">
                     <div class="bg-white border rounded p-4 ">
-                        <p>Client's Comment</p>
+                        <p class="justify-text">I have been using this site for months to find rental properties, and it never disappoints. The user interface is intuitive, the listings are up-to-date, and the landlords are reliable. Wouldn't trust any other platform!</p>
                         <div class="d-flex align-items-center ">
-                            <img class="img-fluid flex-shrink-0 rounded " src="/Data/pp.jpg" style="width: 45px; height: 45px;" />
+                            <img class="img-fluid flex-shrink-0 rounded " src="/img/female.png" style="width: 45px; height: 45px;" />
                             <div class="ps-3 ">
-                                <h6 class="fw-bold mb-1 ">Client's Name</h6>
-                                <small>Client's Gender</small>
+                                <h6 class="fw-bold mb-1 ">Emily Tan</h6>
+                                <small>Female</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item bg-light rounded p-3 ">
+                    <div class="bg-white border rounded p-4 ">
+                        <p class="justify-text">Impressed with the quality of service! Found a fantastic place in no time. The website's interface is clean and user-friendly, making the whole rental process stress-free. Kudos to the team behind this excellent platform!</p>
+                        <div class="d-flex align-items-center ">
+                            <img class="img-fluid flex-shrink-0 rounded " src="/img/male.png" style="width: 45px; height: 45px;" />
+                            <div class="ps-3 ">
+                                <h6 class="fw-bold mb-1 ">David Chong</h6>
+                                <small>Male</small>
                             </div>
                         </div>
                     </div>

@@ -16,6 +16,16 @@
     position: fixed;
 }
 
+.main-icon {
+    padding: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF !important;
+    border-radius: 50px;
+    border: 1px dashed var(--primary) !important;
+}
+
 .viewRatingButton {
     top: 100px;
     right: 10px;
@@ -183,7 +193,8 @@
     margin: 0;
     padding: 10px 30px;
     background-color: #f4f4f4;
-    height: fit-content;
+    min-height:90vh;
+    max-height: fit-content;
 }
 
     .home h2 {
@@ -280,6 +291,8 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
+    padding:20px;
+    margin-bottom:70px;
 }
 
 .summary-card {
