@@ -13,6 +13,11 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["LandlordId"] == null)
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
+
             DateTime currentDate = DateTime.Now;
             string formattedDate = currentDate.ToString("MMM yyyy");
             lblMonth.Text = formattedDate;
@@ -58,6 +63,25 @@ namespace OnlineHomeRental.Landlord
                         overallAverageRatings = (decimal)result;
                     }
                     lblRating.Text = overallAverageRatings.ToString("N1");
+                }
+
+                string strTopPropery = "SELECT TOP 1 P.PropertyName " +
+                                   "FROM Booking B " +
+                                   "INNER JOIN Property P ON B.PropertyId = P.PropertyId " +
+                                   "WHERE B.LandlordId = @LandlordId " +
+                                   "GROUP BY B.PropertyId, P.PropertyName " +
+                                   "ORDER BY COUNT(*) DESC";
+                using (SqlCommand cmdTopProperty = new SqlCommand(strTopPropery, con))
+                {
+                    cmdTopProperty.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    string topBookedProperty = "None";
+                    object result = cmdTopProperty.ExecuteScalar();
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        topBookedProperty = (string)result;
+                    }
+                    lblTopBookedProperty.Text = topBookedProperty;
                 }
 
                 string strBookingCountThisMonth = "SELECT COUNT(*) FROM Booking " +

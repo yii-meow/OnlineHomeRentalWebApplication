@@ -14,6 +14,11 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["LandlordId"] == null)
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
+
             string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             using (SqlConnection con = new SqlConnection(strCon))

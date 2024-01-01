@@ -14,6 +14,10 @@ namespace OnlineHomeRental.Tenant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["TenantId"] == null)
+            {
+                Response.Redirect("/TenantLoginPage.aspx");
+            }
         }
         protected void customValidatorExpiryDate_ServerValidate(object source, ServerValidateEventArgs args)
         {

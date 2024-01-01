@@ -417,10 +417,9 @@
         SelectCommand="SELECT [User].UserId, Review.RatingScore, Review.ReviewMessage, Review.ReviewDate FROM Review INNER JOIN Booking ON Booking.BookingId = Review.BookingId 
         INNER JOIN Tenant ON Booking.TenantId = Tenant.TenantId 
         INNER JOIN [User] ON [User].UserId = Tenant.UserId 
-        WHERE Booking.PropertyId = @PropertyId 
+        WHERE Review.PropertyId = @PropertyId 
         ORDER BY Review.ReviewDate DESC">
         <SelectParameters>
-            <asp:SessionParameter Name="LandlordId" SessionField="LandlordId" Type="Int32" />
             <asp:QueryStringParameter Name="PropertyId" QueryStringField="PropertyId" Type="Int32" />
         </SelectParameters>
     </asp:SqlDataSource>

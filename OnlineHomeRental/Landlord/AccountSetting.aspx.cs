@@ -18,6 +18,10 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["LandlordId"] == null)
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
         }
 
         protected void btnSavePersonalDetails_Click(object sender, EventArgs e)

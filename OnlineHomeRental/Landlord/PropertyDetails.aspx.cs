@@ -15,6 +15,11 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["LandlordId"] == null)
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
+
             // Set Client side Javascript confirmation dialogue for deleting property
             if (!IsPostBack)
             {

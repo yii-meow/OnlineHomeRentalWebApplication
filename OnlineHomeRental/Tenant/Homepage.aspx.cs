@@ -13,6 +13,11 @@ namespace OnlineHomeRental.Tenant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["TenantId"] == null)
+            {
+                Response.Redirect("/TenantLoginPage.aspx");
+            }
+
             string strConn = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();

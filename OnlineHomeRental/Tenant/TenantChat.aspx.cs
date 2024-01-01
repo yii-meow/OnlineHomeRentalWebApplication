@@ -13,6 +13,11 @@ namespace OnlineHomeRental.Tenant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["TenantId"] == null)
+            {
+                Response.Redirect("/TenantLoginPage.aspx");
+            }
+
             if (!IsPostBack)
             {
                 // Check if the TenantId is present in the query string from booking.aspx

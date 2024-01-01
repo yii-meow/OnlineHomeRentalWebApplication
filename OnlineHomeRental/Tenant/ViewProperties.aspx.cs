@@ -14,6 +14,11 @@ namespace OnlineHomeRental.Tenant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserId"] == null || Session["TenantId"] == null)
+            {
+                Response.Redirect("/TenantLoginPage.aspx");
+            }
+
             DisplayLabel();
 
             if (!IsPostBack)

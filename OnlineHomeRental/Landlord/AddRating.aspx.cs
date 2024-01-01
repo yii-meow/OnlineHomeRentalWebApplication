@@ -12,15 +12,21 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserId"] == null || Session["LandlordId"] == null)
+            {
+                Response.Redirect("/LandlordLoginPage.aspx");
+            }
         }
 
         protected void addRating_Click(object sender, EventArgs e)
         {
-            string propertyId = lblPropertyId.Text;
-            string bookingId = lblBookingId.Text;
+            string propertyId = hdnPropertyId.Value;
+            string bookingId = hdnBookingId.Value;
             int rating = int.Parse(hdnRating.Value);
             string reviewMessage = tbReviewMessage.Text;
+
+            string script = $"alert('{propertyId}, {bookingId}, {rating}, {reviewMessage}');";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertScript", script, true);
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -44,6 +50,15 @@ namespace OnlineHomeRental.Landlord
                     cmdInsertReview.ExecuteNonQuery();
                 }
             }
+        }
+        protected string ConvertToStars(object ratingScoreObj)
+        {
+            int ratingScore = 0;
+            if (ratingScoreObj != null)
+            {
+                ratingScore = Convert.ToInt32(ratingScoreObj);
+            }
+            return string.Concat(Enumerable.Repeat("<i class='bi bi-star-fill'></i>", ratingScore));
         }
     }
 }
