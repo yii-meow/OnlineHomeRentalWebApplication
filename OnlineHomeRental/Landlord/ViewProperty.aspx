@@ -32,9 +32,9 @@
             </div>
         </div>
 
-        <div class="mt-2">
+        <div class="mt-2 mb-3">
             <label for="tbSearchbar">Search property: </label>
-            <asp:TextBox ID="tbSearchbar" runat="server" placeholder="Search Property..." OnTextChanged="tbSearchbar_TextChanged" AutoPostBack="true" />
+            <asp:TextBox ID="tbSearchbar" runat="server" placeholder="Search Property..." OnTextChanged="tbSearchbar_TextChanged" AutoPostBack="true" CssClass="p-1 ml-1 w-25" />
             <asp:Label ID="lblSearchedPropertyTotalResult" runat="server" CssClass="ml-2 text-info" />
         </div>
 

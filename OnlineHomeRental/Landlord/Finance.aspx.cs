@@ -15,6 +15,11 @@ namespace OnlineHomeRental.Landlord
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LandlordId"] == null)
+            {
+                return;
+            }
+
             if (!IsPostBack)
             {
                 BindCanvasData();
@@ -428,12 +433,16 @@ namespace OnlineHomeRental.Landlord
 
         private void BindCanvasData()
         {
-            // Replace this connection string with your actual connection string
-            string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-            using (SqlConnection connection = new SqlConnection(strCon))
+            if (Session["LandlordId"] != null)
             {
-                string strRevenue = @"
+
+
+                // Replace this connection string with your actual connection string
+                string strCon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+                using (SqlConnection connection = new SqlConnection(strCon))
+                {
+                    string strRevenue = @"
                     WITH Last6Months AS (
                         SELECT DISTINCT
                             MONTH(DATEADD(MONTH, -Number - 1, GETDATE())) AS MonthNumber
@@ -452,20 +461,21 @@ namespace OnlineHomeRental.Landlord
                     ORDER BY COALESCE(YEAR(b.BookingTime), YEAR(GETDATE())), l.MonthNumber;
                 ";
 
-                using (SqlCommand command = new SqlCommand(strRevenue, connection))
-                {
-                    command.Parameters.AddWithValue("@LandlordId", Session["LandlordId"]);
+                    using (SqlCommand command = new SqlCommand(strRevenue, connection))
+                    {
+                        command.Parameters.AddWithValue("@LandlordId", Session["LandlordId"]);
 
-                    connection.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                        connection.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
 
-                    // Convert DataTable to JSON for use in JavaScript
-                    string jsonBookingData = ConvertDataTableToJson(dataTable);
+                        // Convert DataTable to JSON for use in JavaScript
+                        string jsonBookingData = ConvertDataTableToJson(dataTable);
 
-                    // Inject the JSON data into the JavaScript block
-                    ScriptManager.RegisterStartupScript(this, GetType(), "DrawCanvas", $"DrawCanvas({jsonBookingData});", true);
+                        // Inject the JSON data into the JavaScript block
+                        ScriptManager.RegisterStartupScript(this, GetType(), "DrawCanvas", $"DrawCanvas({jsonBookingData});", true);
+                    }
                 }
             }
         }

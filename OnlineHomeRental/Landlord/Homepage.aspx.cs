@@ -42,23 +42,22 @@ namespace OnlineHomeRental.Landlord
                     lblTotalRevenue.Text = totalRevenue.ToString("C");
                 }
 
-                string strTopPropery = "SELECT TOP 1 P.PropertyName " +
-                                   "FROM Booking B " +
-                                   "INNER JOIN Property P ON B.PropertyId = P.PropertyId " +
-                                   "WHERE B.LandlordId = @LandlordId " +
-                                   "GROUP BY B.PropertyId, P.PropertyName " +
-                                   "ORDER BY COUNT(*) DESC";
-                using (SqlCommand cmdTopProperty = new SqlCommand(strTopPropery, con))
+                string strOverallAverageRatings = @"
+                                    SELECT AVG(CAST(RatingScore AS DECIMAL(10, 2))) 
+                                    FROM Property INNER JOIN Review ON Property.PropertyId = Review.PropertyId 
+                                    WHERE Property.LandlordId = @LandlordId";
+
+                using (SqlCommand cmdOverallAverageRatings = new SqlCommand(strOverallAverageRatings, con))
                 {
-                    cmdTopProperty.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
-                    string topBookedProperty = "None";
-                    object result = cmdTopProperty.ExecuteScalar();
+                    cmdOverallAverageRatings.Parameters.AddWithValue("@LandlordId", Convert.ToInt32(Session["LandlordId"]));
+                    decimal overallAverageRatings = 0;
+                    object result = cmdOverallAverageRatings.ExecuteScalar();
 
                     if (result != DBNull.Value && result != null)
-                    { 
-                        topBookedProperty = (string)result;
+                    {
+                        overallAverageRatings = (decimal)result;
                     }
-                    lblTopBookedProperty.Text = topBookedProperty;
+                    lblRating.Text = overallAverageRatings.ToString("N1");
                 }
 
                 string strBookingCountThisMonth = "SELECT COUNT(*) FROM Booking " +
@@ -77,7 +76,7 @@ namespace OnlineHomeRental.Landlord
                         bookingCountThisMonth = (int)result;
                     }
 
-                    lblBookingThisMonth.Text = bookingCountThisMonth.ToString();
+                    lblBookingThisMonth.Text = bookingCountThisMonth.ToString("");
                 }
 
                 string strRevenueThisMonth = "SELECT SUM(Payment.PaymentAmount) " +

@@ -60,7 +60,7 @@ namespace OnlineHomeRental.Landlord
 
         protected void tbSearchbar_TextChanged(object sender, EventArgs e)
         {
-            string searched_value = tbSearchbar.Text;
+            string searched_value = tbSearchbar.Text.Trim();
             lblReturnedFilterRecord.Text = "";
             lblSearchedPropertyTotalResult.Text = "";
 

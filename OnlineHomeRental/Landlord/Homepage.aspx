@@ -18,7 +18,7 @@
                     <i class="fa-regular fa-star text-warning"></i>
                     <h5>Overall Rating</h5>
                     <p class="value">
-                        <asp:Literal runat="server" ID="lblRating" />4.5 / 5
+                        <asp:Literal runat="server" ID="lblRating" /> / 5.0
                     </p>
                 </div>
 

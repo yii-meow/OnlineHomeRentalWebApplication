@@ -2237,6 +2237,7 @@
     <Content Include="lib\wow\wow.js" />
     <Content Include="lib\wow\wow.min.js" />
     <Content Include="Tenant\Payment.aspx" />
+    <Content Include="Tenant\PaymentRecords.aspx" />
     <Content Include="Tenant\PaymentStatus.aspx" />
     <Content Include="Tenant\PersonalDetails.aspx" />
     <Content Include="Tenant\PropertyDetail.aspx" />
@@ -2360,6 +2361,13 @@
     </Compile>
     <Compile Include="Tenant\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tenant\PaymentRecords.aspx.cs">
+      <DependentUpon>PaymentRecords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tenant\PaymentRecords.aspx.designer.cs">
+      <DependentUpon>PaymentRecords.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tenant\PaymentStatus.aspx.cs">
       <DependentUpon>PaymentStatus.aspx</DependentUpon>

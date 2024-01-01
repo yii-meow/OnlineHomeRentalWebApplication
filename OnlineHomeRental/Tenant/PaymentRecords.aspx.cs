@@ -7,11 +7,17 @@ using System.Web.UI.WebControls;
 
 namespace OnlineHomeRental.Tenant
 {
-    public partial class PaymentRecords : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+	public partial class PaymentRecords : System.Web.UI.Page
+	{
+		protected void Page_Load(object sender, EventArgs e)
+		{
 
-        }
+		}
+
+		protected void btnAddReview_Click(object sender, EventArgs e)
+		{
+
+		}
+
     }
 }
