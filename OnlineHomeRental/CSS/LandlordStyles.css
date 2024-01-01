@@ -32,7 +32,7 @@
     float: right;
 }
 
-.active {
+.menu .active {
     background-color: lightblue;
     color: darkblue;
 }
@@ -193,7 +193,7 @@
     margin: 0;
     padding: 10px 30px;
     background-color: #f4f4f4;
-    min-height:90vh;
+    min-height: 90vh;
     max-height: fit-content;
 }
 
@@ -291,8 +291,8 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
-    padding:20px;
-    margin-bottom:70px;
+    padding: 20px;
+    margin-bottom: 70px;
 }
 
 .summary-card {
@@ -685,7 +685,7 @@
     }
 
     .morePropertyDetails .property-description {
-        height:300px;
+        height: 300px;
     }
 
     .morePropertyDetails .property-details p {
@@ -700,9 +700,9 @@
 .property-moreDetails .amenitiesLabel {
     width: 200px;
     display: inline-block;
-    padding:10px;
-    text-align:center;
-    line-height:30px;
+    padding: 10px;
+    text-align: center;
+    line-height: 30px;
 }
 
     .property-moreDetails .amenitiesLabel i {
@@ -1053,3 +1053,20 @@ canvas {
 .account-setting .input-group-text {
     cursor: pointer;
 }
+
+/* Add Rating */
+.rating {
+    cursor: pointer;
+}
+
+    .rating i {
+        font-size: 30px;
+        color: #ddd;
+        transition: color 0.3s;
+    }
+
+        .rating i:hover,
+        .rating i.active {
+            background-color: white;
+            color: #ffc107;
+        }

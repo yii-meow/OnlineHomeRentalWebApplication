@@ -160,64 +160,6 @@
                     </div>
                 </div>
             </div>
-
-            <%--<!-- Most Recent 5 notifications -->
-            <div class="activity-feed">
-                <h5><b>Recent Activity Feed</b></h5>
-                <div class="activity-cards">
-                    <!-- Dynamic content for activity feed goes here -->
-                    <div class="activity-card">
-                        <div class="activity-icon">
-                            <!-- Add an icon or image related to the activity -->
-                            🏠
-                        </div>
-                        <div class="activity-details">
-                            <p><b>Booked a property:</b></p>
-                            <p>Property XYZ on December 5, 2023</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-icon">
-                            <!-- Add an icon or image related to the activity -->
-                            ❌
-                        </div>
-                        <div class="activity-details">
-                            <p><b>Cancelled booking:</b></p>
-                            <p>Booking ABC on November 28, 2023</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-icon">
-                            <!-- Add an icon or image related to the activity -->
-                            ❌
-                        </div>
-                        <div class="activity-details">
-                            <p><b>Cancelled booking:</b></p>
-                            <p>Booking ABC on November 28, 2023</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-icon">
-                            <!-- Add an icon or image related to the activity -->
-                            ❌
-                        </div>
-                        <div class="activity-details">
-                            <p><b>Cancelled booking:</b></p>
-                            <p>Booking ABC on November 28, 2023</p>
-                        </div>
-                    </div>
-                    <div class="activity-card">
-                        <div class="activity-icon">
-                            <!-- Add an icon or image related to the activity -->
-                            ❌
-                        </div>
-                        <div class="activity-details">
-                            <p><b>Cancelled booking:</b></p>
-                            <p>Booking ABC on November 28, 2023</p>
-                        </div>
-                    </div>
-                </div>--%>
-            <%--</div>--%>
         </div>
     </div>
 </asp:Content>

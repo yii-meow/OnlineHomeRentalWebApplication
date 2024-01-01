@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="LandlordLoginPage.aspx" />
+    <Content Include="Landlord\AddRating.aspx" />
     <Content Include="Landlord\Homepage.aspx" />
     <Content Include="Landlord\LandlordChat.aspx" />
     <Content Include="Landlord\Notification.aspx" />
@@ -2256,6 +2257,13 @@
     </Compile>
     <Compile Include="LandlordLoginPage.aspx.designer.cs">
       <DependentUpon>LandlordLoginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landlord\AddRating.aspx.cs">
+      <DependentUpon>AddRating.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landlord\AddRating.aspx.designer.cs">
+      <DependentUpon>AddRating.aspx</DependentUpon>
     </Compile>
     <Compile Include="Landlord\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
